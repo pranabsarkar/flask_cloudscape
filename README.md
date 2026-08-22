@@ -743,30 +743,22 @@ document.getElementById('my-toggle').addEventListener('change', (e) => {
 ## Project Structure
 
 ```
-code/                                   # Workspace root
-├── flask_cloudscape/                   # ★ Standalone Python package
-│   ├── __init__.py                     # Flask extension (Cloudscape class)
-│   ├── components.py                   # Python component classes (24 components)
-│   ├── README.md                       # ← You are here
-│   ├── static/
-│   │   ├── js/cloudscape-adapter.js    # Bundled JS (React + Cloudscape + adapter)
-│   │   └── css/cloudscape-adapter.css  # Bundled CSS (design tokens + styles)
-│   └── templates/cloudscape/
-│       ├── _base.html                  # Base template with auto-loaded assets
-│       └── _macros.html                # Jinja macros for all components
-│
-├── components/                         # Cloudscape React source (upstream)
-│   ├── adapter.js                      # Web Component wrapper (React → Custom Elements)
-│   ├── esbuild.config.mjs              # esbuild bundler configuration
-│   ├── build.sh                        # One-command build script
-│   ├── src/                            # Cloudscape React source
-│   ├── lib/                            # Compiled React components
-│   └── package.json
-│
-└── flask-app/                          # Flask application
-    └── src/
-        ├── app_init.py                 # Registers Cloudscape extension
-        └── templates/
+flask_cloudscape/                       # ★ Standalone Repository Root
+├── setup.py                            # Python package installation configuration
+├── LICENSE                             # Apache 2.0 license file
+├── NOTICE                              # Attribution and copyright notice
+├── README.md                           # ← You are here
+├── MANIFEST.in                         # Distribution manifest file (for static assets)
+└── flask_cloudscape/                   # Nested Python package directory
+    ├── __init__.py                     # Flask extension (Cloudscape class)
+    ├── components.py                   # Dynamically registered components classes (95+ components)
+    ├── static/
+    │   ├── js/cloudscape-adapter.js    # Bundled JS (React + Cloudscape + adapter)
+    │   └── css/cloudscape-adapter.css  # Bundled CSS (design tokens + styles)
+    └── templates/cloudscape/
+        ├── _base.html                  # Base template with auto-loaded assets
+        ├── _macros.html                # Jinja macros for all components
+        └── _patterns.html              # Layout macros for common patterns
 ```
 
 > **Key insight**: `flask_cloudscape/` is completely independent of `components/`.
