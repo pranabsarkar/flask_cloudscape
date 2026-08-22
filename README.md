@@ -769,26 +769,26 @@ flask_cloudscape/                       # ★ Standalone Repository Root
 
 ## Development & Rebuilding (Optional)
 
-If you wish to modify the underlying React Web Component wrapper (`adapter.js`) or upgrade the version of Cloudscape Design System components, you will need the sibling `components/` compiler repository.
+The static JS/CSS bundles in this package are compiled using a separate compiler setup. If you downloaded/installed this package standalone, the `components/` compiler folder will **not** be present in your system.
 
-### Build Instructions:
-1. Install compiler dependencies:
+If you are developing inside the main monorepo (where both `flask_cloudscape/` and the compiler `components/` live as siblings):
+
+### Rebuild Instructions:
+1. Navigate to the sibling compiler directory and install JS dependencies:
    ```bash
-   cd components/
+   cd ../components/
    npm install
    ```
-2. Run full rebuild (compiles TypeScript React and bundles JS/CSS):
+2. Run a full build (compiles TypeScript React and bundles JS/CSS into `flask_cloudscape/`):
    ```bash
    ./build.sh
    ```
-3. Run quick bundle-only rebuild (runs esbuild, useful if only modifying `adapter.js` wrapper):
+3. Run a quick bundle-only rebuild (runs esbuild, useful if only modifying `adapter.js` wrapper):
    ```bash
    ./build.sh --bundle
    ```
 
-The build automatically populates the package static assets:
-- `flask_cloudscape/static/js/cloudscape-adapter.js`
-- `flask_cloudscape/static/css/cloudscape-adapter.css`
+The bundler is configured to automatically write the output files back into the `flask_cloudscape/flask_cloudscape/static/` asset directory.
 
 ---
 
