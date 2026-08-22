@@ -9,7 +9,7 @@ Cloudscape components are compiled into **Web Components** and served as bundled
 ## Table of Contents
 
 - [Quick Start](#quick-start)
-- [Installation & Build](#installation--build)
+- [Installation](#installation)
 - [Flask Integration](#flask-integration)
 - [Usage Methods](#usage-methods)
   - [Method 1: Jinja Macros](#method-1-jinja-macros-recommended)
@@ -22,7 +22,6 @@ Cloudscape components are compiled into **Web Components** and served as bundled
 - [Event Handling](#event-handling)
 - [Base Templates](#base-templates)
 - [Project Structure](#project-structure)
-- [Rebuild After Changes](#rebuild-after-changes)
 
 ---
 
@@ -767,28 +766,9 @@ flask_cloudscape/                       # ★ Standalone Repository Root
 
 ---
 
-## Development & Rebuilding (Optional)
+## Development & Contributing
 
-The static JS/CSS bundles in this package are compiled using a separate compiler setup. If you downloaded/installed this package standalone, the `components/` compiler folder will **not** be present in your system.
-
-If you are developing inside the main monorepo (where both `flask_cloudscape/` and the compiler `components/` live as siblings):
-
-### Rebuild Instructions:
-1. Navigate to the sibling compiler directory and install JS dependencies:
-   ```bash
-   cd ../components/
-   npm install
-   ```
-2. Run a full build (compiles TypeScript React and bundles JS/CSS into `flask_cloudscape/`):
-   ```bash
-   ./build.sh
-   ```
-3. Run a quick bundle-only rebuild (runs esbuild, useful if only modifying `adapter.js` wrapper):
-   ```bash
-   ./build.sh --bundle
-   ```
-
-The bundler is configured to automatically write the output files back into the `flask_cloudscape/flask_cloudscape/static/` asset directory.
+If you wish to modify the underlying React component adapter or rebuild the static assets, please refer to [DEVELOPMENT.md](file:///Users/pranabsarkar/Documents/Pambify/code/flask_cloudscape/DEVELOPMENT.md) for build instructions.
 
 ---
 
