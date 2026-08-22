@@ -1,0 +1,38 @@
+{#
+  Cloudscape Base Template
+  ========================
+  Extend this template or include the asset blocks to auto-load
+  Cloudscape CSS and JS in any page.
+
+  Usage (extend):
+      {% extends "cloudscape/_base.html" %}
+      {% block content %}
+        <cloudscape-button variant="primary">Hello</cloudscape-button>
+      {% endblock %}
+
+  Usage (include assets in existing base):
+      {% block head %}
+        {{ cloudscape_css() }}
+      {% endblock %}
+      {% block js %}
+        {{ cloudscape_js() }}
+      {% endblock %}
+
+  Or use the all-in-one helper:
+      {{ cloudscape_assets() }}
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Cloudscape App{% endblock %}</title>
+  {{ cloudscape_css() }}
+  {% block head %}{% endblock %}
+</head>
+<body class="awsui-visual-refresh">
+  {% block content %}{% endblock %}
+  {{ cloudscape_js() }}
+  {% block scripts %}{% endblock %}
+</body>
+</html>

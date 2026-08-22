@@ -1,0 +1,9 @@
+Flask-Cloudscape
+Copyright 2026 Pranab Sarkar
+
+This project contains modifications to and wrappers for software originally developed
+by Amazon Web Services (AWS) and distributed under the Apache License 2.0.
+
+The original Cloudscape Design System React components and assets are licensed 
+under the Apache License, Version 2.0. A copy of the license is included in 
+the LICENSE file.
