@@ -15,11 +15,16 @@ If you wish to modify the React adapter or rebuild the assets, follow these step
 
 1. Clone the official AWS Cloudscape components repository as a sibling to this repository:
    ```bash
-   git clone https://github.com/cloudscape-design/components.git ../components
+   # Navigate to the parent directory of this repository
+   cd ..
+
+   # Clone the official repository (creates a 'components' directory next to flask_cloudscape)
+   git clone https://github.com/cloudscape-design/components.git
    ```
 
 2. Copy the adapter wrapper and build files from the `compiler/` folder of this repository into the cloned `components/` folder:
    ```bash
+   # From the root of this flask_cloudscape repository, run:
    cp -r compiler/* ../components/
    ```
 
