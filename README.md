@@ -55,6 +55,22 @@ The package comes **pre-built** with all required JS and CSS static bundles incl
 - Flask ≥ 2.0
 - MarkupSafe ≥ 2.0
 
+### Installing the Package
+
+**Method 1: Direct install from GitHub (Recommended)**
+```bash
+pip install git+https://github.com/pranabsarkar/flask_cloudscape.git
+```
+
+**Method 2: Local development install**
+```bash
+# Clone the repository
+git clone https://github.com/pranabsarkar/flask_cloudscape.git
+
+# Install the package in editable mode
+pip install -e ./flask_cloudscape
+```
+
 ---
 
 ## Flask Integration
