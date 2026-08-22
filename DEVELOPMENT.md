@@ -7,15 +7,29 @@ Standard users installing this package via `pip` **do not** need to follow these
 ## Prerequisites
 - Node.js ≥ 18
 - npm ≥ 9
-- Access to the `components/` compiler source folder
+- The official Cloudscape source code repository
+
+## Setting Up the Compiler
+
+If you wish to modify the React adapter or rebuild the assets, follow these steps to set up the build environment:
+
+1. Clone the official AWS Cloudscape components repository as a sibling to this repository:
+   ```bash
+   git clone https://github.com/cloudscape-design/components.git ../components
+   ```
+
+2. Copy the adapter wrapper and build files from the `compiler/` folder of this repository into the cloned `components/` folder:
+   ```bash
+   cp -r compiler/* ../components/
+   ```
 
 ## Workspace Directory Structure
 
-To compile the assets, your workspace must contain both the compiler folder (`components/`) and the python package folder (`flask_cloudscape/`) side-by-side as siblings:
+Once set up, your workspace must look like this:
 
 ```text
 workspace/
-├── components/          # React upstream source and esbuild compiler
+├── components/          # Cloned AWS source + copied compiler/ files
 └── flask_cloudscape/    # Standalone python package (this repository)
 ```
 
