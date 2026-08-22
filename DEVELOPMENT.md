@@ -9,13 +9,23 @@ Standard users installing this package via `pip` **do not** need to follow these
 - npm ≥ 9
 - Access to the `components/` compiler source folder
 
+## Workspace Directory Structure
+
+To compile the assets, your workspace must contain both the compiler folder (`components/`) and the python package folder (`flask_cloudscape/`) side-by-side as siblings:
+
+```text
+workspace/
+├── components/          # React upstream source and esbuild compiler
+└── flask_cloudscape/    # Standalone python package (this repository)
+```
+
 ## Rebuild Instructions
 
-The compilation compiler lives in the `components/` folder sibling to the `flask_cloudscape/` package folder.
+To rebuild the JS/CSS static assets, navigate to the sibling `components/` directory from this folder:
 
-1. Navigate to the compiler directory and install dependencies:
+1. Navigate to the sibling compiler directory and install dependencies:
    ```bash
-   cd components/
+   cd ../components/
    npm install
    ```
 
@@ -29,4 +39,4 @@ The compilation compiler lives in the `components/` folder sibling to the `flask
    ./build.sh --bundle
    ```
 
-The bundler configuration (`components/esbuild.config.mjs`) automatically outputs the bundled static assets to `flask_cloudscape/flask_cloudscape/static/`.
+The bundler configuration (`components/esbuild.config.mjs`) is set up to automatically compile and write output files directly back into `flask_cloudscape/flask_cloudscape/static/`.
