@@ -1,0 +1,5 @@
+recursive-include flask_cloudscape/static *
+recursive-include flask_cloudscape/templates *
+include LICENSE
+include NOTICE
+include README.md
