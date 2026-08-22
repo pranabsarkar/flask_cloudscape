@@ -4,6 +4,9 @@ This document describes how to compile the React custom elements adapter and reb
 
 Standard users installing this package via `pip` **do not** need to follow these steps, as the package contains pre-built assets.
 
+> [!IMPORTANT]
+> If you only want to install and use the `flask-cloudscape` package in your Flask app, **skip this document**. You do **not** need to set up this compiler environment or clone the AWS components repository.
+
 ## Prerequisites
 - Node.js ≥ 18
 - npm ≥ 9

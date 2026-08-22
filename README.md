@@ -49,6 +49,9 @@ cloudscape = Cloudscape(app)
 
 The package comes **pre-built** with all required JS and CSS static bundles included inside the package itself. No Node.js setup, TypeScript compilation, or bundling is required to run the extension.
 
+> [!NOTE]
+> You **do not** need to install or clone the official AWS Cloudscape components repository (`https://github.com/cloudscape-design/components.git`) to use this package. The static assets are already compiled and distributed with the library.
+
 ### Prerequisites
 - Python ≥ 3.9
 - Flask ≥ 2.0
