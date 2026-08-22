@@ -46,34 +46,14 @@ cloudscape = Cloudscape(app)
 
 ---
 
-## Installation & Build
+## Installation
+
+The package comes **pre-built** with all required JS and CSS static bundles included inside the package itself. No Node.js setup, TypeScript compilation, or bundling is required to run the extension.
 
 ### Prerequisites
-- Node.js ≥ 18
-- npm ≥ 9
 - Python ≥ 3.9
-
-### First-Time Setup
-
-```bash
-# Build the Cloudscape adapter (from the components/ directory)
-cd components/
-npm install         # Install JS dependencies
-./build.sh          # Compile TS → JS → Bundle into ../flask_cloudscape/static/
-```
-
-The build populates the standalone package:
-```
-flask_cloudscape/static/js/cloudscape-adapter.js   (~970 KB)
-flask_cloudscape/static/css/cloudscape-adapter.css  (~1.2 MB)
-```
-
-### Quick Rebuild (Bundle Only)
-
-```bash
-cd components/
-./build.sh --bundle   # Skip TS compilation, just re-bundle
-```
+- Flask ≥ 2.0
+- MarkupSafe ≥ 2.0
 
 ---
 
@@ -779,23 +759,28 @@ code/                                   # Workspace root
 
 ---
 
-## Rebuild After Changes
+## Development & Rebuilding (Optional)
 
-If you modify `adapter.js` or update the Cloudscape source:
+If you wish to modify the underlying React Web Component wrapper (`adapter.js`) or upgrade the version of Cloudscape Design System components, you will need the sibling `components/` compiler repository.
 
-```bash
-cd components/
+### Build Instructions:
+1. Install compiler dependencies:
+   ```bash
+   cd components/
+   npm install
+   ```
+2. Run full rebuild (compiles TypeScript React and bundles JS/CSS):
+   ```bash
+   ./build.sh
+   ```
+3. Run quick bundle-only rebuild (runs esbuild, useful if only modifying `adapter.js` wrapper):
+   ```bash
+   ./build.sh --bundle
+   ```
 
-# Full rebuild (recompile TypeScript + bundle)
-./build.sh
-
-# Quick rebuild (bundle only — use after editing adapter.js)
-./build.sh --bundle
-```
-
-The build outputs to both:
-- `../flask_cloudscape/static/` (standalone package assets)
-- `../flask-app/src/static/` (backward compatibility)
+The build automatically populates the package static assets:
+- `flask_cloudscape/static/js/cloudscape-adapter.js`
+- `flask_cloudscape/static/css/cloudscape-adapter.css`
 
 ---
 
