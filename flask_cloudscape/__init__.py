@@ -117,3 +117,32 @@ class Cloudscape:
         # Store reference on app for potential later access
         app.extensions = getattr(app, "extensions", {})
         app.extensions["cloudscape"] = self
+
+
+if __name__ == "__main__":
+    import json
+    from flask import Flask, render_template
+
+    app = Flask(__name__)
+    cloudscape = Cloudscape(app)
+
+    # Load 113 categorized components
+    cat_path = os.path.join(os.path.dirname(__file__), "categories_113.json")
+    with open(cat_path, "r") as f:
+        categories = json.load(f)
+
+    # Add Python class name to each component for display
+    def _to_pascal(s):
+        return "".join(w.title() for w in s.replace("-", "_").split("_"))
+
+    for cat in categories:
+        for comp in cat["components"]:
+            comp["python_class"] = _to_pascal(comp["slug"])
+
+    @app.route("/")
+    def index():
+        return render_template("cloudscape/catalogue.html", categories=categories)
+
+    port = int(os.environ.get("PORT", 5001))
+    print(f" * Starting Flask-Cloudscape demo server on http://127.0.0.1:{port}")
+    app.run(host="0.0.0.0", port=port, debug=True)

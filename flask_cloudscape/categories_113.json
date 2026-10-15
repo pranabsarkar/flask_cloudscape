@@ -1,0 +1,746 @@
+[
+  {
+    "name": "Actions & Buttons",
+    "id": "actions-buttons",
+    "components": [
+      {
+        "slug": "button",
+        "title": "Button",
+        "desc": "",
+        "url": "https://cloudscape.design/components/button/"
+      },
+      {
+        "slug": "button-dropdown",
+        "title": "Button dropdown",
+        "desc": "",
+        "url": "https://cloudscape.design/components/button-dropdown/"
+      },
+      {
+        "slug": "button-group",
+        "title": "Button group",
+        "desc": "",
+        "url": "https://cloudscape.design/components/button-group/"
+      },
+      {
+        "slug": "toggle-button",
+        "title": "Toggle button",
+        "desc": "",
+        "url": "https://cloudscape.design/components/toggle-button/"
+      },
+      {
+        "slug": "segmented-control",
+        "title": "Segmented control",
+        "desc": "",
+        "url": "https://cloudscape.design/components/segmented-control/"
+      },
+      {
+        "slug": "copy-to-clipboard",
+        "title": "Copy to clipboard",
+        "desc": "",
+        "url": "https://cloudscape.design/components/copy-to-clipboard/"
+      }
+    ]
+  },
+  {
+    "name": "Status & Feedback",
+    "id": "status-feedback",
+    "components": [
+      {
+        "slug": "alert",
+        "title": "Alert",
+        "desc": "",
+        "url": "https://cloudscape.design/components/alert/"
+      },
+      {
+        "slug": "badge",
+        "title": "Badge",
+        "desc": "",
+        "url": "https://cloudscape.design/components/badge/"
+      },
+      {
+        "slug": "status-indicator",
+        "title": "Status indicator",
+        "desc": "",
+        "url": "https://cloudscape.design/components/status-indicator/"
+      },
+      {
+        "slug": "flashbar",
+        "title": "Flashbar",
+        "desc": "",
+        "url": "https://cloudscape.design/components/flashbar/"
+      },
+      {
+        "slug": "progress-bar",
+        "title": "Progress bar",
+        "desc": "",
+        "url": "https://cloudscape.design/components/progress-bar/"
+      },
+      {
+        "slug": "spinner",
+        "title": "Spinner",
+        "desc": "",
+        "url": "https://cloudscape.design/components/spinner/"
+      },
+      {
+        "slug": "loading-bar",
+        "title": "Loading bar",
+        "desc": "",
+        "url": "https://cloudscape.design/components/loading-bar/"
+      },
+      {
+        "slug": "live-region",
+        "title": "Live region",
+        "desc": "",
+        "url": "https://cloudscape.design/components/live-region/"
+      },
+      {
+        "slug": "error-boundary",
+        "title": "Error boundary",
+        "desc": "",
+        "url": "https://cloudscape.design/components/error-boundary/"
+      },
+      {
+        "slug": "popover",
+        "title": "Popover",
+        "desc": "",
+        "url": "https://cloudscape.design/components/popover/"
+      },
+      {
+        "slug": "tooltip",
+        "title": "Tooltip",
+        "desc": "",
+        "url": "https://cloudscape.design/components/tooltip/"
+      }
+    ]
+  },
+  {
+    "name": "Forms & Inputs",
+    "id": "forms-inputs",
+    "components": [
+      {
+        "slug": "form",
+        "title": "Form",
+        "desc": "",
+        "url": "https://cloudscape.design/components/form/"
+      },
+      {
+        "slug": "form-field",
+        "title": "Form field",
+        "desc": "",
+        "url": "https://cloudscape.design/components/form-field/"
+      },
+      {
+        "slug": "input",
+        "title": "Input",
+        "desc": "",
+        "url": "https://cloudscape.design/components/input/"
+      },
+      {
+        "slug": "textarea",
+        "title": "Text area",
+        "desc": "",
+        "url": "https://cloudscape.design/components/textarea/"
+      },
+      {
+        "slug": "autosuggest",
+        "title": "Autosuggest",
+        "desc": "",
+        "url": "https://cloudscape.design/components/autosuggest/"
+      },
+      {
+        "slug": "checkbox",
+        "title": "Checkbox",
+        "desc": "",
+        "url": "https://cloudscape.design/components/checkbox/"
+      },
+      {
+        "slug": "radio-button",
+        "title": "Radio button",
+        "desc": "",
+        "url": "https://cloudscape.design/components/radio-button/"
+      },
+      {
+        "slug": "radio-group",
+        "title": "Radio group",
+        "desc": "",
+        "url": "https://cloudscape.design/components/radio-group/"
+      },
+      {
+        "slug": "select",
+        "title": "Select",
+        "desc": "",
+        "url": "https://cloudscape.design/components/select/"
+      },
+      {
+        "slug": "multiselect",
+        "title": "Multiselect",
+        "desc": "",
+        "url": "https://cloudscape.design/components/multiselect/"
+      },
+      {
+        "slug": "dropdown",
+        "title": "Dropdown",
+        "desc": "",
+        "url": "https://cloudscape.design/components/dropdown/"
+      },
+      {
+        "slug": "calendar",
+        "title": "Calendar",
+        "desc": "",
+        "url": "https://cloudscape.design/components/calendar/"
+      },
+      {
+        "slug": "date-input",
+        "title": "Date input",
+        "desc": "",
+        "url": "https://cloudscape.design/components/date-input/"
+      },
+      {
+        "slug": "date-picker",
+        "title": "Date picker",
+        "desc": "",
+        "url": "https://cloudscape.design/components/date-picker/"
+      },
+      {
+        "slug": "date-range-picker",
+        "title": "Date range picker",
+        "desc": "",
+        "url": "https://cloudscape.design/components/date-range-picker/"
+      },
+      {
+        "slug": "time-input",
+        "title": "Time input",
+        "desc": "",
+        "url": "https://cloudscape.design/components/time-input/"
+      },
+      {
+        "slug": "slider",
+        "title": "Slider",
+        "desc": "",
+        "url": "https://cloudscape.design/components/slider/"
+      },
+      {
+        "slug": "toggle",
+        "title": "Toggle",
+        "desc": "",
+        "url": "https://cloudscape.design/components/toggle/"
+      },
+      {
+        "slug": "attribute-editor",
+        "title": "Attribute editor",
+        "desc": "",
+        "url": "https://cloudscape.design/components/attribute-editor/"
+      },
+      {
+        "slug": "tag-editor",
+        "title": "Tag editor",
+        "desc": "",
+        "url": "https://cloudscape.design/components/tag-editor/"
+      },
+      {
+        "slug": "prompt-input",
+        "title": "Prompt input",
+        "desc": "",
+        "url": "https://cloudscape.design/components/prompt-input/"
+      }
+    ]
+  },
+  {
+    "name": "File Uploading",
+    "id": "file-uploading",
+    "components": [
+      {
+        "slug": "file-uploading-components",
+        "title": "File uploading components",
+        "desc": "",
+        "url": "https://cloudscape.design/components/file-uploading-components/"
+      },
+      {
+        "slug": "file-upload",
+        "title": "File upload",
+        "desc": "",
+        "url": "https://cloudscape.design/components/file-upload/"
+      },
+      {
+        "slug": "file-input",
+        "title": "File input",
+        "desc": "",
+        "url": "https://cloudscape.design/components/file-input/"
+      },
+      {
+        "slug": "file-dropzone",
+        "title": "File dropzone",
+        "desc": "",
+        "url": "https://cloudscape.design/components/file-dropzone/"
+      },
+      {
+        "slug": "file-token-group",
+        "title": "File token group",
+        "desc": "",
+        "url": "https://cloudscape.design/components/file-token-group/"
+      }
+    ]
+  },
+  {
+    "name": "Generative AI",
+    "id": "generative-ai",
+    "components": [
+      {
+        "slug": "genai-components",
+        "title": "Generative AI components",
+        "desc": "",
+        "url": "https://cloudscape.design/components/genai-components/"
+      },
+      {
+        "slug": "chat-bubble",
+        "title": "Chat bubble",
+        "desc": "",
+        "url": "https://cloudscape.design/components/chat-bubble/"
+      },
+      {
+        "slug": "support-prompt-group",
+        "title": "Support prompt group",
+        "desc": "",
+        "url": "https://cloudscape.design/components/support-prompt-group/"
+      },
+      {
+        "slug": "avatar",
+        "title": "Avatar",
+        "desc": "",
+        "url": "https://cloudscape.design/components/avatar/"
+      }
+    ]
+  },
+  {
+    "name": "Containers & Layout",
+    "id": "containers-layout",
+    "components": [
+      {
+        "slug": "app-layout",
+        "title": "App layout",
+        "desc": "",
+        "url": "https://cloudscape.design/components/app-layout/"
+      },
+      {
+        "slug": "app-layout-toolbar",
+        "title": "App layout toolbar",
+        "desc": "",
+        "url": "https://cloudscape.design/components/app-layout-toolbar/"
+      },
+      {
+        "slug": "container",
+        "title": "Container",
+        "desc": "",
+        "url": "https://cloudscape.design/components/container/"
+      },
+      {
+        "slug": "content-layout",
+        "title": "Content layout",
+        "desc": "",
+        "url": "https://cloudscape.design/components/content-layout/"
+      },
+      {
+        "slug": "column-layout",
+        "title": "Column layout",
+        "desc": "",
+        "url": "https://cloudscape.design/components/column-layout/"
+      },
+      {
+        "slug": "grid",
+        "title": "Grid",
+        "desc": "",
+        "url": "https://cloudscape.design/components/grid/"
+      },
+      {
+        "slug": "box",
+        "title": "Box",
+        "desc": "",
+        "url": "https://cloudscape.design/components/box/"
+      },
+      {
+        "slug": "header",
+        "title": "Header",
+        "desc": "",
+        "url": "https://cloudscape.design/components/header/"
+      },
+      {
+        "slug": "divider",
+        "title": "Divider",
+        "desc": "",
+        "url": "https://cloudscape.design/components/divider/"
+      },
+      {
+        "slug": "space-between",
+        "title": "Space between",
+        "desc": "",
+        "url": "https://cloudscape.design/components/space-between/"
+      },
+      {
+        "slug": "expandable-section",
+        "title": "Expandable section",
+        "desc": "",
+        "url": "https://cloudscape.design/components/expandable-section/"
+      },
+      {
+        "slug": "panel-layout",
+        "title": "Panel layout",
+        "desc": "",
+        "url": "https://cloudscape.design/components/panel-layout/"
+      },
+      {
+        "slug": "split-panel",
+        "title": "Split panel",
+        "desc": "",
+        "url": "https://cloudscape.design/components/split-panel/"
+      },
+      {
+        "slug": "modal",
+        "title": "Modal",
+        "desc": "",
+        "url": "https://cloudscape.design/components/modal/"
+      },
+      {
+        "slug": "drawer",
+        "title": "Drawer",
+        "desc": "",
+        "url": "https://cloudscape.design/components/drawer/"
+      },
+      {
+        "slug": "dialog",
+        "title": "Dialog",
+        "desc": "",
+        "url": "https://cloudscape.design/components/dialog/"
+      },
+      {
+        "slug": "help-panel",
+        "title": "Help panel",
+        "desc": "",
+        "url": "https://cloudscape.design/components/help-panel/"
+      }
+    ]
+  },
+  {
+    "name": "Data Display & Tables",
+    "id": "data-display-tables",
+    "components": [
+      {
+        "slug": "table",
+        "title": "Table",
+        "desc": "",
+        "url": "https://cloudscape.design/components/table/"
+      },
+      {
+        "slug": "cards",
+        "title": "Cards",
+        "desc": "",
+        "url": "https://cloudscape.design/components/cards/"
+      },
+      {
+        "slug": "action-card",
+        "title": "Action card",
+        "desc": "",
+        "url": "https://cloudscape.design/components/action-card/"
+      },
+      {
+        "slug": "item-card",
+        "title": "Item card",
+        "desc": "",
+        "url": "https://cloudscape.design/components/item-card/"
+      },
+      {
+        "slug": "key-value-pairs",
+        "title": "Key-value pairs",
+        "desc": "",
+        "url": "https://cloudscape.design/components/key-value-pairs/"
+      },
+      {
+        "slug": "list",
+        "title": "List",
+        "desc": "",
+        "url": "https://cloudscape.design/components/list/"
+      },
+      {
+        "slug": "code-editor",
+        "title": "Code editor",
+        "desc": "",
+        "url": "https://cloudscape.design/components/code-editor/"
+      },
+      {
+        "slug": "code-view",
+        "title": "Code view",
+        "desc": "",
+        "url": "https://cloudscape.design/components/code-view/"
+      },
+      {
+        "slug": "collection-preferences",
+        "title": "Collection preferences",
+        "desc": "",
+        "url": "https://cloudscape.design/components/collection-preferences/"
+      },
+      {
+        "slug": "collection-select-filter",
+        "title": "Collection select filter",
+        "desc": "",
+        "url": "https://cloudscape.design/components/collection-select-filter/"
+      },
+      {
+        "slug": "property-filter",
+        "title": "Property filter",
+        "desc": "",
+        "url": "https://cloudscape.design/components/property-filter/"
+      },
+      {
+        "slug": "text-filter",
+        "title": "Text filter",
+        "desc": "",
+        "url": "https://cloudscape.design/components/text-filter/"
+      },
+      {
+        "slug": "pagination",
+        "title": "Pagination",
+        "desc": "",
+        "url": "https://cloudscape.design/components/pagination/"
+      },
+      {
+        "slug": "s3-resource-selector",
+        "title": "S3 resource selector",
+        "desc": "",
+        "url": "https://cloudscape.design/components/s3-resource-selector/"
+      }
+    ]
+  },
+  {
+    "name": "Charts & Visualizations",
+    "id": "charts-visualizations",
+    "components": [
+      {
+        "slug": "charts",
+        "title": "Charts",
+        "desc": "",
+        "url": "https://cloudscape.design/components/charts/"
+      },
+      {
+        "slug": "cartesian-chart",
+        "title": "Cartesian charts",
+        "desc": "",
+        "url": "https://cloudscape.design/components/cartesian-chart/"
+      },
+      {
+        "slug": "bar-chart",
+        "title": "Bar chart",
+        "desc": "",
+        "url": "https://cloudscape.design/components/bar-chart/"
+      },
+      {
+        "slug": "line-chart",
+        "title": "Line chart",
+        "desc": "",
+        "url": "https://cloudscape.design/components/line-chart/"
+      },
+      {
+        "slug": "area-chart",
+        "title": "Area chart",
+        "desc": "",
+        "url": "https://cloudscape.design/components/area-chart/"
+      },
+      {
+        "slug": "pie-chart",
+        "title": "Pie and donut charts",
+        "desc": "",
+        "url": "https://cloudscape.design/components/pie-chart/"
+      },
+      {
+        "slug": "mixed-line-bar-chart",
+        "title": "Mixed line and bar chart",
+        "desc": "",
+        "url": "https://cloudscape.design/components/mixed-line-bar-chart/"
+      },
+      {
+        "slug": "charts-legacy",
+        "title": "Charts (Legacy)",
+        "desc": "",
+        "url": "https://cloudscape.design/components/charts-legacy/"
+      },
+      {
+        "slug": "pie-chart-legacy",
+        "title": "Pie and donut charts",
+        "desc": "",
+        "url": "https://cloudscape.design/components/pie-chart-legacy/"
+      }
+    ]
+  },
+  {
+    "name": "Navigation",
+    "id": "navigation",
+    "components": [
+      {
+        "slug": "top-navigation",
+        "title": "Top navigation",
+        "desc": "",
+        "url": "https://cloudscape.design/components/top-navigation/"
+      },
+      {
+        "slug": "side-navigation",
+        "title": "Side navigation",
+        "desc": "",
+        "url": "https://cloudscape.design/components/side-navigation/"
+      },
+      {
+        "slug": "breadcrumb-group",
+        "title": "Breadcrumb group",
+        "desc": "",
+        "url": "https://cloudscape.design/components/breadcrumb-group/"
+      },
+      {
+        "slug": "anchor-navigation",
+        "title": "Anchor navigation",
+        "desc": "",
+        "url": "https://cloudscape.design/components/anchor-navigation/"
+      },
+      {
+        "slug": "tabs",
+        "title": "Tabs",
+        "desc": "",
+        "url": "https://cloudscape.design/components/tabs/"
+      },
+      {
+        "slug": "steps",
+        "title": "Steps",
+        "desc": "",
+        "url": "https://cloudscape.design/components/steps/"
+      },
+      {
+        "slug": "link",
+        "title": "Link",
+        "desc": "",
+        "url": "https://cloudscape.design/components/link/"
+      },
+      {
+        "slug": "navigable-group",
+        "title": "Navigable group",
+        "desc": "",
+        "url": "https://cloudscape.design/components/navigable-group/"
+      },
+      {
+        "slug": "tree-view",
+        "title": "Tree view",
+        "desc": "",
+        "url": "https://cloudscape.design/components/tree-view/"
+      },
+      {
+        "slug": "wizard",
+        "title": "Wizard",
+        "desc": "",
+        "url": "https://cloudscape.design/components/wizard/"
+      }
+    ]
+  },
+  {
+    "name": "Board & Drag-and-Drop",
+    "id": "board-drag-and-drop",
+    "components": [
+      {
+        "slug": "board-components",
+        "title": "Board components",
+        "desc": "",
+        "url": "https://cloudscape.design/components/board-components/"
+      },
+      {
+        "slug": "board",
+        "title": "Board",
+        "desc": "",
+        "url": "https://cloudscape.design/components/board/"
+      },
+      {
+        "slug": "board-item",
+        "title": "Board item",
+        "desc": "",
+        "url": "https://cloudscape.design/components/board-item/"
+      },
+      {
+        "slug": "items-palette",
+        "title": "Items palette",
+        "desc": "",
+        "url": "https://cloudscape.design/components/items-palette/"
+      }
+    ]
+  },
+  {
+    "name": "Utilities & Content",
+    "id": "utilities-content",
+    "components": [
+      {
+        "slug": "icon",
+        "title": "Icon",
+        "desc": "",
+        "url": "https://cloudscape.design/components/icon/"
+      },
+      {
+        "slug": "icon-provider",
+        "title": "Icon provider",
+        "desc": "",
+        "url": "https://cloudscape.design/components/icon-provider/"
+      },
+      {
+        "slug": "skeleton",
+        "title": "Skeleton",
+        "desc": "",
+        "url": "https://cloudscape.design/components/skeleton/"
+      },
+      {
+        "slug": "text-content",
+        "title": "Text content",
+        "desc": "",
+        "url": "https://cloudscape.design/components/text-content/"
+      },
+      {
+        "slug": "tiles",
+        "title": "Tiles",
+        "desc": "",
+        "url": "https://cloudscape.design/components/tiles/"
+      },
+      {
+        "slug": "token",
+        "title": "Token",
+        "desc": "",
+        "url": "https://cloudscape.design/components/token/"
+      },
+      {
+        "slug": "token-group",
+        "title": "Token group",
+        "desc": "",
+        "url": "https://cloudscape.design/components/token-group/"
+      },
+      {
+        "slug": "truncated-text",
+        "title": "Truncated text",
+        "desc": "",
+        "url": "https://cloudscape.design/components/truncated-text/"
+      },
+      {
+        "slug": "hands-on-tutorials",
+        "title": "Tutorial components",
+        "desc": "",
+        "url": "https://cloudscape.design/components/hands-on-tutorials/"
+      },
+      {
+        "slug": "tutorial-panel",
+        "title": "Tutorial panel",
+        "desc": "",
+        "url": "https://cloudscape.design/components/tutorial-panel/"
+      },
+      {
+        "slug": "annotation-context",
+        "title": "Annotation context",
+        "desc": "",
+        "url": "https://cloudscape.design/components/annotation-context/"
+      },
+      {
+        "slug": "hotspot",
+        "title": "Hotspot",
+        "desc": "",
+        "url": "https://cloudscape.design/components/hotspot/"
+      }
+    ]
+  }
+]

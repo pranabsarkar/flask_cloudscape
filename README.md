@@ -1,8 +1,10 @@
 # Flask-Cloudscape
 
-> A Python Flask extension that brings the full power of the [AWS Cloudscape Design System](https://cloudscape.design/) into Flask + Jinja2 applications — no React required.
+> A Python Flask extension that brings the full power of the [AWS Cloudscape Design System](https://cloudscape.design/) (all **113 official components**) into Flask + Jinja2 applications — no React required.
 
 Cloudscape components are compiled into **Web Components** and served as bundled JS + CSS assets. You interact with them through **Jinja macros**, **Python component classes**, or raw `<cloudscape-*>` HTML tags.
+
+Includes a built-in **Component Catalogue** (`http://127.0.0.1:5001/`) showcasing all 113 components across 11 organized categories with real-time search filtering.
 
 ---
 
