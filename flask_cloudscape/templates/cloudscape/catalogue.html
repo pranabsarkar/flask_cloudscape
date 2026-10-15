@@ -633,15 +633,21 @@
                 <div style="width: 100%;">
                   <cloudscape-input placeholder="s3://my-bucket/path/" value="s3://production-backups/"></cloudscape-input>
                 </div>
+              {% elif comp.slug == 'pie-chart' or comp.slug == 'pie-chart-legacy' %}
+                <div style="width: 100%;">
+                  <cloudscape-pie-chart
+                    size="small"
+                    data='[{"title": "Prod", "value": 60}, {"title": "Stage", "value": 40}]'
+                    i18n-strings='{"filterLabel": "Filter data"}'>
+                  </cloudscape-pie-chart>
+                </div>
               {% elif 'chart' in comp.slug %}
-                <div style="width: 100%; border: 1px solid #eaeded; border-radius: 6px; padding: 10px; background: #fafafa; text-align: center;">
-                  <div style="display: flex; justify-content: space-around; align-items: flex-end; height: 42px; margin-bottom: 6px;">
-                    <div style="background: #0972d3; width: 16px; height: 20px; border-radius: 2px;"></div>
-                    <div style="background: #0972d3; width: 16px; height: 35px; border-radius: 2px;"></div>
-                    <div style="background: #0972d3; width: 16px; height: 28px; border-radius: 2px;"></div>
-                    <div style="background: #0972d3; width: 16px; height: 42px; border-radius: 2px;"></div>
-                  </div>
-                  <span style="font-size: 11px; color: #5f6b7a;">{{ comp.title }} Canvas View</span>
+                <div style="width: 100%;">
+                  <cloudscape-bar-chart
+                    x-scale-type="categorical"
+                    series='[{"title": "Load", "type": "bar", "data": [{"x": "Q1", "y": 30}, {"x": "Q2", "y": 70}, {"x": "Q3", "y": 50}, {"x": "Q4", "y": 90}]}]'
+                    i18n-strings='{"filterLabel": "Filter data"}'>
+                  </cloudscape-bar-chart>
                 </div>
               {% elif comp.slug == 'top-navigation' %}
                 <div style="background: #0f1b2a; color: #fff; padding: 8px 14px; border-radius: 6px; width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">

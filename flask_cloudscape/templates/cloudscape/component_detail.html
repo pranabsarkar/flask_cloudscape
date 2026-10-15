@@ -417,30 +417,82 @@
             </div>
           {% elif comp.slug == 'token-group' or comp.slug == 'token' %}
             <cloudscape-token-group items='[{"label": "Cluster: Production", "dismissLabel": "Remove"}, {"label": "AZ: us-east-1a", "dismissLabel": "Remove"}, {"label": "Owner: DevOps", "dismissLabel": "Remove"}]'></cloudscape-token-group>
+          {% elif comp.slug == 'bar-chart' %}
+            <div style="width: 100%;">
+              <cloudscape-bar-chart
+                x-scale-type="categorical"
+                x-title="Cluster Region"
+                y-title="Active Pods"
+                series='[
+                  {"title": "Running", "type": "bar", "data": [{"x": "us-east-1", "y": 85}, {"x": "us-west-2", "y": 62}, {"x": "eu-west-1", "y": 48}, {"x": "ap-northeast-1", "y": 74}]},
+                  {"title": "Pending", "type": "bar", "data": [{"x": "us-east-1", "y": 12}, {"x": "us-west-2", "y": 8}, {"x": "eu-west-1", "y": 5}, {"x": "ap-northeast-1", "y": 10}]}
+                ]'
+                i18n-strings='{"filterLabel": "Filter displayed data", "legendAriaLabel": "Legend"}'>
+              </cloudscape-bar-chart>
+            </div>
+          {% elif comp.slug == 'line-chart' %}
+            <div style="width: 100%;">
+              <cloudscape-line-chart
+                x-scale-type="categorical"
+                x-title="Time Window"
+                y-title="CPU Utilization (%)"
+                series='[
+                  {"title": "App Server (c6g.xlarge)", "type": "line", "data": [{"x": "00:00", "y": 32}, {"x": "04:00", "y": 28}, {"x": "08:00", "y": 65}, {"x": "12:00", "y": 82}, {"x": "16:00", "y": 78}, {"x": "20:00", "y": 52}]},
+                  {"title": "Threshold (Warning)", "type": "threshold", "y": 80}
+                ]'
+                i18n-strings='{"filterLabel": "Filter displayed data", "legendAriaLabel": "Legend"}'>
+              </cloudscape-line-chart>
+            </div>
+          {% elif comp.slug == 'area-chart' %}
+            <div style="width: 100%;">
+              <cloudscape-area-chart
+                x-scale-type="categorical"
+                x-title="Timestamp"
+                y-title="Network Bandwidth (Gbps)"
+                series='[
+                  {"title": "Ingress Traffic", "type": "area", "data": [{"x": "T1", "y": 14}, {"x": "T2", "y": 25}, {"x": "T3", "y": 38}, {"x": "T4", "y": 32}, {"x": "T5", "y": 45}]},
+                  {"title": "Egress Traffic", "type": "area", "data": [{"x": "T1", "y": 8}, {"x": "T2", "y": 18}, {"x": "T3", "y": 22}, {"x": "T4", "y": 20}, {"x": "T5", "y": 29}]}
+                ]'
+                i18n-strings='{"filterLabel": "Filter displayed data", "legendAriaLabel": "Legend"}'>
+              </cloudscape-area-chart>
+            </div>
+          {% elif comp.slug == 'pie-chart' or comp.slug == 'pie-chart-legacy' %}
+            <div style="width: 100%;">
+              <cloudscape-pie-chart
+                size="medium"
+                data='[
+                  {"title": "Amazon DynamoDB", "value": 38},
+                  {"title": "Amazon Aurora", "value": 32},
+                  {"title": "Amazon ElastiCache", "value": 18},
+                  {"title": "Amazon S3", "value": 12}
+                ]'
+                i18n-strings='{"filterLabel": "Filter displayed data", "legendAriaLabel": "Legend"}'>
+              </cloudscape-pie-chart>
+            </div>
+          {% elif comp.slug == 'mixed-line-bar-chart' %}
+            <div style="width: 100%;">
+              <cloudscape-mixed-line-bar-chart
+                x-scale-type="categorical"
+                x-title="Month"
+                y-title="Cost (USD)"
+                series='[
+                  {"title": "Compute Cost", "type": "bar", "data": [{"x": "Jan", "y": 2200}, {"x": "Feb", "y": 2800}, {"x": "Mar", "y": 3100}, {"x": "Apr", "y": 2950}]},
+                  {"title": "Target Budget", "type": "line", "data": [{"x": "Jan", "y": 2500}, {"x": "Feb", "y": 2500}, {"x": "Mar", "y": 3000}, {"x": "Apr", "y": 3000}]}
+                ]'
+                i18n-strings='{"filterLabel": "Filter displayed data", "legendAriaLabel": "Legend"}'>
+              </cloudscape-mixed-line-bar-chart>
+            </div>
           {% elif 'chart' in comp.slug %}
-            <div style="width: 100%; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; background: #ffffff;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <strong>{{ comp.title }} Demonstration</strong>
-                <cloudscape-badge color="blue">Telemetry Metric</cloudscape-badge>
-              </div>
-              <div style="display: flex; justify-content: space-around; align-items: flex-end; height: 160px; border-bottom: 2px solid #eaeded; padding-bottom: 8px;">
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                  <div style="background: #0972d3; width: 40px; height: 60px; border-radius: 4px;"></div>
-                  <span style="font-size: 11px; color: #5f6b7a;">00:00</span>
-                </div>
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                  <div style="background: #0972d3; width: 40px; height: 110px; border-radius: 4px;"></div>
-                  <span style="font-size: 11px; color: #5f6b7a;">06:00</span>
-                </div>
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                  <div style="background: #0972d3; width: 40px; height: 85px; border-radius: 4px;"></div>
-                  <span style="font-size: 11px; color: #5f6b7a;">12:00</span>
-                </div>
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                  <div style="background: #0972d3; width: 40px; height: 140px; border-radius: 4px;"></div>
-                  <span style="font-size: 11px; color: #5f6b7a;">18:00</span>
-                </div>
-              </div>
+            <div style="width: 100%;">
+              <cloudscape-bar-chart
+                x-scale-type="categorical"
+                x-title="Category"
+                y-title="Metric Values"
+                series='[
+                  {"title": "Metric A", "type": "bar", "data": [{"x": "Node 1", "y": 45}, {"x": "Node 2", "y": 70}, {"x": "Node 3", "y": 55}]}
+                ]'
+                i18n-strings='{"filterLabel": "Filter displayed data", "legendAriaLabel": "Legend"}'>
+              </cloudscape-bar-chart>
             </div>
           {% else %}
             <!-- Generic Cloudscape Custom Element Demonstration -->
