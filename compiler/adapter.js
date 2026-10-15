@@ -137,6 +137,19 @@ function registerWebComponent(tagName, ReactComponent) {
         });
       }
 
+      // Special handling for Cards component cardDefinition
+      if (ReactComponent === Components.Cards && props.cardDefinition) {
+        const cd = props.cardDefinition;
+        props.cardDefinition = {
+          ...cd,
+          header: cd.headerField ? (item) => item[cd.headerField] || '' : (typeof cd.header === 'string' ? (item) => item[cd.header] || '' : cd.header),
+          sections: (cd.sections || []).map(sec => ({
+            ...sec,
+            content: sec.contentField ? (item) => item[sec.contentField] || '' : (typeof sec.content === 'string' ? (item) => item[sec.content] || '' : sec.content || ((item) => item[sec.id] || ''))
+          }))
+        };
+      }
+
       const childrenPortals = this.originalChildren.map((child, index) => {
         return React.createElement(ChildPortal, { key: index, child: child });
       });

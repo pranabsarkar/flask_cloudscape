@@ -395,13 +395,14 @@
             <p class="comp-card-desc">{{ comp.desc if comp.desc else "Official Cloudscape Design System component for scalable cloud applications." }}</p>
 
             <!-- Render interactive sample or visual preview for key components -->
+            <!-- Render interactive sample or visual preview for all components -->
             <div class="comp-card-demo">
               {% if comp.slug == 'button' %}
                 {{ cs_button(variant="primary", text="Button Demo") }}
               {% elif comp.slug == 'button-dropdown' %}
                 <cloudscape-button-dropdown items='[{"id": "opt1", "text": "Option 1"}, {"id": "opt2", "text": "Option 2"}]'>Actions</cloudscape-button-dropdown>
               {% elif comp.slug == 'button-group' %}
-                <cloudscape-button-group items='[{"type": "icon-button", "id": "edit", "iconName": "edit", "text": "Edit"}]'></cloudscape-button-group>
+                <cloudscape-button-group items='[{"type": "icon-button", "id": "edit", "iconName": "edit", "text": "Edit"}, {"type": "icon-button", "id": "copy", "iconName": "copy", "text": "Copy"}]'></cloudscape-button-group>
               {% elif comp.slug == 'toggle-button' %}
                 <cloudscape-toggle-button>Favorite</cloudscape-toggle-button>
               {% elif comp.slug == 'segmented-control' %}
@@ -418,32 +419,267 @@
                 </div>
               {% elif comp.slug == 'status-indicator' %}
                 {{ cs_status_indicator(type="success", children="Operational") }}
+              {% elif comp.slug == 'flashbar' %}
+                <div style="width: 100%;">
+                  <cloudscape-flashbar items='[{"type": "info", "dismissible": false, "content": "Scheduled maintenance tonight at 02:00 UTC."}]'></cloudscape-flashbar>
+                </div>
               {% elif comp.slug == 'progress-bar' %}
                 <div style="width: 100%;"><cloudscape-progress-bar value="68" label="Storage Usage"></cloudscape-progress-bar></div>
               {% elif comp.slug == 'spinner' %}
                 {{ cs_spinner(size="normal") }}
               {% elif comp.slug == 'loading-bar' %}
                 <div style="width: 100%;"><cloudscape-loading-bar></cloudscape-loading-bar></div>
+              {% elif comp.slug == 'live-region' %}
+                <cloudscape-live-region><span style="font-size: 13px; color: #5f6b7a;">Live screen-reader announcement active</span></cloudscape-live-region>
+              {% elif comp.slug == 'error-boundary' %}
+                <cloudscape-error-boundary recovery-prompt="Try again"><span style="font-size: 13px; color: #5f6b7a;">Protected component boundary</span></cloudscape-error-boundary>
+              {% elif comp.slug == 'popover' %}
+                <cloudscape-popover position="top" size="medium" trigger-type="custom" header="Instance Details">
+                  <span slot="trigger"><cloudscape-button variant="inline-link">Hover for Popover</cloudscape-button></span>
+                  Memory: 16 GB, vCPUs: 4
+                </cloudscape-popover>
+              {% elif comp.slug == 'tooltip' %}
+                <cloudscape-tooltip content="Provides inline contextual assistance.">
+                  <cloudscape-button variant="inline-link">Hover for Tooltip</cloudscape-button>
+                </cloudscape-tooltip>
+              {% elif comp.slug == 'form' %}
+                <cloudscape-form>
+                  <div style="display: flex; gap: 10px; align-items: center;">
+                    <cloudscape-input placeholder="Form input field" value="Sample field"></cloudscape-input>
+                    <cloudscape-button variant="primary">Submit</cloudscape-button>
+                  </div>
+                </cloudscape-form>
+              {% elif comp.slug == 'form-field' %}
+                <div style="width: 100%;">
+                  <cloudscape-form-field label="Username" description="Account identifier">
+                    <cloudscape-input value="admin@example.com"></cloudscape-input>
+                  </cloudscape-form-field>
+                </div>
               {% elif comp.slug == 'input' %}
                 {{ cs_input(placeholder="Enter search term...", id="input-" ~ comp.slug) }}
               {% elif comp.slug == 'textarea' %}
                 <cloudscape-textarea placeholder="Enter multi-line text..."></cloudscape-textarea>
+              {% elif comp.slug == 'autosuggest' %}
+                <div style="width: 100%;">
+                  <cloudscape-autosuggest value="us-" options='[{"value": "us-east-1"}, {"value": "us-west-2"}]' placeholder="Search regions..."></cloudscape-autosuggest>
+                </div>
               {% elif comp.slug == 'checkbox' %}
                 {{ cs_checkbox(checked=true, children="Enabled feature") }}
               {% elif comp.slug == 'radio-button' %}
                 <cloudscape-radio-button checked>Primary radio selection</cloudscape-radio-button>
-              {% elif comp.slug == 'toggle' %}
-                {{ cs_toggle(checked=true, children="Live Stream") }}
-              {% elif comp.slug == 'slider' %}
-                <div style="width: 100%;"><cloudscape-slider value="50" min="0" max="100"></cloudscape-slider></div>
+              {% elif comp.slug == 'radio-group' %}
+                <cloudscape-radio-group value="opt1" items='[{"value": "opt1", "label": "Option 1"}, {"value": "opt2", "label": "Option 2"}]'></cloudscape-radio-group>
               {% elif comp.slug == 'select' %}
                 <div style="width: 100%;">
                   {{ cs_select(options=[{"label": "US East", "value": "us-east-1"}, {"label": "EU Central", "value": "eu-central-1"}], selected_option={"label": "US East", "value": "us-east-1"}) }}
                 </div>
-              {% elif comp.slug == 'avatar' %}
-                <cloudscape-avatar initials="PS"></cloudscape-avatar>
+              {% elif comp.slug == 'multiselect' %}
+                <div style="width: 100%;">
+                  <cloudscape-multiselect options='[{"label": "Engineering", "value": "eng"}, {"label": "Design", "value": "des"}]' selected-options='[{"label": "Engineering", "value": "eng"}]' placeholder="Select tags"></cloudscape-multiselect>
+                </div>
+              {% elif comp.slug == 'dropdown' %}
+                <cloudscape-dropdown trigger-type="button" header="Quick Actions">
+                  <div style="padding: 8px; font-size: 13px;">Dropdown content panel</div>
+                </cloudscape-dropdown>
+              {% elif comp.slug == 'calendar' %}
+                <div style="max-width: 280px; transform: scale(0.9); transform-origin: top left;">
+                  <cloudscape-calendar value="2026-10-15"></cloudscape-calendar>
+                </div>
+              {% elif comp.slug == 'date-input' %}
+                <cloudscape-date-input value="2026-10-15" placeholder="YYYY/MM/DD"></cloudscape-date-input>
+              {% elif comp.slug == 'date-picker' %}
+                <div style="width: 100%;">
+                  <cloudscape-date-picker value="2026-10-15" placeholder="YYYY/MM/DD"></cloudscape-date-picker>
+                </div>
+              {% elif comp.slug == 'date-range-picker' %}
+                <div style="width: 100%;">
+                  <cloudscape-date-range-picker value='{"type": "relative", "amount": 7, "unit": "day"}' relative-options='[{"amount": 7, "unit": "day", "key": "7d", "type": "relative"}]'></cloudscape-date-range-picker>
+                </div>
+              {% elif comp.slug == 'time-input' %}
+                <cloudscape-time-input value="14:30" format="hh:mm"></cloudscape-time-input>
+              {% elif comp.slug == 'slider' %}
+                <div style="width: 100%;"><cloudscape-slider value="50" min="0" max="100"></cloudscape-slider></div>
+              {% elif comp.slug == 'toggle' %}
+                {{ cs_toggle(checked=true, children="Live Stream") }}
+              {% elif comp.slug == 'attribute-editor' %}
+                <div style="width: 100%;">
+                  <cloudscape-attribute-editor items='[{"key": "Environment", "value": "Production"}]' add-button-text="Add pair" remove-button-text="Remove"></cloudscape-attribute-editor>
+                </div>
+              {% elif comp.slug == 'tag-editor' %}
+                <div style="width: 100%;">
+                  <cloudscape-tag-editor tags='[{"key": "Stage", "value": "Prod"}]'></cloudscape-tag-editor>
+                </div>
+              {% elif comp.slug == 'prompt-input' %}
+                <div style="width: 100%;">
+                  <cloudscape-prompt-input placeholder="Ask AI a question..."></cloudscape-prompt-input>
+                </div>
+              {% elif comp.slug == 'file-upload' or comp.slug == 'file-uploading-components' %}
+                <div style="width: 100%;">
+                  <cloudscape-file-upload constraint-text="Max 100MB" i18n-strings='{"uploadButtonText": "Choose file", "dropzoneText": "Drop file here"}'></cloudscape-file-upload>
+                </div>
+              {% elif comp.slug == 'file-input' %}
+                <cloudscape-file-input multiple>Select Files</cloudscape-file-input>
+              {% elif comp.slug == 'file-dropzone' %}
+                <div style="width: 100%;">
+                  <cloudscape-file-dropzone><p style="margin: 8px; font-size: 13px; color: #5f6b7a;">Drag and drop files here to upload</p></cloudscape-file-dropzone>
+                </div>
+              {% elif comp.slug == 'file-token-group' %}
+                <cloudscape-file-token-group items='[{"name": "dataset_2026.csv", "size": 1048576}]'></cloudscape-file-token-group>
+              {% elif comp.slug == 'genai-components' %}
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <cloudscape-avatar initials="AI"></cloudscape-avatar>
+                  <cloudscape-badge color="blue">Generative AI Suite</cloudscape-badge>
+                </div>
               {% elif comp.slug == 'chat-bubble' %}
                 <cloudscape-chat-bubble type="incoming">Hello! How can I assist you with AWS Cloudscape today?</cloudscape-chat-bubble>
+              {% elif comp.slug == 'support-prompt-group' %}
+                <cloudscape-support-prompt-group prompts='[{"text": "Analyze query performance"}, {"text": "Optimize cluster size"}]'></cloudscape-support-prompt-group>
+              {% elif comp.slug == 'avatar' %}
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <cloudscape-avatar initials="PS"></cloudscape-avatar>
+                  <cloudscape-avatar initials="AWS" color="gen-ai"></cloudscape-avatar>
+                </div>
+              {% elif comp.slug == 'app-layout' or comp.slug == 'content-layout' %}
+                <div style="border: 1px dashed #0972d3; padding: 10px; border-radius: 6px; width: 100%; text-align: center; font-size: 12px; color: #0972d3;">
+                  Full page responsive application shell layout
+                </div>
+              {% elif comp.slug == 'app-layout-toolbar' %}
+                <div style="background: #0f1b2a; color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 12px; width: 100%;">
+                  App Layout Toolbar Action Bar
+                </div>
+              {% elif comp.slug == 'container' %}
+                <div style="width: 100%;">
+                  {{ cs_container(header_text="Container Demo") }}
+                    <span style="font-size: 13px; color: #5f6b7a;">Standard container card content</span>
+                  {{ cs_end_container() }}
+                </div>
+              {% elif comp.slug == 'column-layout' or comp.slug == 'grid' %}
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%;">
+                  <div style="background: #e9f2fa; padding: 8px; border-radius: 4px; text-align: center; font-size: 12px;">Col 1</div>
+                  <div style="background: #e9f2fa; padding: 8px; border-radius: 4px; text-align: center; font-size: 12px;">Col 2</div>
+                </div>
+              {% elif comp.slug == 'box' %}
+                <cloudscape-box variant="h4" color="text-status-info">Cloudscape Box Element</cloudscape-box>
+              {% elif comp.slug == 'header' %}
+                <div style="width: 100%;">
+                  <cloudscape-header variant="h3" description="Header description">Section Heading</cloudscape-header>
+                </div>
+              {% elif comp.slug == 'divider' %}
+                <div style="width: 100%;">
+                  <p style="margin: 0 0 6px 0; font-size: 12px; color: #5f6b7a;">Above Divider</p>
+                  <cloudscape-divider></cloudscape-divider>
+                  <p style="margin: 6px 0 0 0; font-size: 12px; color: #5f6b7a;">Below Divider</p>
+                </div>
+              {% elif comp.slug == 'space-between' %}
+                <cloudscape-space-between direction="horizontal" size="s">
+                  <cloudscape-badge color="blue">Item 1</cloudscape-badge>
+                  <cloudscape-badge color="green">Item 2</cloudscape-badge>
+                </cloudscape-space-between>
+              {% elif comp.slug == 'expandable-section' %}
+                <div style="width: 100%;">
+                  <cloudscape-expandable-section header-text="Click to Expand">
+                    <p style="margin: 6px 0; font-size: 13px; color: #5f6b7a;">Disclosed content revealed on click.</p>
+                  </cloudscape-expandable-section>
+                </div>
+              {% elif comp.slug == 'panel-layout' or comp.slug == 'split-panel' %}
+                <div style="border: 1px solid #eaeded; border-radius: 6px; padding: 10px; width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-size: 12px; font-weight: 600;">Split Panel Drawer</span>
+                  <cloudscape-badge color="grey">Bottom / Side</cloudscape-badge>
+                </div>
+              {% elif comp.slug == 'modal' or comp.slug == 'dialog' %}
+                <cloudscape-button variant="normal" id="preview-modal-btn-{{ comp.slug }}">Preview Modal Dialog</cloudscape-button>
+              {% elif comp.slug == 'drawer' or comp.slug == 'help-panel' %}
+                <div style="background: #fafafa; border: 1px solid #eaeded; padding: 8px 12px; border-radius: 4px; font-size: 12px; width: 100%;">
+                  <strong>Contextual Drawer:</strong> View helper guides & docs
+                </div>
+              {% elif comp.slug == 'table' %}
+                <div style="width: 100%;">
+                  <cloudscape-table
+                    items='[{"name": "production-cluster", "status": "Active", "type": "t4g.xlarge"}, {"name": "staging-cluster", "status": "Stopped", "type": "t4g.small"}]'
+                    column-definitions='[{"id": "name", "header": "Cluster Name"}, {"id": "type", "header": "Type"}, {"id": "status", "header": "State"}]'
+                    header="Active Clusters">
+                  </cloudscape-table>
+                </div>
+              {% elif comp.slug == 'cards' or comp.slug == 'action-card' or comp.slug == 'item-card' %}
+                <div style="width: 100%;">
+                  <cloudscape-cards
+                    items='[{"name": "Postgres Primary", "status": "Healthy"}, {"name": "Redis Cache", "status": "Ready"}]'
+                    card-definition='{"headerField": "name", "sections": [{"id": "status", "header": "Status", "contentField": "status"}]}'>
+                  </cloudscape-cards>
+                </div>
+              {% elif comp.slug == 'key-value-pairs' %}
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; font-size: 13px;">
+                  <div><span style="color: #5f6b7a;">Region:</span> <strong>us-east-1</strong></div>
+                  <div><span style="color: #5f6b7a;">AZ:</span> <strong>us-east-1a</strong></div>
+                </div>
+              {% elif comp.slug == 'list' %}
+                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #414d5c;">
+                  <li>Primary Database Replica</li>
+                  <li>Secondary Read-Only Node</li>
+                </ul>
+              {% elif comp.slug == 'code-editor' or comp.slug == 'code-view' %}
+                <div style="background: #0f1b2a; color: #38bdf8; padding: 10px 14px; border-radius: 6px; font-family: monospace; font-size: 12px; width: 100%;">
+                  const cluster = new AWS.ECS.Cluster();
+                </div>
+              {% elif comp.slug == 'collection-preferences' %}
+                <cloudscape-button variant="normal" icon-name="settings">Preferences</cloudscape-button>
+              {% elif comp.slug == 'collection-select-filter' or comp.slug == 'property-filter' or comp.slug == 'text-filter' %}
+                <div style="width: 100%;">
+                  <cloudscape-text-filter filtering-placeholder="Filter instances..."></cloudscape-text-filter>
+                </div>
+              {% elif comp.slug == 'pagination' %}
+                {{ cs_pagination(current_page_index=1, pages_count=5) }}
+              {% elif comp.slug == 's3-resource-selector' %}
+                <div style="width: 100%;">
+                  <cloudscape-input placeholder="s3://my-bucket/path/" value="s3://production-backups/"></cloudscape-input>
+                </div>
+              {% elif 'chart' in comp.slug %}
+                <div style="width: 100%; border: 1px solid #eaeded; border-radius: 6px; padding: 10px; background: #fafafa; text-align: center;">
+                  <div style="display: flex; justify-content: space-around; align-items: flex-end; height: 42px; margin-bottom: 6px;">
+                    <div style="background: #0972d3; width: 16px; height: 20px; border-radius: 2px;"></div>
+                    <div style="background: #0972d3; width: 16px; height: 35px; border-radius: 2px;"></div>
+                    <div style="background: #0972d3; width: 16px; height: 28px; border-radius: 2px;"></div>
+                    <div style="background: #0972d3; width: 16px; height: 42px; border-radius: 2px;"></div>
+                  </div>
+                  <span style="font-size: 11px; color: #5f6b7a;">{{ comp.title }} Canvas View</span>
+                </div>
+              {% elif comp.slug == 'top-navigation' %}
+                <div style="background: #0f1b2a; color: #fff; padding: 8px 14px; border-radius: 6px; width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
+                  <strong>AWS Service Console</strong>
+                  <span style="font-size: 11px; color: #94a3b8;">Account: 1234-5678</span>
+                </div>
+              {% elif comp.slug == 'side-navigation' %}
+                <div style="border: 1px solid #eaeded; border-radius: 6px; padding: 8px 12px; width: 100%; font-size: 12px;">
+                  <div style="font-weight: 700; color: #0972d3; margin-bottom: 4px;">Dashboard</div>
+                  <div style="color: #5f6b7a;">Instances & Clusters</div>
+                </div>
+              {% elif comp.slug == 'breadcrumb-group' %}
+                <cloudscape-breadcrumb-group items='[{"text": "AWS", "href": "#"}, {"text": "EC2", "href": "#"}, {"text": "Instances", "href": "#"}]'></cloudscape-breadcrumb-group>
+              {% elif comp.slug == 'anchor-navigation' %}
+                <div style="border-left: 2px solid #0972d3; padding-left: 8px; font-size: 12px; color: #0972d3;">
+                  Active Section Anchor
+                </div>
+              {% elif comp.slug == 'tabs' %}
+                <div style="width: 100%;">
+                  {{ cs_tabs(tabs=[{"id": "t1", "label": "Tab 1", "content": "Panel 1 Content"}, {"id": "t2", "label": "Tab 2", "content": "Panel 2 Content"}], active_tab_id="t1") }}
+                </div>
+              {% elif comp.slug == 'steps' or comp.slug == 'wizard' %}
+                <div style="display: flex; gap: 8px; align-items: center; width: 100%; font-size: 12px;">
+                  <span style="background: #0972d3; color: #fff; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px;">1</span>
+                  <span>Step 1: Configure</span>
+                  <span style="color: #94a3b8;">→ Step 2: Review</span>
+                </div>
+              {% elif comp.slug == 'link' %}
+                {{ cs_link(href="#", children="Sample Cloudscape Link") }}
+              {% elif comp.slug == 'navigable-group' or comp.slug == 'tree-view' %}
+                <div style="font-size: 12px; color: #414d5c; width: 100%;">
+                  <div>📁 Root Directory</div>
+                  <div style="padding-left: 14px;">📄 configuration.json</div>
+                </div>
+              {% elif 'board' in comp.slug or comp.slug == 'items-palette' %}
+                <div style="border: 2px dashed #aab7b8; border-radius: 6px; padding: 12px; width: 100%; text-align: center; font-size: 12px; color: #5f6b7a;">
+                  Drag & Drop Dashboard Widget
+                </div>
               {% elif comp.slug == 'icon' %}
                 <div style="display: flex; gap: 12px; align-items: center;">
                   {{ cs_icon(name="settings", size="medium") }}
@@ -451,16 +687,32 @@
                   {{ cs_icon(name="security", size="medium") }}
                   {{ cs_icon(name="status-positive", size="medium") }}
                 </div>
-              {% elif comp.slug == 'pagination' %}
-                {{ cs_pagination(current_page_index=1, pages_count=5) }}
-              {% elif comp.slug == 'tabs' %}
-                <div style="width: 100%;">
-                  {{ cs_tabs(tabs=[{"id": "t1", "label": "Tab 1", "content": "Panel 1 Content"}, {"id": "t2", "label": "Tab 2", "content": "Panel 2 Content"}], active_tab_id="t1") }}
+              {% elif comp.slug == 'icon-provider' %}
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  {{ cs_icon(name="settings", size="medium") }}
+                  <span style="font-size: 12px; color: #5f6b7a;">Custom SVG Icon Provider</span>
                 </div>
-              {% elif comp.slug == 'link' %}
-                {{ cs_link(href="#", children="Sample Cloudscape Link") }}
               {% elif comp.slug == 'skeleton' %}
                 <div style="width: 100%;"><cloudscape-skeleton type="button"></cloudscape-skeleton></div>
+              {% elif comp.slug == 'text-content' %}
+                <cloudscape-text-content>
+                  <p style="margin: 0; font-size: 13px;">Styled typography for body copy, lists, and headers.</p>
+                </cloudscape-text-content>
+              {% elif comp.slug == 'tiles' %}
+                <div style="width: 100%;">
+                  <cloudscape-tiles value="t1" items='[{"value": "t1", "label": "c6g.xlarge", "description": "Compute Optimized"}, {"value": "t2", "label": "r6g.xlarge", "description": "Memory Optimized"}]'></cloudscape-tiles>
+                </div>
+              {% elif comp.slug == 'token' or comp.slug == 'token-group' %}
+                <cloudscape-token-group items='[{"label": "Env: Production", "dismissLabel": "Remove"}, {"label": "Tier: High", "dismissLabel": "Remove"}]'></cloudscape-token-group>
+              {% elif comp.slug == 'truncated-text' %}
+                <cloudscape-truncated-text lines="1">
+                  arn:aws:iam::123456789012:role/service-role/AWSLambdaBasicExecutionRole-long-unique-identifier
+                </cloudscape-truncated-text>
+              {% elif 'tutorial' in comp.slug or comp.slug == 'annotation-context' or comp.slug == 'hotspot' %}
+                <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #0972d3;">
+                  <cloudscape-icon name="status-info" size="medium"></cloudscape-icon>
+                  <span>Interactive Guided Walkthrough Hotspot</span>
+                </div>
               {% else %}
                 <div style="display: flex; align-items: center; gap: 8px; color: #5f6b7a; font-size: 12px;">
                   <cloudscape-icon name="view-full" size="small"></cloudscape-icon>
