@@ -12,7 +12,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "actions"
   },
   {
     "slug": "general/announcing-beta-preview-features",
@@ -27,7 +28,8 @@
       "popover",
       "hotspot",
       "annotation-context"
-    ]
+    ],
+    "clean_slug": "announcing-beta-preview-features"
   },
   {
     "slug": "general/announcing-new-features",
@@ -42,7 +44,8 @@
       "popover",
       "hotspot",
       "annotation-context"
-    ]
+    ],
+    "clean_slug": "announcing-new-features"
   },
   {
     "slug": "resource-management/edit/attribute-editing",
@@ -58,12 +61,13 @@
       "select",
       "button",
       "popover"
-    ]
+    ],
+    "clean_slug": "attribute-editing"
   },
   {
     "slug": "resource-management/view/card-view",
     "title": "Card view",
-    "desc": "A collection of resources represented as cards. It’s effective for glancing at small sets of similar resources with text, numerical, and imagery data sets.",
+    "desc": "A collection of resources represented as cards. It\u2019s effective for glancing at small sets of similar resources with text, numerical, and imagery data sets.",
     "url": "https://cloudscape.design/patterns/resource-management/view/card-view/",
     "category": "Resource management",
     "subcategory": "Resource Viewing",
@@ -74,7 +78,8 @@
       "text-filter",
       "collection-preferences",
       "split-panel"
-    ]
+    ],
+    "clean_slug": "card-view"
   },
   {
     "slug": "general/data-vis/chart-metric-drill-down",
@@ -89,7 +94,8 @@
       "pie-chart",
       "area-chart",
       "mixed-line-bar-chart"
-    ]
+    ],
+    "clean_slug": "chart-metric-drill-down"
   },
   {
     "slug": "general/unsaved-changes",
@@ -104,7 +110,8 @@
       "modal",
       "status-indicator",
       "form-field"
-    ]
+    ],
+    "clean_slug": "unsaved-changes"
   },
   {
     "slug": "general/service-dashboard/configurable-dashboard",
@@ -120,7 +127,8 @@
       "bar-chart",
       "line-chart",
       "key-value-pairs"
-    ]
+    ],
+    "clean_slug": "configurable-dashboard"
   },
   {
     "slug": "resource-management/create",
@@ -137,7 +145,8 @@
       "container",
       "space-between",
       "header"
-    ]
+    ],
+    "clean_slug": "create"
   },
   {
     "slug": "general/service-dashboard/dashboard-items",
@@ -153,7 +162,8 @@
       "bar-chart",
       "line-chart",
       "key-value-pairs"
-    ]
+    ],
+    "clean_slug": "dashboard-items"
   },
   {
     "slug": "general/data-vis",
@@ -168,7 +178,8 @@
       "pie-chart",
       "area-chart",
       "mixed-line-bar-chart"
-    ]
+    ],
+    "clean_slug": "data-vis"
   },
   {
     "slug": "resource-management/create/defaults",
@@ -185,7 +196,8 @@
       "container",
       "space-between",
       "header"
-    ]
+    ],
+    "clean_slug": "defaults"
   },
   {
     "slug": "resource-management/delete",
@@ -200,7 +212,8 @@
       "button",
       "input",
       "box"
-    ]
+    ],
+    "clean_slug": "delete"
   },
   {
     "slug": "resource-management/delete/delete-with-additional-confirmation",
@@ -215,7 +228,8 @@
       "button",
       "input",
       "box"
-    ]
+    ],
+    "clean_slug": "delete-with-additional-confirmation"
   },
   {
     "slug": "resource-management/delete/delete-with-simple-confirmation",
@@ -230,7 +244,8 @@
       "button",
       "input",
       "box"
-    ]
+    ],
+    "clean_slug": "delete-with-simple-confirmation"
   },
   {
     "slug": "general/density-settings",
@@ -245,7 +260,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "density-settings"
   },
   {
     "slug": "resource-management/details/details-page",
@@ -261,7 +277,8 @@
       "tabs",
       "button-dropdown",
       "space-between"
-    ]
+    ],
+    "clean_slug": "details-page"
   },
   {
     "slug": "resource-management/details/details-page-as-hub",
@@ -277,7 +294,8 @@
       "tabs",
       "button-dropdown",
       "space-between"
-    ]
+    ],
+    "clean_slug": "details-page-as-hub"
   },
   {
     "slug": "resource-management/details/details-page-with-tabs",
@@ -293,7 +311,8 @@
       "tabs",
       "button-dropdown",
       "space-between"
-    ]
+    ],
+    "clean_slug": "details-page-with-tabs"
   },
   {
     "slug": "general/disabled-and-read-only-states",
@@ -308,7 +327,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "disabled-and-read-only-states"
   },
   {
     "slug": "general/drag-and-drop",
@@ -323,7 +343,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "drag-and-drop"
   },
   {
     "slug": "resource-management/edit",
@@ -339,12 +360,13 @@
       "select",
       "button",
       "popover"
-    ]
+    ],
+    "clean_slug": "edit"
   },
   {
     "slug": "general/empty-states",
     "title": "Empty states",
-    "desc": "An empty state occurs when users haven’t created a resource or have deleted all existing resources. A zero results state occurs when users have filtered and there are no matches.",
+    "desc": "An empty state occurs when users haven\u2019t created a resource or have deleted all existing resources. A zero results state occurs when users have filtered and there are no matches.",
     "url": "https://cloudscape.design/patterns/general/empty-states/",
     "category": "General",
     "subcategory": "General UI",
@@ -354,7 +376,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "empty-states"
   },
   {
     "slug": "general/errors/error-messages",
@@ -369,7 +392,8 @@
       "modal",
       "status-indicator",
       "form-field"
-    ]
+    ],
+    "clean_slug": "error-messages"
   },
   {
     "slug": "general/errors",
@@ -384,7 +408,8 @@
       "modal",
       "status-indicator",
       "form-field"
-    ]
+    ],
+    "clean_slug": "errors"
   },
   {
     "slug": "general/user-feedback",
@@ -399,7 +424,8 @@
       "modal",
       "status-indicator",
       "form-field"
-    ]
+    ],
+    "clean_slug": "user-feedback"
   },
   {
     "slug": "general/filter-patterns/filter-persistence-in-collection-views",
@@ -414,12 +440,13 @@
       "select",
       "multiselect",
       "token-group"
-    ]
+    ],
+    "clean_slug": "filter-persistence-in-collection-views"
   },
   {
     "slug": "general/filter-patterns",
     "title": "Filtering patterns",
-    "desc": "Filtering patterns let users find specific items in a collection of resources. Users can filter by exact values or by ﬁnite sets of properties.",
+    "desc": "Filtering patterns let users find specific items in a collection of resources. Users can filter by exact values or by \ufb01nite sets of properties.",
     "url": "https://cloudscape.design/patterns/general/filter-patterns/",
     "category": "General",
     "subcategory": "Filtering",
@@ -429,12 +456,13 @@
       "select",
       "multiselect",
       "token-group"
-    ]
+    ],
+    "clean_slug": "filter-patterns"
   },
   {
     "slug": "general/actions/global-actions",
     "title": "Global actions",
-    "desc": "Use global actions when there’s a single set of actions, or bulk actions, to be taken against any or all resources in a given view or page.",
+    "desc": "Use global actions when there\u2019s a single set of actions, or bulk actions, to be taken against any or all resources in a given view or page.",
     "url": "https://cloudscape.design/patterns/general/actions/global-actions/",
     "category": "General",
     "subcategory": "General UI",
@@ -444,7 +472,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "global-actions"
   },
   {
     "slug": "general/onboarding/hands-on-tutorials",
@@ -459,7 +488,8 @@
       "popover",
       "hotspot",
       "annotation-context"
-    ]
+    ],
+    "clean_slug": "hands-on-tutorials"
   },
   {
     "slug": "general/help-system",
@@ -474,7 +504,8 @@
       "popover",
       "hotspot",
       "annotation-context"
-    ]
+    ],
+    "clean_slug": "help-system"
   },
   {
     "slug": "general/hero-header",
@@ -489,7 +520,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "hero-header"
   },
   {
     "slug": "general/image-magnifier",
@@ -504,7 +536,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "image-magnifier"
   },
   {
     "slug": "general/actions/incontext-actions",
@@ -519,7 +552,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "incontext-actions"
   },
   {
     "slug": "resource-management/edit/inline-edit",
@@ -535,7 +569,8 @@
       "select",
       "button",
       "popover"
-    ]
+    ],
+    "clean_slug": "inline-edit"
   },
   {
     "slug": "general/loading-and-refreshing",
@@ -550,7 +585,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "loading-and-refreshing"
   },
   {
     "slug": "resource-management/create/multi-page-create",
@@ -567,7 +603,8 @@
       "container",
       "space-between",
       "header"
-    ]
+    ],
+    "clean_slug": "multi-page-create"
   },
   {
     "slug": "general/onboarding",
@@ -582,7 +619,8 @@
       "popover",
       "hotspot",
       "annotation-context"
-    ]
+    ],
+    "clean_slug": "onboarding"
   },
   {
     "slug": "resource-management/delete/one-click-delete",
@@ -597,7 +635,8 @@
       "button",
       "input",
       "box"
-    ]
+    ],
+    "clean_slug": "one-click-delete"
   },
   {
     "slug": "resource-management/edit/page-edit",
@@ -613,7 +652,8 @@
       "select",
       "button",
       "popover"
-    ]
+    ],
+    "clean_slug": "page-edit"
   },
   {
     "slug": "resource-management/details",
@@ -629,7 +669,8 @@
       "tabs",
       "button-dropdown",
       "space-between"
-    ]
+    ],
+    "clean_slug": "details"
   },
   {
     "slug": "general/filter-patterns/saved-filter-sets",
@@ -644,7 +685,8 @@
       "select",
       "multiselect",
       "token-group"
-    ]
+    ],
+    "clean_slug": "saved-filter-sets"
   },
   {
     "slug": "general/secondary-panels",
@@ -659,7 +701,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "secondary-panels"
   },
   {
     "slug": "general/selection",
@@ -674,7 +717,8 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "selection"
   },
   {
     "slug": "general/service-dashboard",
@@ -690,7 +734,8 @@
       "bar-chart",
       "line-chart",
       "key-value-pairs"
-    ]
+    ],
+    "clean_slug": "service-dashboard"
   },
   {
     "slug": "general/service-navigation",
@@ -704,7 +749,8 @@
       "side-navigation",
       "app-layout",
       "breadcrumb-group"
-    ]
+    ],
+    "clean_slug": "service-navigation"
   },
   {
     "slug": "general/service-navigation/side-navigation",
@@ -718,7 +764,8 @@
       "side-navigation",
       "app-layout",
       "breadcrumb-group"
-    ]
+    ],
+    "clean_slug": "side-navigation"
   },
   {
     "slug": "resource-management/create/single-page-create",
@@ -735,12 +782,13 @@
       "container",
       "space-between",
       "header"
-    ]
+    ],
+    "clean_slug": "single-page-create"
   },
   {
     "slug": "resource-management/view/split-view",
     "title": "Split view",
-    "desc": "A collection of resources presented as table or cards and paired with a split panel for contextual resource details. It’s effective for quickly browsing or comparing key resource details.",
+    "desc": "A collection of resources presented as table or cards and paired with a split panel for contextual resource details. It\u2019s effective for quickly browsing or comparing key resource details.",
     "url": "https://cloudscape.design/patterns/resource-management/view/split-view/",
     "category": "Resource management",
     "subcategory": "Resource Viewing",
@@ -751,7 +799,8 @@
       "text-filter",
       "collection-preferences",
       "split-panel"
-    ]
+    ],
+    "clean_slug": "split-view"
   },
   {
     "slug": "general/service-dashboard/static-dashboard",
@@ -767,7 +816,8 @@
       "bar-chart",
       "line-chart",
       "key-value-pairs"
-    ]
+    ],
+    "clean_slug": "static-dashboard"
   },
   {
     "slug": "resource-management/create/sub-resource-create",
@@ -784,7 +834,8 @@
       "container",
       "space-between",
       "header"
-    ]
+    ],
+    "clean_slug": "sub-resource-create"
   },
   {
     "slug": "resource-management/view/table-view",
@@ -800,7 +851,8 @@
       "text-filter",
       "collection-preferences",
       "split-panel"
-    ]
+    ],
+    "clean_slug": "table-view"
   },
   {
     "slug": "resource-management/view/table-with-grouped-resources",
@@ -816,12 +868,13 @@
       "text-filter",
       "collection-preferences",
       "split-panel"
-    ]
+    ],
+    "clean_slug": "table-with-grouped-resources"
   },
   {
     "slug": "resource-management/view/table-with-nested-resources",
     "title": "Table with nested resources",
-    "desc": "Use a table with nested resources when a data set contains resources organized into parent–child relationships.",
+    "desc": "Use a table with nested resources when a data set contains resources organized into parent\u2013child relationships.",
     "url": "https://cloudscape.design/patterns/resource-management/view/table-with-nested-resources/",
     "category": "Resource management",
     "subcategory": "Resource Viewing",
@@ -832,7 +885,8 @@
       "text-filter",
       "collection-preferences",
       "split-panel"
-    ]
+    ],
+    "clean_slug": "table-with-nested-resources"
   },
   {
     "slug": "general/timestamps",
@@ -847,12 +901,13 @@
       "button-group",
       "badge",
       "box"
-    ]
+    ],
+    "clean_slug": "timestamps"
   },
   {
     "slug": "general/service-navigation/top-navigation",
     "title": "Top navigation",
-    "desc": "Top navigation provides global controls that help users use the product or service. It’s comprised of a collection of global functionalities that are separate from the product&#x27;s structural navigation.",
+    "desc": "Top navigation provides global controls that help users use the product or service. It\u2019s comprised of a collection of global functionalities that are separate from the product&#x27;s structural navigation.",
     "url": "https://cloudscape.design/patterns/general/service-navigation/top-navigation/",
     "category": "General",
     "subcategory": "Navigation",
@@ -861,7 +916,8 @@
       "side-navigation",
       "app-layout",
       "breadcrumb-group"
-    ]
+    ],
+    "clean_slug": "top-navigation"
   },
   {
     "slug": "general/collect-user-feedback",
@@ -876,7 +932,8 @@
       "modal",
       "status-indicator",
       "form-field"
-    ]
+    ],
+    "clean_slug": "collect-user-feedback"
   },
   {
     "slug": "general/errors/validation",
@@ -891,7 +948,8 @@
       "modal",
       "status-indicator",
       "form-field"
-    ]
+    ],
+    "clean_slug": "validation"
   },
   {
     "slug": "resource-management/view",
@@ -907,6 +965,7 @@
       "text-filter",
       "collection-preferences",
       "split-panel"
-    ]
+    ],
+    "clean_slug": "view"
   }
 ]

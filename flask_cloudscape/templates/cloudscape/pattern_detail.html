@@ -1,0 +1,864 @@
+{% extends "cloudscape/_base.html" %}
+
+{% block title %}{{ pat.title }} Pattern Implementation | Flask-Cloudscape{% endblock %}
+
+{% block head %}
+<style>
+  :root {
+    --detail-sidebar-width: 290px;
+    --detail-bg: #f8f9fa;
+    --detail-border: #eaeded;
+    --detail-accent: #0972d3;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--detail-bg);
+    color: #16191f;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .detail-shell {
+    display: flex;
+    min-height: 100vh;
+  }
+  .detail-sidebar {
+    width: var(--detail-sidebar-width);
+    background: #ffffff;
+    border-right: 1px solid var(--detail-border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .detail-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--detail-border);
+  }
+  .detail-brand-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--detail-accent);
+    margin: 0;
+  }
+  .sidebar-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #414d5c;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: #f2f3f3;
+    margin-bottom: 16px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .sidebar-back-btn:hover {
+    background: #e9f2fa;
+    color: var(--detail-accent);
+  }
+  .sidebar-filter {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #aab7b8;
+    border-radius: 6px;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin-bottom: 14px;
+  }
+  .detail-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    color: #414d5c;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.1s ease;
+  }
+  .detail-nav-item:hover {
+    background-color: #f2f3f3;
+    color: var(--detail-accent);
+  }
+  .detail-nav-item.active {
+    background-color: #e9f2fa;
+    color: var(--detail-accent);
+    font-weight: 700;
+  }
+  .detail-main {
+    flex: 1;
+    min-width: 0;
+    padding: 32px 48px 80px 48px;
+    box-sizing: border-box;
+  }
+  .detail-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #5f6b7a;
+    margin-bottom: 16px;
+  }
+  .detail-breadcrumb a {
+    color: var(--detail-accent);
+    text-decoration: none;
+  }
+  .detail-breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  .pattern-hero {
+    background: #ffffff;
+    border: 1px solid var(--detail-border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .pattern-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .preview-stage {
+    background: #ffffff;
+    border: 1px solid var(--detail-border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .stage-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #f2f3f3;
+  }
+  .canvas-box {
+    background: #ffffff;
+    border: 1px solid #eaeded;
+    border-radius: 8px;
+    padding: 24px;
+    min-height: 200px;
+    overflow-x: auto;
+  }
+  .code-panel {
+    background: #0f1b2a;
+    color: #f1f5f9;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  .meta-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  .meta-table th, .meta-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #eaeded;
+  }
+  .meta-table th {
+    background: #fafafa;
+    color: #5f6b7a;
+    font-weight: 600;
+  }
+  .comp-badge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #f2f3f3;
+    border: 1px solid #e1e4e8;
+    color: #0972d3;
+    padding: 4px 10px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+  }
+  .comp-badge-link:hover {
+    background: #e9f2fa;
+    border-color: #0972d3;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% from "cloudscape/_macros.html" import
+    cs_alert, cs_badge, cs_box, cs_button, cs_checkbox,
+    cs_container, cs_end_container,
+    cs_expandable_section, cs_end_expandable_section,
+    cs_form, cs_end_form, cs_form_field, cs_end_form_field,
+    cs_header, cs_icon, cs_input, cs_link,
+    cs_modal, cs_end_modal,
+    cs_pagination, cs_select,
+    cs_space_between, cs_end_space_between,
+    cs_spinner, cs_status_indicator,
+    cs_table, cs_end_table, cs_tabs, cs_toggle
+%}
+
+<div class="detail-shell">
+  <!-- Sidebar Pattern List -->
+  <aside class="detail-sidebar">
+    <div class="detail-brand">
+      <div style="background: #0972d3; color: white; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 15px;">
+        P
+      </div>
+      <div>
+        <h2 class="detail-brand-title">Cloudscape Patterns</h2>
+        <small style="color: #5f6b7a;">59 UX Workflows</small>
+      </div>
+    </div>
+
+    <a href="/patterns" class="sidebar-back-btn">
+      <cloudscape-icon name="arrow-left" size="small"></cloudscape-icon>
+      <span>← Back to All Patterns</span>
+    </a>
+
+    <input type="text" class="sidebar-filter" id="sidePatternFilter" placeholder="Filter 59 patterns..." oninput="filterSidebar(this.value)">
+
+    <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6b7a; margin-bottom: 8px; padding-left: 6px;">
+      All Patterns (59)
+    </div>
+
+    <nav id="sidebarNavList">
+      {% for item in all_patterns %}
+      <a href="/patterns/{{ item.clean_slug }}" class="detail-nav-item {% if item.clean_slug == pat.clean_slug %}active{% endif %}">
+        <span>{{ item.title }}</span>
+        <span style="font-size: 10px; opacity: 0.6;">{{ item.subcategory }}</span>
+      </a>
+      {% endfor %}
+    </nav>
+  </aside>
+
+  <!-- Main Pattern View Area -->
+  <main class="detail-main">
+    <!-- Breadcrumbs -->
+    <div class="detail-breadcrumb">
+      <a href="/">Catalogue</a>
+      <span>/</span>
+      <a href="/patterns">Patterns</a>
+      <span>/</span>
+      <span>{{ pat.subcategory }}</span>
+      <span>/</span>
+      <strong>{{ pat.title }}</strong>
+    </div>
+
+    <!-- Pattern Hero Section -->
+    <div class="pattern-hero">
+      <div class="pattern-title-row">
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+            <cloudscape-badge color="blue">{{ pat.category }}</cloudscape-badge>
+            <cloudscape-badge color="grey">{{ pat.subcategory }}</cloudscape-badge>
+            <cloudscape-badge color="green">Production UX Pattern</cloudscape-badge>
+          </div>
+          <h1 style="margin: 0 0 6px 0; font-size: 28px; font-weight: 800; color: #0f1b2a;">{{ pat.title }}</h1>
+          <code style="font-size: 13px; color: #0972d3; background: #e9f2fa; padding: 3px 8px; border-radius: 4px;">{{ pat.slug }}</code>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <cloudscape-button variant="normal" icon-name="external" href="{{ pat.url }}">AWS Official Pattern Spec</cloudscape-button>
+        </div>
+      </div>
+      <p style="margin: 12px 0 16px 0; color: #5f6b7a; font-size: 14px; line-height: 1.6; max-width: 820px;">
+        {{ pat.desc }}
+      </p>
+
+      <!-- Key Components Combined in this Pattern -->
+      <div style="border-top: 1px solid #eaeded; padding-top: 14px; margin-top: 14px;">
+        <div style="font-size: 12px; font-weight: 700; color: #16191f; margin-bottom: 8px;">COMPONENTS COMBINED IN THIS PATTERN:</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          {% for c in pat.key_components %}
+          <a href="/components/{{ c }}" class="comp-badge-link">
+            <span>&lt;cloudscape-{{ c }}&gt;</span>
+            <span style="font-size: 10px; color: #5f6b7a;">↗</span>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Pattern Implementation Stage -->
+    <div class="preview-stage">
+      <div class="stage-header">
+        <div>
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700; color: #0f1b2a;">Production UX Implementation</h2>
+          <small style="color: #5f6b7a;">Fully composed pattern replica using official Cloudscape Web Components & design tokens</small>
+        </div>
+        <cloudscape-badge color="blue">Interactive Live Replica</cloudscape-badge>
+      </div>
+
+      <div class="canvas-box">
+        <div style="width: 100%;">
+          {% if 'table-view' in pat.clean_slug or pat.clean_slug == 'table' or pat.clean_slug == 'view' %}
+            <!-- Table View Pattern: Header + Filter + CollectionPreferences + Table + Pagination -->
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Production Instances</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Active compute workloads in us-east-1 and us-west-2 (4 resources)</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <cloudscape-button variant="normal" icon-name="refresh">Refresh</cloudscape-button>
+                  <cloudscape-button variant="normal">Actions</cloudscape-button>
+                  <cloudscape-button variant="primary" icon-name="add-plus">Launch instance</cloudscape-button>
+                </div>
+              </div>
+
+              <!-- Filter Bar & Collection Controls -->
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 260px;">
+                  <cloudscape-text-filter filtering-placeholder="Filter instances by name, ID or status..." filtering-text=""></cloudscape-text-filter>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <cloudscape-segmented-control selected-id="all" options='[{"id": "all", "text": "All (4)"}, {"id": "running", "text": "Running (3)"}, {"id": "stopped", "text": "Stopped (1)"}]'></cloudscape-segmented-control>
+                  <cloudscape-button icon-name="settings" variant="icon"></cloudscape-button>
+                </div>
+              </div>
+
+              <!-- Interactive Data Table -->
+              <cloudscape-table
+                items='[
+                  {"id": "i-0941ab78e", "name": "prod-api-cluster-01", "az": "us-east-1a", "type": "c6g.2xlarge", "cpu": "18%", "status": "Running"},
+                  {"id": "i-0882cc92d", "name": "prod-worker-queue-02", "az": "us-east-1b", "type": "m6g.xlarge", "cpu": "42%", "status": "Running"},
+                  {"id": "i-0331dd11f", "name": "prod-cache-redis-01", "az": "us-east-1c", "type": "r6g.xlarge", "cpu": "31%", "status": "Running"},
+                  {"id": "i-0774fe55a", "name": "staging-evaluator-01", "az": "us-west-2a", "type": "t4g.medium", "cpu": "0%", "status": "Stopped"}
+                ]'
+                column-definitions='[
+                  {"id": "name", "header": "Instance Name"},
+                  {"id": "id", "header": "Instance ID"},
+                  {"id": "az", "header": "Availability Zone"},
+                  {"id": "type", "header": "Instance Type"},
+                  {"id": "cpu", "header": "CPU Utilization"},
+                  {"id": "status", "header": "State"}
+                ]'
+                header="Cluster Workloads">
+              </cloudscape-table>
+
+              <!-- Table Footer: Pagination & Counter -->
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #5f6b7a;">
+                <span>Showing 1-4 of 4 instances</span>
+                <cloudscape-pagination current-page-index="1" pages-count="1"></cloudscape-pagination>
+              </div>
+            </div>
+
+          {% elif 'card-view' in pat.clean_slug %}
+            <!-- Card View Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Database Deployments</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Managed clusters and read replicas</div>
+                </div>
+                <cloudscape-button variant="primary" icon-name="add-plus">Create database</cloudscape-button>
+              </div>
+
+              <cloudscape-cards
+                items='[
+                  {"name": "aurora-pg-primary", "engine": "Aurora PostgreSQL 15.3", "nodes": "3 Nodes", "storage": "500 GB NVMe", "status": "Healthy"},
+                  {"name": "dynamo-orders-table", "engine": "Amazon DynamoDB", "nodes": "On-demand", "storage": "120 GB Serverless", "status": "Healthy"},
+                  {"name": "redis-session-cache", "engine": "Amazon ElastiCache Redis", "nodes": "2 Replicas", "storage": "32 GB RAM", "status": "Healthy"},
+                  {"name": "redshift-dw-cluster", "engine": "Amazon Redshift Serverless", "nodes": "64 RPUs", "storage": "4.2 TB Analytical", "status": "Maintenance"}
+                ]'
+                card-definition='{
+                  "headerField": "name",
+                  "sections": [
+                    {"id": "engine", "header": "Database Engine", "contentField": "engine"},
+                    {"id": "nodes", "header": "Compute Nodes", "contentField": "nodes"},
+                    {"id": "storage", "header": "Storage Tier", "contentField": "storage"},
+                    {"id": "status", "header": "Health Status", "contentField": "status"}
+                  ]
+                }'>
+              </cloudscape-cards>
+            </div>
+
+          {% elif 'single-page-create' in pat.clean_slug or pat.clean_slug == 'create' or pat.clean_slug == 'defaults' or pat.clean_slug == 'sub-resource-create' %}
+            <!-- Single Page Create Pattern: Form + FormField + Container + Action Buttons -->
+            <div style="max-width: 800px; margin: 0 auto; width: 100%;">
+              <div style="margin-bottom: 20px;">
+                <h3 style="margin: 0 0 6px 0; font-size: 22px; font-weight: 800; color: #0f1b2a;">Create Virtual Private Cloud (VPC)</h3>
+                <p style="margin: 0; font-size: 13px; color: #5f6b7a;">Configure your isolated cloud network topology with subnets and internet gateway routing.</p>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Section 1 -->
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                  <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700; color: #0f1b2a; border-bottom: 1px solid #eaeded; padding-bottom: 10px;">General Configuration</h4>
+                  <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <cloudscape-form-field label="VPC Name Tag" description="A human-readable identifier for your VPC">
+                      <cloudscape-input value="production-vpc-us-east" placeholder="e.g. production-vpc"></cloudscape-input>
+                    </cloudscape-form-field>
+                    <cloudscape-form-field label="IPv4 CIDR Block" description="Enter an allocated IPv4 block from 10.0.0.0/16 to 10.255.0.0/16">
+                      <cloudscape-input value="10.0.0.0/16"></cloudscape-input>
+                    </cloudscape-form-field>
+                    <cloudscape-form-field label="Tenancy" description="Hardware tenancy selection">
+                      <cloudscape-select options='[{"label": "Default (Shared compute)", "value": "default"}, {"label": "Dedicated (Single tenant)", "value": "dedicated"}]' selected-option='{"label": "Default (Shared compute)", "value": "default"}'></cloudscape-select>
+                    </cloudscape-form-field>
+                  </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                  <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700; color: #0f1b2a; border-bottom: 1px solid #eaeded; padding-bottom: 10px;">Availability Zones & Subnets</h4>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <cloudscape-form-field label="Number of Availability Zones">
+                      <cloudscape-select options='[{"label": "2 Availability Zones", "value": "2"}, {"label": "3 Availability Zones", "value": "3"}]' selected-option='{"label": "3 Availability Zones", "value": "3"}'></cloudscape-select>
+                    </cloudscape-form-field>
+                    <cloudscape-form-field label="NAT Gateways">
+                      <cloudscape-select options='[{"label": "1 per AZ (Highly Available)", "value": "az"}, {"label": "None", "value": "none"}]' selected-option='{"label": "1 per AZ (Highly Available)", "value": "az"}'></cloudscape-select>
+                    </cloudscape-form-field>
+                  </div>
+                </div>
+
+                <!-- Bottom Sticky Form Actions -->
+                <div style="display: flex; justify-content: flex-end; gap: 12px; padding-top: 10px; border-top: 1px solid #eaeded;">
+                  <cloudscape-button variant="link">Cancel</cloudscape-button>
+                  <cloudscape-button variant="normal">Save as Draft</cloudscape-button>
+                  <cloudscape-button variant="primary">Create VPC</cloudscape-button>
+                </div>
+              </div>
+            </div>
+
+          {% elif 'multi-page-create' in pat.clean_slug or 'wizard' in pat.clean_slug %}
+            <!-- Multi-page Create / Wizard Pattern -->
+            <div style="max-width: 900px; margin: 0 auto; width: 100%;">
+              <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eaeded; padding-bottom: 16px; margin-bottom: 24px;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 22px; font-weight: 800; color: #0f1b2a;">Deploy Elastic Kubernetes Service (EKS)</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Step 2 of 4: Compute Node Group Configuration</div>
+                </div>
+                <cloudscape-badge color="blue">Step 2 of 4</cloudscape-badge>
+              </div>
+
+              <!-- Wizard Steps Stepper -->
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+                <div style="background: #e9f2fa; border-top: 3px solid #0972d3; padding: 10px; border-radius: 4px;">
+                  <div style="font-size: 11px; color: #0972d3; font-weight: 700;">✓ STEP 1</div>
+                  <div style="font-size: 13px; font-weight: 600;">Cluster Details</div>
+                </div>
+                <div style="background: #e9f2fa; border-top: 3px solid #0972d3; padding: 10px; border-radius: 4px;">
+                  <div style="font-size: 11px; color: #0972d3; font-weight: 700;">ACTIVE STEP 2</div>
+                  <div style="font-size: 13px; font-weight: 700; color: #0972d3;">Node Groups</div>
+                </div>
+                <div style="background: #f2f3f3; border-top: 3px solid #d1d5db; padding: 10px; border-radius: 4px; opacity: 0.7;">
+                  <div style="font-size: 11px; color: #5f6b7a;">STEP 3</div>
+                  <div style="font-size: 13px;">Networking</div>
+                </div>
+                <div style="background: #f2f3f3; border-top: 3px solid #d1d5db; padding: 10px; border-radius: 4px; opacity: 0.7;">
+                  <div style="font-size: 11px; color: #5f6b7a;">STEP 4</div>
+                  <div style="font-size: 13px;">Review & Launch</div>
+                </div>
+              </div>
+
+              <!-- Step Content -->
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
+                <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700;">Worker Node Architecture</h4>
+                <cloudscape-tiles
+                  value="c6g"
+                  items='[
+                    {"value": "t4g", "label": "General Purpose (t4g.xlarge)", "description": "4 vCPUs, 16 GiB RAM - Web servers and API workloads"},
+                    {"value": "c6g", "label": "Compute Optimized (c6g.2xlarge)", "description": "8 vCPUs, 16 GiB RAM - High performance microservices"},
+                    {"value": "r6g", "label": "Memory Optimized (r6g.2xlarge)", "description": "8 vCPUs, 64 GiB RAM - In-memory databases and queues"}
+                  ]'>
+                </cloudscape-tiles>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eaeded; padding-top: 16px;">
+                <cloudscape-button variant="normal">← Previous: Cluster Details</cloudscape-button>
+                <div style="display: flex; gap: 10px;">
+                  <cloudscape-button variant="link">Cancel</cloudscape-button>
+                  <cloudscape-button variant="primary">Next: Networking →</cloudscape-button>
+                </div>
+              </div>
+            </div>
+
+          {% elif 'delete' in pat.clean_slug %}
+            <!-- Delete Pattern (Simple, Additional, One-Click) -->
+            <div style="max-width: 650px; margin: 0 auto; width: 100%; background: #ffffff; border: 1px solid #eaeded; border-radius: 10px; padding: 28px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+              <div style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px;">
+                <div style="background: #fdf2f2; color: #ba2705; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;">⚠️</div>
+                <div>
+                  <h3 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #ba2705;">Delete Aurora Database Cluster?</h3>
+                  <p style="margin: 0; font-size: 13px; color: #5f6b7a; line-height: 1.5;">
+                    Permanently delete cluster <strong>production-payment-db-01</strong> and all its 3 read-replicas. This action is irreversible and immediate.
+                  </p>
+                </div>
+              </div>
+
+              <div style="background: #fff8e6; border: 1px solid #ffd885; border-radius: 6px; padding: 12px 16px; font-size: 13px; color: #5c4300; margin-bottom: 20px;">
+                <strong>Warning:</strong> Automated backups associated with this cluster will be retained for 7 days before final purge.
+              </div>
+
+              <div style="margin-bottom: 24px;">
+                <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #16191f;">
+                  To confirm deletion, type <code>delete</code> in the field below:
+                </label>
+                <cloudscape-input placeholder="Type 'delete' to confirm"></cloudscape-input>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; gap: 12px; border-top: 1px solid #eaeded; padding-top: 16px;">
+                <cloudscape-button variant="link">Cancel</cloudscape-button>
+                <button type="button" style="background: #ba2705; color: white; border: none; border-radius: 4px; padding: 8px 18px; font-size: 13px; font-weight: 700; cursor: pointer; transition: background 0.15s ease;">Delete Cluster</button>
+              </div>
+            </div>
+
+          {% elif 'details' in pat.clean_slug %}
+            <!-- Details Page Pattern (Hub, Tabs, Standard) -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; border-bottom: 1px solid #eaeded; padding-bottom: 16px;">
+                <div>
+                  <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">
+                    <cloudscape-badge color="green">Available</cloudscape-badge>
+                    <span style="font-size: 12px; color: #5f6b7a;">us-east-1a • VPC vpc-09941a</span>
+                  </div>
+                  <h3 style="margin: 0; font-size: 24px; font-weight: 800; color: #0f1b2a;">aurora-pg-primary-cluster</h3>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                  <cloudscape-button variant="normal">Modify</cloudscape-button>
+                  <cloudscape-button variant="normal">Create Replica</cloudscape-button>
+                  <cloudscape-button variant="primary">Actions ▾</cloudscape-button>
+                </div>
+              </div>
+
+              <!-- Key Value Overview Grid -->
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                <h4 style="margin: 0 0 16px 0; font-size: 15px; font-weight: 700;">Cluster Specifications</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; font-size: 13px;">
+                  <div>
+                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Engine Version</div>
+                    <div style="font-weight: 600; margin-top: 2px;">PostgreSQL 15.3</div>
+                  </div>
+                  <div>
+                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Master Endpoint</div>
+                    <div style="font-weight: 600; margin-top: 2px; color: #0972d3;">pg-prod.c91.rds.amazonaws.com</div>
+                  </div>
+                  <div>
+                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Storage Allocated</div>
+                    <div style="font-weight: 600; margin-top: 2px;">420 GB / 2 TB (Aurora Auto)</div>
+                  </div>
+                  <div>
+                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Maintenance Window</div>
+                    <div style="font-weight: 600; margin-top: 2px;">Sun 02:00 - 03:00 UTC</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tabs Navigation Pattern -->
+              <cloudscape-tabs
+                tabs='[
+                  {"id": "monitoring", "label": "Metrics & Monitoring", "content": "Live CPU utilization, IOPS, and query latency telemetry charts."},
+                  {"id": "logs", "label": "Logs & Events", "content": "PostgreSQL slow query logs and failover event stream history."},
+                  {"id": "config", "label": "Configuration", "content": "Attached DB parameter group: custom-pg15-prod with max_connections=500."},
+                  {"id": "maintenance", "label": "Maintenance & Backups", "content": "Automated snapshot schedule: daily at 01:00 UTC with 35 days retention."}
+                ]'
+                active-tab-id="monitoring">
+              </cloudscape-tabs>
+            </div>
+
+          {% elif 'dashboard' in pat.clean_slug %}
+            <!-- Dashboard Pattern (Configurable, Static, Items) -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 22px; font-weight: 800; color: #0f1b2a;">Infrastructure Health Dashboard</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Real-time service telemetry across compute, storage, and networking</div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                  <cloudscape-button icon-name="refresh">Refresh (30s)</cloudscape-button>
+                  <cloudscape-button variant="primary" icon-name="settings">Configure Widgets</cloudscape-button>
+                </div>
+              </div>
+
+              <!-- 4-Card Metric Grid -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <div style="font-size: 12px; color: #5f6b7a; font-weight: 600;">ACTIVE EC2 PODS</div>
+                  <div style="font-size: 28px; font-weight: 800; color: #0972d3; margin: 6px 0;">86 / 90</div>
+                  <cloudscape-badge color="green">+4 pods scaled</cloudscape-badge>
+                </div>
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <div style="font-size: 12px; color: #5f6b7a; font-weight: 600;">AVG CPU UTILIZATION</div>
+                  <div style="font-size: 28px; font-weight: 800; color: #037f0c; margin: 6px 0;">34.2%</div>
+                  <span style="font-size: 12px; color: #5f6b7a;">Within nominal bounds</span>
+                </div>
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <div style="font-size: 12px; color: #5f6b7a; font-weight: 600;">P99 API LATENCY</div>
+                  <div style="font-size: 28px; font-weight: 800; color: #0972d3; margin: 6px 0;">48 ms</div>
+                  <cloudscape-badge color="green">SLA Met</cloudscape-badge>
+                </div>
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <div style="font-size: 12px; color: #5f6b7a; font-weight: 600;">HTTP 5XX ERRORS</div>
+                  <div style="font-size: 28px; font-weight: 800; color: #037f0c; margin: 6px 0;">0.00%</div>
+                  <span style="font-size: 12px; color: #5f6b7a;">Zero failure events</span>
+                </div>
+              </div>
+
+              <!-- Chart Visualizations -->
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                <h4 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 700;">Compute Fleet Bandwidth Telemetry</h4>
+                <cloudscape-line-chart
+                  x-scale-type="categorical"
+                  x-title="Timestamp"
+                  y-title="Throughput (Gbps)"
+                  series='[
+                    {"title": "Ingress Network", "type": "line", "data": [{"x": "00:00", "y": 14}, {"x": "04:00", "y": 20}, {"x": "08:00", "y": 45}, {"x": "12:00", "y": 62}, {"x": "16:00", "y": 58}, {"x": "20:00", "y": 34}]},
+                    {"title": "Egress Network", "type": "line", "data": [{"x": "00:00", "y": 8}, {"x": "04:00", "y": 12}, {"x": "08:00", "y": 28}, {"x": "12:00", "y": 38}, {"x": "16:00", "y": 35}, {"x": "20:00", "y": 22}]}
+                  ]'
+                  i18n-strings='{"filterLabel": "Filter displayed data", "legendAriaLabel": "Legend"}'>
+                </cloudscape-line-chart>
+              </div>
+            </div>
+
+          {% elif 'edit' in pat.clean_slug or 'attribute' in pat.clean_slug %}
+            <!-- Edit / Attribute Editing Pattern -->
+            <div style="max-width: 750px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Edit Cluster Parameters & Tags</h3>
+                <div style="font-size: 13px; color: #5f6b7a;">Update runtime configuration variables and key-value tags</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700;">Resource Key-Value Tags</h4>
+                <cloudscape-attribute-editor
+                  items='[
+                    {"key": "Environment", "value": "Production"},
+                    {"key": "CostCenter", "value": "CC-9041"},
+                    {"key": "ManagedBy", "value": "Terraform"}
+                  ]'
+                  add-button-text="Add new tag"
+                  remove-button-text="Remove">
+                </cloudscape-attribute-editor>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eaeded; padding-top: 16px;">
+                <cloudscape-button variant="link">Cancel</cloudscape-button>
+                <cloudscape-button variant="primary">Save Changes</cloudscape-button>
+              </div>
+            </div>
+
+          {% elif 'empty' in pat.clean_slug %}
+            <!-- Empty State Pattern -->
+            <div style="max-width: 600px; margin: 30px auto; text-align: center; background: #ffffff; border: 1px solid #eaeded; border-radius: 12px; padding: 48px 32px;">
+              <div style="font-size: 48px; color: #5f6b7a; margin-bottom: 12px;">📦</div>
+              <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">No S3 Storage Buckets Found</h3>
+              <p style="margin: 0 0 24px 0; font-size: 14px; color: #5f6b7a; line-height: 1.5;">
+                You don't have any Amazon S3 buckets in <strong>us-east-1</strong>. Create a storage bucket to store files, datasets, and backups.
+              </p>
+              <div style="display: flex; justify-content: center; gap: 12px;">
+                <cloudscape-button variant="normal" icon-name="external">Learn More</cloudscape-button>
+                <cloudscape-button variant="primary" icon-name="add-plus">Create Bucket</cloudscape-button>
+              </div>
+            </div>
+
+          {% elif 'filter' in pat.clean_slug %}
+            <!-- Filter Pattern (Property Filter & Saved Filter Sets) -->
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+              <div>
+                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Multi-Property Resource Filtering</h3>
+                <div style="font-size: 13px; color: #5f6b7a;">Filter by status, instance type, tag, or availability zone</div>
+              </div>
+
+              <div style="display: flex; gap: 10px; align-items: center; background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 14px;">
+                <div style="flex: 1;">
+                  <cloudscape-property-filter
+                    query='{"tokens": [{"propertyKey": "status", "operator": "=", "value": "Running"}, {"propertyKey": "az", "operator": "=", "value": "us-east-1a"}], "operation": "and"}'
+                    filtering-options='[
+                      {"propertyKey": "status", "value": "Running"},
+                      {"propertyKey": "status", "value": "Stopped"},
+                      {"propertyKey": "az", "value": "us-east-1a"},
+                      {"propertyKey": "az", "value": "us-east-1b"},
+                      {"propertyKey": "type", "value": "c6g.2xlarge"}
+                    ]'>
+                  </cloudscape-property-filter>
+                </div>
+                <cloudscape-button variant="normal">Save Filter Set</cloudscape-button>
+              </div>
+
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span style="font-size: 12px; color: #5f6b7a;">Saved filter sets:</span>
+                <cloudscape-badge color="blue">Production Us-East-1</cloudscape-badge>
+                <cloudscape-badge color="grey">Critical Alerts Only</cloudscape-badge>
+              </div>
+            </div>
+
+          {% elif 'navigation' in pat.clean_slug %}
+            <!-- Service Navigation Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+              <div style="background: #0f1b2a; border-radius: 6px; padding: 10px 16px; color: white; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <div style="background: #ff9900; color: #000; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-size: 12px;">AWS</div>
+                  <strong style="font-size: 14px;">Amazon Elastic Compute Cloud</strong>
+                </div>
+                <div style="display: flex; gap: 12px; font-size: 12px; color: #cbd5e1;">
+                  <span>🔔 Alerts (0)</span>
+                  <span>Global / us-east-1</span>
+                  <span>Pranab Sarkar (Admin)</span>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 16px;">
+                <div style="width: 220px; background: #ffffff; border: 1px solid #eaeded; border-radius: 6px; padding: 14px;">
+                  <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6b7a; margin-bottom: 8px;">INSTANCES</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px; font-size: 13px;">
+                    <a href="#" style="color: #0972d3; font-weight: 600; text-decoration: none; padding: 4px; background: #e9f2fa; border-radius: 4px;">Instances</a>
+                    <a href="#" style="color: #414d5c; text-decoration: none; padding: 4px;">Instance Types</a>
+                    <a href="#" style="color: #414d5c; text-decoration: none; padding: 4px;">Launch Templates</a>
+                  </div>
+                  <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6b7a; margin: 16px 0 8px 0;">NETWORKING</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px; font-size: 13px;">
+                    <a href="#" style="color: #414d5c; text-decoration: none; padding: 4px;">Security Groups</a>
+                    <a href="#" style="color: #414d5c; text-decoration: none; padding: 4px;">Elastic IPs</a>
+                  </div>
+                </div>
+
+                <div style="flex: 1; background: #ffffff; border: 1px solid #eaeded; border-radius: 6px; padding: 20px;">
+                  <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 700;">Active View Content</h4>
+                  <p style="margin: 0; font-size: 13px; color: #5f6b7a;">Side navigation synchronizes with current route and preserves contextual service state.</p>
+                </div>
+              </div>
+            </div>
+
+          {% elif 'feedback' in pat.clean_slug or 'announcing' in pat.clean_slug or 'unsaved' in pat.clean_slug or 'error' in pat.clean_slug %}
+            <!-- Feedback, Announcing & Errors Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 750px; margin: 0 auto;">
+              <cloudscape-alert type="info" header="New Feature Announcement" dismissible>
+                Aurora Serverless v2 PostgreSQL clusters now support automated cross-region replication.
+              </cloudscape-alert>
+
+              <cloudscape-alert type="warning" header="Unsaved Changes">
+                You have unsaved changes in your security group inbound rules. Leaving now will discard edits.
+              </cloudscape-alert>
+
+              <cloudscape-alert type="error" header="Cluster Validation Failed" dismissible>
+                CIDR block 10.0.0.0/16 overlaps with existing VPC vpc-08812af in this availability region.
+              </cloudscape-alert>
+            </div>
+
+          {% else %}
+            <!-- General UI Pattern Implementation -->
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaeded; padding-bottom: 12px;">
+                <h4 style="margin: 0; font-size: 16px; font-weight: 700;">{{ pat.title }} Production Workflow</h4>
+                <cloudscape-badge color="blue">{{ pat.subcategory }}</cloudscape-badge>
+              </div>
+              <p style="margin: 0; font-size: 13px; color: #5f6b7a;">
+                This pattern demonstrates how {{ pat.key_components | join(', ') }} coordinate according to AWS Cloudscape Design Guidelines.
+              </p>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px;">
+                {% for c in pat.key_components %}
+                <cloudscape-button variant="normal" href="/components/{{ c }}">Open &lt;{{ c }}&gt; Demo</cloudscape-button>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Agent Implementation Recipe & Code Panel -->
+    <div class="pattern-hero">
+      <h2 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 700; color: #0f1b2a;">Agent Implementation Recipe</h2>
+      <p style="margin: 0 0 16px 0; font-size: 13px; color: #5f6b7a;">
+        Drop-in template code for AI agents and developers implementing the <strong>{{ pat.title }}</strong> pattern.
+      </p>
+
+      <h3 style="margin: 16px 0 6px 0; font-size: 14px; font-weight: 600; color: #5f6b7a;">Method 1: HTML / Web Component Architecture</h3>
+      <div class="code-panel">
+&lt;!-- Pattern: {{ pat.title }} ({{ pat.slug }}) --&gt;
+&lt;div class="cloudscape-pattern-{{ pat.clean_slug }}"&gt;
+{% for c in pat.key_components %}
+  &lt;cloudscape-{{ c }} id="{{ pat.clean_slug }}-{{ c }}"&gt;
+    &lt;!-- Content for {{ c }} in {{ pat.title }} workflow --&gt;
+  &lt;/cloudscape-{{ c }}&gt;
+{% endfor %}
+&lt;/div&gt;
+      </div>
+
+      <h3 style="margin: 20px 0 6px 0; font-size: 14px; font-weight: 600; color: #5f6b7a;">Method 2: Jinja2 Macro Composition</h3>
+      <div class="code-panel">
+{&#37; from "cloudscape/_macros.html" import {% for c in pat.key_components %}cs_{{ c | replace('-', '_') }}{% if not loop.last %}, {% endif %}{% endfor %} &#37;}
+
+&lt;!-- Compose {{ pat.title }} workflow --&gt;
+{% for c in pat.key_components %}
+{{ '{{' }} cs_{{ c | replace('-', '_') }}() {{ '}}' }}
+{% endfor %}
+      </div>
+    </div>
+
+    <!-- Pattern Specification Table -->
+    <div class="pattern-hero">
+      <h2 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 700; color: #0f1b2a;">Pattern Technical Specification</h2>
+      <table class="meta-table">
+        <tr>
+          <th>Attribute</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Pattern Title</td>
+          <td><strong>{{ pat.title }}</strong></td>
+        </tr>
+        <tr>
+          <td>Slug ID</td>
+          <td><code>{{ pat.slug }}</code></td>
+        </tr>
+        <tr>
+          <td>Clean Route Slug</td>
+          <td><code>/patterns/{{ pat.clean_slug }}</code></td>
+        </tr>
+        <tr>
+          <td>Category</td>
+          <td>{{ pat.category }}</td>
+        </tr>
+        <tr>
+          <td>Subcategory</td>
+          <td>{{ pat.subcategory }}</td>
+        </tr>
+        <tr>
+          <td>Key Components Combined</td>
+          <td>
+            {% for c in pat.key_components %}
+            <a href="/components/{{ c }}" style="color: #0972d3; text-decoration: none; margin-right: 8px;"><code>&lt;cloudscape-{{ c }}&gt;</code></a>
+            {% endfor %}
+          </td>
+        </tr>
+        <tr>
+          <td>Official AWS Specification</td>
+          <td><a href="{{ pat.url }}" target="_blank" style="color: #0972d3;">{{ pat.url }}</a></td>
+        </tr>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script>
+  function filterSidebar(query) {
+    const q = query.toLowerCase().trim();
+    const navItems = document.querySelectorAll('#sidebarNavList .detail-nav-item');
+    navItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = (!q || text.includes(q)) ? 'flex' : 'none';
+    });
+  }
+</script>
+{% endblock %}

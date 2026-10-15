@@ -159,6 +159,12 @@ if __name__ == "__main__":
             pattern_groups[subcat] = []
         pattern_groups[subcat].append(p)
 
+    # Pattern lookup maps
+    pattern_by_slug = {}
+    for p in patterns_data:
+        pattern_by_slug[p.get("clean_slug", p["slug"])] = p
+        pattern_by_slug[p["slug"]] = p
+
     @app.route("/")
     def index():
         return render_template("cloudscape/catalogue.html", categories=categories)
@@ -170,6 +176,22 @@ if __name__ == "__main__":
             pattern_groups=pattern_groups,
             patterns_data=patterns_data,
             total_patterns=len(patterns_data)
+        )
+
+    @app.route("/patterns/<path:slug>")
+    def pattern_detail(slug):
+        from flask import abort
+        # Try clean_slug or full slug
+        pat = pattern_by_slug.get(slug)
+        if not pat:
+            clean = slug.split("/")[-1]
+            pat = pattern_by_slug.get(clean)
+        if not pat:
+            abort(404)
+        return render_template(
+            "cloudscape/pattern_detail.html",
+            pat=pat,
+            all_patterns=patterns_data
         )
 
     @app.route("/components/<slug>")

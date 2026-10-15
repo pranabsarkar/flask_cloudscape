@@ -557,10 +557,12 @@
             </div>
 
             <div class="pattern-card-footer">
-              <a href="{{ pat.url }}" target="_blank" rel="noopener noreferrer">
-                Official AWS Pattern Specs <cloudscape-icon name="external" size="small"></cloudscape-icon>
+              <a href="/patterns/{{ pat.clean_slug }}" style="color: #0972d3; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                Open Pattern Page →
               </a>
-              <span style="font-size: 11px; color: #5f6b7a; font-family: monospace;">{{ pat.slug }}</span>
+              <a href="{{ pat.url }}" target="_blank" rel="noopener noreferrer" style="color: #5f6b7a; font-size: 11px;">
+                AWS Spec <cloudscape-icon name="external" size="small"></cloudscape-icon>
+              </a>
             </div>
           </div>
         </div>
