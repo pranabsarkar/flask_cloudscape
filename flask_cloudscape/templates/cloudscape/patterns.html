@@ -403,138 +403,240 @@
 
             <!-- Interactive Pattern Replica Box -->
             <div class="pattern-card-preview">
-              {% if pat.slug == 'resource-management/view/table-view' %}
-                <div style="width: 100%; font-size: 11px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                    <strong>Instances (3)</strong>
+              {% if pat.clean_slug == 'actions' or pat.clean_slug == 'global-actions' or pat.clean_slug == 'incontext-actions' %}
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 11px;">
+                  <span style="font-weight: 600;">i-094132bb8e</span>
+                  <div style="display: flex; gap: 4px;">
+                    <cloudscape-button variant="normal">Action</cloudscape-button>
                     <cloudscape-button variant="primary">Launch</cloudscape-button>
                   </div>
+                </div>
+
+              {% elif pat.clean_slug == 'density-settings' %}
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 11px;">
+                  <span>Row Density:</span>
+                  <cloudscape-segmented-control selected-id="compact" options='[{"id": "comf", "text": "Comfortable"}, {"id": "compact", "text": "Compact"}]'></cloudscape-segmented-control>
+                </div>
+
+              {% elif pat.clean_slug == 'disabled-and-read-only-states' %}
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 4px; font-size: 11px;">
+                  <span style="color: #5f6b7a;">DB Engine (Read-only):</span>
+                  <input type="text" value="aurora-postgres-15" style="padding: 3px 6px; font-size: 11px; background: #f2f3f3; border: 1px solid #d5dbdb;" readonly>
+                </div>
+
+              {% elif pat.clean_slug == 'drag-and-drop' %}
+                <div style="width: 100%; border: 1px dashed #0972d3; padding: 6px 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; background: #f2f8fd;">
+                  <span>⠿ 1. Build Container</span>
+                  <cloudscape-badge color="blue">Reorder</cloudscape-badge>
+                </div>
+
+              {% elif pat.clean_slug == 'empty-states' %}
+                <div style="text-align: center; width: 100%; font-size: 11px;">
+                  <div style="font-size: 16px;">📦</div>
+                  <strong style="color: #16191f;">No Buckets Found</strong>
+                  <div style="color: #5f6b7a; font-size: 10px;">Get started by creating a bucket</div>
+                </div>
+
+              {% elif pat.clean_slug == 'hero-header' %}
+                <div style="width: 100%; background: linear-gradient(135deg, #0972d3 0%, #033f78 100%); color: white; padding: 8px 12px; border-radius: 4px; font-size: 11px;">
+                  <strong>Bedrock Foundation Models</strong>
+                  <div style="font-size: 10px; opacity: 0.85;">Enterprise Generative AI Suite</div>
+                </div>
+
+              {% elif pat.clean_slug == 'image-magnifier' %}
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 11px;">
+                  <span>🔍 Topology Magnifier (2.5x)</span>
+                  <cloudscape-button icon-name="zoom-in" variant="icon"></cloudscape-button>
+                </div>
+
+              {% elif pat.clean_slug == 'loading-and-refreshing' %}
+                <div style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 11px;">
+                  <cloudscape-spinner size="normal"></cloudscape-spinner>
+                  <span>Syncing live cluster telemetry...</span>
+                </div>
+
+              {% elif pat.clean_slug == 'secondary-panels' %}
+                <div style="width: 100%; display: grid; grid-template-columns: 2fr 1fr; gap: 6px; font-size: 10px;">
+                  <div style="background: #fafafa; border: 1px solid #eaeded; padding: 6px; border-radius: 4px;">Main Workspace</div>
+                  <div style="background: #e9f2fa; border: 1px solid #b2d7f8; padding: 6px; border-radius: 4px; color: #0972d3;">Help Drawer ℹ️</div>
+                </div>
+
+              {% elif pat.clean_slug == 'selection' %}
+                <div style="width: 100%; display: flex; gap: 6px; font-size: 10px;">
+                  <div style="flex: 1; border: 2px solid #0972d3; padding: 4px; border-radius: 4px; background: #f2f8fd;">✓ Serverless</div>
+                  <div style="flex: 1; border: 1px solid #eaeded; padding: 4px; border-radius: 4px;">Provisioned</div>
+                </div>
+
+              {% elif pat.clean_slug == 'timestamps' %}
+                <div style="width: 100%; display: flex; justify-content: space-between; font-size: 11px;">
+                  <span>Audit event:</span>
+                  <span style="color: #0972d3; font-weight: 600;" title="2026-10-15 11:42 UTC">3 mins ago 🕒</span>
+                </div>
+
+              {% elif pat.clean_slug in ['hands-on-tutorials', 'help-system', 'onboarding'] %}
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 11px; background: #f2f8fd; padding: 6px 8px; border-radius: 4px;">
+                  <span>📚 Tutorial 1: Quickstart</span>
+                  <cloudscape-badge color="blue">Step 1 of 4</cloudscape-badge>
+                </div>
+
+              {% elif pat.clean_slug in ['announcing-new-features', 'announcing-beta-preview-features'] %}
+                <div style="width: 100%; background: #f2f8fd; border-left: 3px solid #0972d3; padding: 6px 8px; font-size: 11px; border-radius: 2px;">
+                  ✨ <strong>New:</strong> Vector Search for MemoryDB
+                </div>
+
+              {% elif pat.clean_slug in ['attribute-editing', 'edit', 'inline-edit', 'page-edit'] %}
+                <div style="width: 100%; font-size: 11px; display: flex; flex-direction: column; gap: 4px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>Env: <strong>Production</strong></span>
+                    <cloudscape-button variant="link" icon-name="edit">Edit</cloudscape-button>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>CostCenter: <strong>CC-9041</strong></span>
+                    <cloudscape-button variant="link" icon-name="edit">Edit</cloudscape-button>
+                  </div>
+                </div>
+
+              {% elif pat.clean_slug in ['table-view', 'view'] %}
+                <div style="width: 100%; font-size: 11px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                    <strong>Instances (4)</strong>
+                    <cloudscape-button variant="primary">Launch</cloudscape-button>
+                  </div>
+                  <div style="background: #fafafa; border: 1px solid #eaeded; border-radius: 4px; padding: 4px 6px;">
+                    <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr; border-bottom: 1px solid #eaeded; font-weight: 600; padding-bottom: 2px;">
+                      <span>Name</span><span>Type</span><span>State</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr; padding-top: 2px; color: #5f6b7a;">
+                      <span>prod-api</span><span>c6g.2xl</span><span style="color: #037f0c;">● Running</span>
+                    </div>
+                  </div>
+                </div>
+
+              {% elif pat.clean_slug == 'card-view' %}
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; font-size: 10px;">
                   <div style="background: #fafafa; border: 1px solid #eaeded; border-radius: 4px; padding: 6px;">
-                    <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr; border-bottom: 1px solid #eaeded; font-weight: 600; padding-bottom: 4px;">
-                      <span>Name</span><span>Type</span><span>Status</span>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr; padding-top: 4px; color: #5f6b7a;">
-                      <span>web-server-1</span><span>c6g.xlarge</span><span style="color: #037f0c;">● Active</span>
-                    </div>
-                  </div>
-                </div>
-
-              {% elif pat.slug == 'resource-management/view/card-view' %}
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%;">
-                  <div style="background: #fafafa; border: 1px solid #eaeded; border-radius: 4px; padding: 8px; font-size: 11px;">
                     <strong>Aurora Cluster</strong>
-                    <div style="color: #5f6b7a; font-size: 10px; margin-top: 2px;">Postgres 15.3</div>
-                    <cloudscape-badge color="green">Healthy</cloudscape-badge>
+                    <div style="color: #037f0c;">● Healthy</div>
                   </div>
-                  <div style="background: #fafafa; border: 1px solid #eaeded; border-radius: 4px; padding: 8px; font-size: 11px;">
-                    <strong>DynamoDB Table</strong>
-                    <div style="color: #5f6b7a; font-size: 10px; margin-top: 2px;">Orders_v2</div>
-                    <cloudscape-badge color="blue">Replicating</cloudscape-badge>
+                  <div style="background: #fafafa; border: 1px solid #eaeded; border-radius: 4px; padding: 6px;">
+                    <strong>DynamoDB</strong>
+                    <div style="color: #0972d3;">● Serverless</div>
                   </div>
                 </div>
 
-              {% elif pat.slug == 'resource-management/create/single-page-create' or pat.slug == 'resource-management/create' %}
-                <div style="width: 100%; font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
-                  <label style="font-weight: 600;">Resource Name</label>
-                  <input type="text" value="production-payment-vpc" style="padding: 4px 8px; border: 1px solid #aab7b8; border-radius: 4px; font-size: 11px;" readonly>
-                  <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 4px;">
-                    <cloudscape-button variant="link">Cancel</cloudscape-button>
+              {% elif pat.clean_slug == 'split-view' %}
+                <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 6px; width: 100%; font-size: 10px;">
+                  <div style="background: #fafafa; border: 1px solid #eaeded; padding: 4px; border-radius: 3px;">
+                    <strong>Master List</strong>
+                    <div>prod-core-api</div>
+                  </div>
+                  <div style="background: #f2f8fd; border: 1px solid #0972d3; padding: 4px; border-radius: 3px; color: #0972d3;">
+                    <strong>Details Pane</strong>
+                    <div>v1.28.4 EKS</div>
+                  </div>
+                </div>
+
+              {% elif pat.clean_slug in ['table-with-grouped-resources', 'table-with-nested-resources'] %}
+                <div style="width: 100%; font-size: 10px;">
+                  <div style="background: #e9f2fa; padding: 3px 6px; border-radius: 3px; font-weight: 700; color: #0972d3; margin-bottom: 2px;">
+                    ▼ VPC: prod-vpc (10.0.0.0/16)
+                  </div>
+                  <div style="padding-left: 10px; color: #5f6b7a;">
+                    ↳ Subnet: public-az1 (10.0.1.0/24)
+                  </div>
+                </div>
+
+              {% elif pat.clean_slug in ['chart-metric-drill-down', 'data-vis'] %}
+                <div style="width: 100%; font-size: 11px;">
+                  <div style="height: 32px; display: flex; align-items: flex-end; gap: 8px; border-bottom: 1px solid #eaeded; padding-bottom: 2px;">
+                    <div style="background: #0972d3; width: 14px; height: 50%; border-radius: 2px 2px 0 0;"></div>
+                    <div style="background: #0972d3; width: 14px; height: 95%; border-radius: 2px 2px 0 0;"></div>
+                    <div style="background: #0972d3; width: 14px; height: 70%; border-radius: 2px 2px 0 0;"></div>
+                    <div style="background: #0972d3; width: 14px; height: 85%; border-radius: 2px 2px 0 0;"></div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; color: #5f6b7a; font-size: 9px; margin-top: 2px;">
+                    <span>P99: 45ms (Spike Detected)</span>
+                  </div>
+                </div>
+
+              {% elif pat.clean_slug in ['unsaved-changes', 'error-messages', 'errors', 'validation', 'user-feedback', 'collect-user-feedback'] %}
+                <div style="width: 100%; font-size: 10px; display: flex; flex-direction: column; gap: 4px;">
+                  <div style="background: #fdf2f2; border-left: 3px solid #ba2705; padding: 4px 6px; border-radius: 2px; color: #ba2705;">
+                    ⚠️ <strong>Error:</strong> Overlapping CIDR block
+                  </div>
+                  <div style="background: #fff8e6; border-left: 3px solid #ff9900; padding: 4px 6px; border-radius: 2px; color: #7d4e00;">
+                    Unsaved changes warning
+                  </div>
+                </div>
+
+              {% elif pat.clean_slug in ['configurable-dashboard', 'dashboard-items', 'service-dashboard', 'static-dashboard'] %}
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; font-size: 11px;">
+                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; padding: 4px 6px; border-radius: 4px;">
+                    <div style="font-size: 9px; color: #5f6b7a;">Pods</div>
+                    <div style="font-size: 14px; font-weight: 700; color: #0972d3;">86 / 90</div>
+                  </div>
+                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; padding: 4px 6px; border-radius: 4px;">
+                    <div style="font-size: 9px; color: #5f6b7a;">P99</div>
+                    <div style="font-size: 14px; font-weight: 700; color: #037f0c;">48 ms</div>
+                  </div>
+                </div>
+
+              {% elif pat.clean_slug in ['single-page-create', 'create', 'defaults', 'sub-resource-create'] %}
+                <div style="width: 100%; font-size: 11px; display: flex; flex-direction: column; gap: 4px;">
+                  <span style="font-weight: 600;">Create VPC</span>
+                  <input type="text" value="production-vpc-us-east" style="padding: 3px 6px; border: 1px solid #aab7b8; border-radius: 4px; font-size: 11px;" readonly>
+                  <div style="display: flex; justify-content: flex-end; gap: 4px; margin-top: 2px;">
                     <cloudscape-button variant="primary">Create</cloudscape-button>
                   </div>
                 </div>
 
-              {% elif pat.slug == 'resource-management/create/multi-page-create' %}
+              {% elif pat.clean_slug == 'multi-page-create' %}
                 <div style="width: 100%; font-size: 11px;">
-                  <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 6px;">
-                    <span style="background: #0972d3; color: white; width: 16px; height: 16px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px;">1</span>
-                    <strong>Step 1: Choose engine</strong>
-                    <span style="color: #94a3b8;">→ Step 2</span>
+                  <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 4px;">
+                    <span style="background: #0972d3; color: white; width: 16px; height: 16px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px;">2</span>
+                    <strong>Step 2 of 4: Node Groups</strong>
                   </div>
-                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; padding: 6px 8px; border-radius: 4px;">
-                    MySQL Community Edition selected
-                  </div>
-                </div>
-
-              {% elif 'delete' in pat.slug %}
-                <div style="width: 100%; border: 1px solid #eaeded; border-radius: 6px; padding: 8px; background: #fafafa; font-size: 11px;">
-                  <div style="font-weight: 700; color: #ba2705; margin-bottom: 4px;">⚠️ Delete production-db?</div>
-                  <p style="margin: 0 0 6px 0; color: #5f6b7a; font-size: 10px;">This action cannot be undone. Enter confirmation text.</p>
-                  <div style="display: flex; justify-content: flex-end; gap: 6px;">
-                    <cloudscape-button variant="link">Cancel</cloudscape-button>
-                    <button type="button" style="background: #ba2705; color: white; border: none; border-radius: 4px; padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer;">Delete</button>
+                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; padding: 4px 6px; border-radius: 4px; font-size: 10px;">
+                    c6g.2xlarge compute optimized
                   </div>
                 </div>
 
-              {% elif 'details' in pat.slug %}
+              {% elif pat.clean_slug in ['delete', 'delete-with-additional-confirmation', 'delete-with-simple-confirmation', 'one-click-delete'] %}
+                <div style="width: 100%; border: 1px solid #eaeded; border-radius: 4px; padding: 6px; background: #fafafa; font-size: 10px;">
+                  <div style="font-weight: 700; color: #ba2705;">⚠️ Delete Cluster?</div>
+                  <div style="color: #5f6b7a; margin: 2px 0;">Type 'delete' to confirm</div>
+                  <div style="display: flex; justify-content: flex-end;">
+                    <button type="button" style="background: #ba2705; color: white; border: none; border-radius: 3px; padding: 2px 8px; font-size: 10px; font-weight: 600;">Delete</button>
+                  </div>
+                </div>
+
+              {% elif pat.clean_slug in ['details-page', 'details-page-as-hub', 'details-page-with-tabs', 'details'] %}
                 <div style="width: 100%; font-size: 11px;">
-                  <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eaeded; padding-bottom: 4px; margin-bottom: 6px;">
-                    <span style="font-weight: 700;">db-primary-east</span>
-                    <span style="color: #037f0c;">● Available</span>
+                  <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eaeded; padding-bottom: 4px; margin-bottom: 4px;">
+                    <span style="font-weight: 700;">aurora-pg-primary</span>
+                    <cloudscape-badge color="green">Available</cloudscape-badge>
                   </div>
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; color: #5f6b7a;">
-                    <div>Region: <strong>us-east-1</strong></div>
-                    <div>vCPUs: <strong>8 Core</strong></div>
-                  </div>
-                </div>
-
-              {% elif 'dashboard' in pat.slug %}
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; font-size: 11px;">
-                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; padding: 6px; border-radius: 4px;">
-                    <div style="font-size: 10px; color: #5f6b7a;">Active Nodes</div>
-                    <div style="font-size: 16px; font-weight: 700; color: #0972d3;">24 / 24</div>
-                  </div>
-                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; padding: 6px; border-radius: 4px;">
-                    <div style="font-size: 10px; color: #5f6b7a;">Error Rate</div>
-                    <div style="font-size: 16px; font-weight: 700; color: #037f0c;">0.01%</div>
+                  <div style="display: flex; gap: 6px; font-size: 10px; color: #0972d3;">
+                    <span>[Metrics]</span><span>[Logs]</span><span>[Config]</span>
                   </div>
                 </div>
 
-              {% elif 'edit' in pat.slug %}
-                <div style="width: 100%; font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span>Max Connections: <strong>500</strong></span>
-                    <cloudscape-button variant="link" icon-name="edit">Edit</cloudscape-button>
+              {% elif pat.clean_slug in ['filter-persistence-in-collection-views', 'filter-patterns', 'saved-filter-sets'] %}
+                <div style="width: 100%; font-size: 11px; display: flex; flex-direction: column; gap: 4px;">
+                  <div style="display: flex; gap: 4px;">
+                    <span style="background: #e9f2fa; color: #0972d3; padding: 1px 5px; border-radius: 3px; font-size: 10px;">Status = Running ✕</span>
+                    <span style="background: #e9f2fa; color: #0972d3; padding: 1px 5px; border-radius: 3px; font-size: 10px;">AZ = us-east-1a ✕</span>
                   </div>
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span>Retention: <strong>30 days</strong></span>
-                    <cloudscape-button variant="link" icon-name="edit">Edit</cloudscape-button>
-                  </div>
+                  <span style="font-size: 9px; color: #5f6b7a;">Saved filter: Production Fleet</span>
                 </div>
 
-              {% elif 'filter' in pat.slug %}
-                <div style="width: 100%; font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
-                  <div style="display: flex; gap: 6px;">
-                    <span style="background: #e9f2fa; color: #0972d3; padding: 2px 6px; border-radius: 4px;">Tag: Prod ✕</span>
-                    <span style="background: #e9f2fa; color: #0972d3; padding: 2px 6px; border-radius: 4px;">Status: Active ✕</span>
+              {% elif pat.clean_slug in ['service-navigation', 'side-navigation', 'top-navigation'] %}
+                <div style="width: 100%; font-size: 10px; display: flex; flex-direction: column; gap: 3px;">
+                  <div style="background: #0f1b2a; color: white; padding: 3px 6px; border-radius: 3px; display: flex; justify-content: space-between;">
+                    <span>AWS EC2</span><span>us-east-1 ▾</span>
                   </div>
-                  <span style="font-size: 10px; color: #5f6b7a;">Showing 12 matching resources</span>
-                </div>
-
-              {% elif 'empty' in pat.slug %}
-                <div style="text-align: center; padding: 10px; width: 100%;">
-                  <div style="font-size: 18px; color: #5f6b7a; margin-bottom: 4px;">📦</div>
-                  <div style="font-size: 12px; font-weight: 700; color: #16191f;">No resources found</div>
-                  <p style="margin: 2px 0 6px 0; font-size: 11px; color: #5f6b7a;">Get started by launching your first instance.</p>
-                  <cloudscape-button variant="primary">Create Resource</cloudscape-button>
-                </div>
-
-              {% elif 'feedback' in pat.slug or 'announcing' in pat.slug %}
-                <div style="width: 100%; display: flex; flex-direction: column; gap: 6px;">
-                  <div style="background: #f2f8fd; border-left: 3px solid #0972d3; padding: 6px 10px; font-size: 11px; border-radius: 2px;">
-                    ℹ️ <strong>New Preview:</strong> Aurora Serverless v2 is now available.
-                  </div>
-                </div>
-
-              {% elif 'data-vis' in pat.slug %}
-                <div style="width: 100%; font-size: 11px;">
-                  <div style="height: 36px; display: flex; align-items: flex-end; gap: 8px; border-bottom: 1px solid #eaeded; padding-bottom: 4px;">
-                    <div style="background: #0972d3; width: 14px; height: 60%; border-radius: 2px 2px 0 0;"></div>
-                    <div style="background: #0972d3; width: 14px; height: 90%; border-radius: 2px 2px 0 0;"></div>
-                    <div style="background: #0972d3; width: 14px; height: 75%; border-radius: 2px 2px 0 0;"></div>
-                    <div style="background: #0972d3; width: 14px; height: 100%; border-radius: 2px 2px 0 0;"></div>
-                  </div>
-                  <div style="display: flex; justify-content: space-between; color: #5f6b7a; font-size: 10px; margin-top: 2px;">
-                    <span>T1</span><span>T2</span><span>T3</span><span>T4</span>
+                  <div style="display: flex; gap: 4px; color: #0972d3; font-weight: 600;">
+                    <span>Instances</span> • <span>Security Groups</span>
                   </div>
                 </div>
 
@@ -545,8 +647,7 @@
                 </div>
               {% endif %}
             </div>
-
-            <!-- Key Components Used in this Pattern -->
+<!-- Key Components Used in this Pattern -->
             <div style="margin-top: 4px;">
               <div style="font-size: 11px; font-weight: 600; color: #5f6b7a; margin-bottom: 6px;">COMPONENTS IN PATTERN:</div>
               <div class="pattern-components-chips">

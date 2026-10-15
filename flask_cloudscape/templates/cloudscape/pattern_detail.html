@@ -311,7 +311,570 @@
 
       <div class="canvas-box">
         <div style="width: 100%;">
-          {% if 'table-view' in pat.clean_slug or pat.clean_slug == 'table' or pat.clean_slug == 'view' %}
+          {% if pat.clean_slug == 'actions' %}
+            <!-- Actions Pattern: Primary, Normal, Dropdown, Grouped and Icon Actions -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaeded; padding-bottom: 14px;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">EC2 Instance Actions Bar</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Standardized action placement, states, and hierarchies in Cloudscape applications</div>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <cloudscape-button variant="normal" icon-name="refresh">Refresh</cloudscape-button>
+                  <cloudscape-button-dropdown
+                    variant="normal"
+                    items='[
+                      {"id": "reboot", "text": "Reboot instance"},
+                      {"id": "stop", "text": "Stop instance"},
+                      {"id": "terminate", "text": "Terminate instance", "disabled": false}
+                    ]'
+                    text="Instance state">
+                  </cloudscape-button-dropdown>
+                  <cloudscape-button-dropdown
+                    variant="normal"
+                    items='[
+                      {"id": "ami", "text": "Create image (AMI)"},
+                      {"id": "snap", "text": "Create snapshot"},
+                      {"id": "tag", "text": "Manage tags"}
+                    ]'
+                    text="Actions">
+                  </cloudscape-button-dropdown>
+                  <cloudscape-button variant="primary" icon-name="add-plus">Launch instances</cloudscape-button>
+                </div>
+              </div>
+
+              <!-- In-Context Item Actions in Table -->
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 700;">Contextual Actions Matrix</h4>
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 12px; padding: 10px; background: #fafafa; border-bottom: 2px solid #eaeded; font-weight: 700; font-size: 12px;">
+                  <span>Resource Name</span><span>Type</span><span>State</span><span>Row-Level Actions</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 12px; padding: 12px 10px; border-bottom: 1px solid #eaeded; align-items: center; font-size: 13px;">
+                  <div><strong>api-cluster-prod-01</strong><br><span style="color: #5f6b7a; font-size: 11px;">i-094132bb8e</span></div>
+                  <div>c6g.2xlarge</div>
+                  <div><cloudscape-badge color="green">Running</cloudscape-badge></div>
+                  <div style="display: flex; gap: 8px;">
+                    <cloudscape-button variant="inline-link">Connect</cloudscape-button>
+                    <cloudscape-button variant="inline-link">Metrics</cloudscape-button>
+                    <cloudscape-button variant="inline-link">Stop</cloudscape-button>
+                  </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 12px; padding: 12px 10px; align-items: center; font-size: 13px;">
+                  <div><strong>redis-cache-queue-01</strong><br><span style="color: #5f6b7a; font-size: 11px;">i-011244fa2c</span></div>
+                  <div>r6g.xlarge</div>
+                  <div><cloudscape-badge color="grey">Stopped</cloudscape-badge></div>
+                  <div style="display: flex; gap: 8px;">
+                    <cloudscape-button variant="inline-link">Start</cloudscape-button>
+                    <cloudscape-button variant="inline-link">Modify</cloudscape-button>
+                    <cloudscape-button variant="inline-link" style="color: #ba2705;">Delete</cloudscape-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'global-actions' %}
+            <!-- Global Actions Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="background: #0f1b2a; color: white; padding: 12px 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                  <strong style="font-size: 15px; color: #ff9900;">AWS Management Console</strong>
+                  <span style="color: #cbd5e1; font-size: 13px;">| Elastic Container Service</span>
+                </div>
+                <!-- Global Action Set -->
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <cloudscape-button variant="normal" icon-name="search">Search resources [Ctrl+K]</cloudscape-button>
+                  <cloudscape-button variant="normal" icon-name="notification">Notifications (2)</cloudscape-button>
+                  <cloudscape-button variant="normal" icon-name="settings">Preferences</cloudscape-button>
+                  <cloudscape-button variant="primary" icon-name="user-profile">Pranab (Root Account)</cloudscape-button>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 700;">Global Header Action Guidelines</h4>
+                <p style="margin: 0 0 16px 0; font-size: 13px; color: #5f6b7a; line-height: 1.6;">
+                  Global actions live in the persistent shell of the application. They operate across tenants, regions, or services, rather than modifying a single specific resource row.
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                  <div style="background: #f8f9fa; border: 1px solid #eaeded; padding: 16px; border-radius: 6px;">
+                    <strong style="font-size: 13px;">1. Region Switcher</strong>
+                    <p style="margin: 6px 0 0 0; font-size: 12px; color: #5f6b7a;">Global scope control that switches the data-plane endpoint context.</p>
+                  </div>
+                  <div style="background: #f8f9fa; border: 1px solid #eaeded; padding: 16px; border-radius: 6px;">
+                    <strong style="font-size: 13px;">2. Help Drawer Trigger</strong>
+                    <p style="margin: 6px 0 0 0; font-size: 12px; color: #5f6b7a;">Opens contextual split panel or drawer without leaving the page workflow.</p>
+                  </div>
+                  <div style="background: #f8f9fa; border: 1px solid #eaeded; padding: 16px; border-radius: 6px;">
+                    <strong style="font-size: 13px;">3. User & Session Menu</strong>
+                    <p style="margin: 6px 0 0 0; font-size: 12px; color: #5f6b7a;">Account ID, IAM role assume status, and federated sign-out.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'incontext-actions' %}
+            <!-- In-Context Actions Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div>
+                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">In-Context Resource Controls</h3>
+                <div style="font-size: 13px; color: #5f6b7a;">Actions positioned directly adjacent to relevant data points or cards</div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                    <div>
+                      <h4 style="margin: 0; font-size: 16px; font-weight: 700;">api-gateway-v2-prod</h4>
+                      <span style="font-size: 12px; color: #5f6b7a;">REST API • Regional</span>
+                    </div>
+                    <cloudscape-button-dropdown
+                      variant="inline-icon"
+                      items='[
+                        {"id": "deploy", "text": "Deploy API stage"},
+                        {"id": "export", "text": "Export OpenAPI 3.0 spec"},
+                        {"id": "delete", "text": "Delete API", "disabled": false}
+                      ]'>
+                    </cloudscape-button-dropdown>
+                  </div>
+                  <div style="font-size: 13px; color: #5f6b7a; margin-bottom: 14px;">Endpoint URL: <code>https://api.pambify.com/v2</code></div>
+                  <div style="display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid #eaeded; padding-top: 12px;">
+                    <cloudscape-button variant="normal" icon-name="copy">Copy URL</cloudscape-button>
+                    <cloudscape-button variant="primary">Manage Routes</cloudscape-button>
+                  </div>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                    <div>
+                      <h4 style="margin: 0; font-size: 16px; font-weight: 700;">s3-asset-bucket-primary</h4>
+                      <span style="font-size: 12px; color: #5f6b7a;">Standard S3 • Encryption: SSE-KMS</span>
+                    </div>
+                    <cloudscape-button-dropdown
+                      variant="inline-icon"
+                      items='[
+                        {"id": "empty", "text": "Empty bucket"},
+                        {"id": "perm", "text": "Edit bucket policy"},
+                        {"id": "cors", "text": "Configure CORS rules"}
+                      ]'>
+                    </cloudscape-button-dropdown>
+                  </div>
+                  <div style="font-size: 13px; color: #5f6b7a; margin-bottom: 14px;">Total Objects: <strong>1.4M</strong> (142 GB)</div>
+                  <div style="display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid #eaeded; padding-top: 12px;">
+                    <cloudscape-button variant="normal" icon-name="upload">Upload files</cloudscape-button>
+                    <cloudscape-button variant="primary">Explore objects</cloudscape-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'density-settings' %}
+            <!-- Density Settings Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaeded; padding-bottom: 16px;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Density Settings & View Preferences</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Switch between comfortable mode and compact mode for high information density workflows</div>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <span style="font-size: 12px; font-weight: 600; color: #5f6b7a;">Row Density:</span>
+                  <cloudscape-segmented-control
+                    selected-id="compact"
+                    options='[{"id": "comfortable", "text": "Comfortable"}, {"id": "compact", "text": "Compact"}]'>
+                  </cloudscape-segmented-control>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 16px;">
+                <cloudscape-table
+                  items='[
+                    {"id": "vol-0941", "size": "500 GB", "type": "gp3", "iops": "3000", "throughput": "125 MB/s", "attached": "i-094132bb8e", "status": "In-use"},
+                    {"id": "vol-0882", "size": "1000 GB", "type": "io2", "iops": "16000", "throughput": "500 MB/s", "attached": "i-0882cc92d", "status": "In-use"},
+                    {"id": "vol-0331", "size": "250 GB", "type": "gp3", "iops": "3000", "throughput": "125 MB/s", "attached": "Unattached", "status": "Available"},
+                    {"id": "vol-0774", "size": "2000 GB", "type": "st1", "iops": "500", "throughput": "250 MB/s", "attached": "i-0774fe55a", "status": "In-use"}
+                  ]'
+                  column-definitions='[
+                    {"id": "id", "header": "Volume ID"},
+                    {"id": "size", "header": "Size"},
+                    {"id": "type", "header": "Volume Type"},
+                    {"id": "iops", "header": "IOPS"},
+                    {"id": "throughput", "header": "Throughput"},
+                    {"id": "attached", "header": "Attachment"},
+                    {"id": "status", "header": "State"}
+                  ]'
+                  header="Elastic Block Store (EBS) Volumes - Compact Mode">
+                </cloudscape-table>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'disabled-and-read-only-states' %}
+            <!-- Disabled and Read-Only States Pattern -->
+            <div style="max-width: 800px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Form States: Enabled, Disabled, and Read-Only</h3>
+                <div style="font-size: 13px; color: #5f6b7a;">Proper usage of disabled (inapplicable/forbidden) vs read-only (informative non-editable) states</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                <cloudscape-form-field label="Database Identifier (Read-Only)" description="Immutable cluster resource ID assigned by AWS">
+                  <cloudscape-input value="aurora-postgres-cluster-prod-01" readonly></cloudscape-input>
+                </cloudscape-form-field>
+
+                <cloudscape-form-field label="Encryption Master Key (Read-Only with Info)" description="AWS KMS encryption key attached at cluster creation">
+                  <cloudscape-input value="arn:aws:kms:us-east-1:123456789012:key/7c12f4-ab32-4412" readonly></cloudscape-input>
+                </cloudscape-form-field>
+
+                <cloudscape-form-field label="Multi-AZ Read Replicas (Active Editable)" description="Modify replica scale targets">
+                  <cloudscape-input value="3"></cloudscape-input>
+                </cloudscape-form-field>
+
+                <cloudscape-form-field label="Serverless Min Capacity (Disabled)" description="Disabled because cluster is running provisioned instance tiers">
+                  <cloudscape-input value="0.5 ACUs" disabled></cloudscape-input>
+                </cloudscape-form-field>
+
+                <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eaeded; padding-top: 16px;">
+                  <cloudscape-button variant="link">Cancel</cloudscape-button>
+                  <cloudscape-button variant="normal" disabled>Revert to Default (Disabled)</cloudscape-button>
+                  <cloudscape-button variant="primary">Save Changes</cloudscape-button>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'drag-and-drop' %}
+            <!-- Drag and Drop Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Reorderable Pipeline Stages</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Drag-and-drop workflow layout for visual step ordering and pipeline definitions</div>
+                </div>
+                <cloudscape-button variant="primary" icon-name="add-plus">Add Stage</cloudscape-button>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="background: #ffffff; border: 2px dashed #0972d3; border-radius: 8px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 10px rgba(9,114,211,0.08);">
+                  <div style="display: flex; align-items: center; gap: 14px;">
+                    <div style="cursor: grab; color: #5f6b7a; font-size: 18px;">⠿</div>
+                    <div>
+                      <strong style="font-size: 14px;">1. Source: GitHub Main Branch</strong>
+                      <div style="font-size: 12px; color: #5f6b7a;">Trigger: Webhook push to repository</div>
+                    </div>
+                  </div>
+                  <cloudscape-badge color="green">Ready</cloudscape-badge>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 14px;">
+                    <div style="cursor: grab; color: #5f6b7a; font-size: 18px;">⠿</div>
+                    <div>
+                      <strong style="font-size: 14px;">2. Build: CodeBuild Container Image</strong>
+                      <div style="font-size: 12px; color: #5f6b7a;">Docker build & ECR image tag push</div>
+                    </div>
+                  </div>
+                  <cloudscape-badge color="blue">Configured</cloudscape-badge>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 14px;">
+                    <div style="cursor: grab; color: #5f6b7a; font-size: 18px;">⠿</div>
+                    <div>
+                      <strong style="font-size: 14px;">3. Deploy: Production EKS Cluster</strong>
+                      <div style="font-size: 12px; color: #5f6b7a;">Rolling deployment to Kubernetes pods</div>
+                    </div>
+                  </div>
+                  <cloudscape-badge color="grey">Pending</cloudscape-badge>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'empty-states' %}
+            <!-- Empty States Pattern -->
+            <div style="max-width: 600px; margin: 30px auto; text-align: center; background: #ffffff; border: 1px solid #eaeded; border-radius: 12px; padding: 48px 32px;">
+              <div style="font-size: 48px; color: #5f6b7a; margin-bottom: 12px;">📦</div>
+              <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">No S3 Storage Buckets Found</h3>
+              <p style="margin: 0 0 24px 0; font-size: 14px; color: #5f6b7a; line-height: 1.5;">
+                You don't have any Amazon S3 buckets in <strong>us-east-1</strong>. Create a storage bucket to store files, datasets, and backups.
+              </p>
+              <div style="display: flex; justify-content: center; gap: 12px;">
+                <cloudscape-button variant="normal" icon-name="external">Learn More</cloudscape-button>
+                <cloudscape-button variant="primary" icon-name="add-plus">Create Bucket</cloudscape-button>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'hero-header' %}
+            <!-- Hero Header Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="background: linear-gradient(135deg, #0972d3 0%, #033f78 100%); color: white; border-radius: 10px; padding: 36px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+                <div>
+                  <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 14px; font-size: 12px; font-weight: 700; margin-bottom: 10px;">
+                    Enterprise Cloud Accelerator
+                  </div>
+                  <h2 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 800;">Amazon Bedrock Foundation Models</h2>
+                  <p style="margin: 0; font-size: 15px; opacity: 0.9; max-width: 650px; line-height: 1.5;">
+                    Accelerate generative AI application development with secure, managed foundation models from leading AI labs.
+                  </p>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                  <button type="button" style="background: #ffffff; color: #0972d3; font-weight: 700; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px;">Get Started</button>
+                  <button type="button" style="background: transparent; color: #ffffff; border: 1px solid white; font-weight: 600; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px;">Documentation</button>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <strong style="font-size: 15px;">Model Evaluation</strong>
+                  <p style="margin: 6px 0 0 0; font-size: 13px; color: #5f6b7a;">Benchmark safety, latency, and reasoning benchmarks.</p>
+                </div>
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <strong style="font-size: 15px;">Knowledge Bases</strong>
+                  <p style="margin: 6px 0 0 0; font-size: 13px; color: #5f6b7a;">Connect OpenSearch Serverless and enterprise vector stores.</p>
+                </div>
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <strong style="font-size: 15px;">Guardrails</strong>
+                  <p style="margin: 6px 0 0 0; font-size: 13px; color: #5f6b7a;">Filter harmful topics and redact sensitive PII tokens.</p>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'image-magnifier' %}
+            <!-- Image Magnifier Pattern -->
+            <div style="max-width: 750px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Architecture Diagram Zoom & Inspector</h3>
+                <div style="font-size: 13px; color: #5f6b7a;">Interactive image magnifier for inspecting technical topologies and complex blueprints</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; text-align: center;">
+                <div style="position: relative; display: inline-block; border: 2px solid #eaeded; border-radius: 8px; overflow: hidden; background: #f8f9fa;">
+                  <!-- Diagram Canvas Simulation -->
+                  <div style="width: 500px; height: 260px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle, #e9f2fa 10%, #ffffff 70%);">
+                    <div style="display: flex; gap: 32px; align-items: center;">
+                      <div style="background: #0972d3; color: white; padding: 12px 18px; border-radius: 6px; font-weight: 700;">Route 53 DNS</div>
+                      <div style="color: #5f6b7a; font-weight: bold;">→</div>
+                      <div style="background: #ff9900; color: black; padding: 12px 18px; border-radius: 6px; font-weight: 700;">CloudFront CDN</div>
+                      <div style="color: #5f6b7a; font-weight: bold;">→</div>
+                      <div style="background: #037f0c; color: white; padding: 12px 18px; border-radius: 6px; font-weight: 700;">S3 Origin Bucket</div>
+                    </div>
+                    <div style="margin-top: 24px; font-size: 12px; color: #5f6b7a;">Hover over topology node to activate 2.5x magnifier glass</div>
+                  </div>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 12px; margin-top: 16px;">
+                  <cloudscape-button icon-name="zoom-in">Zoom In</cloudscape-button>
+                  <cloudscape-button icon-name="zoom-out">Zoom Out</cloudscape-button>
+                  <cloudscape-button>Reset View</cloudscape-button>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'loading-and-refreshing' %}
+            <!-- Loading and Refreshing Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Asynchronous Data Polling & Refresh</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Non-blocking loading indicators, refreshing spinners, and skeleton states</div>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <span style="font-size: 12px; color: #5f6b7a;">Last synced: 2 seconds ago</span>
+                  <cloudscape-button icon-name="refresh" loading>Refreshing</cloudscape-button>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; text-align: center;">
+                  <div style="display: flex; justify-content: center; margin-bottom: 12px;">
+                    <cloudscape-spinner size="large"></cloudscape-spinner>
+                  </div>
+                  <strong style="font-size: 14px;">Provisioning Database Cluster...</strong>
+                  <p style="margin: 6px 0 0 0; font-size: 12px; color: #5f6b7a;">Applying security groups and configuring multi-region storage replication.</p>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <strong style="font-size: 14px;">Fleet Deployment</strong>
+                    <cloudscape-badge color="blue">In-progress</cloudscape-badge>
+                  </div>
+                  <div style="background: #eaeded; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 8px;">
+                    <div style="background: #0972d3; height: 100%; width: 68%;"></div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 11px; color: #5f6b7a;">
+                    <span>Updating Pods: 68 of 100</span>
+                    <span>ETA ~45s</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'secondary-panels' %}
+            <!-- Secondary Panels Pattern -->
+            <div style="display: flex; gap: 20px; width: 100%;">
+              <div style="flex: 1; background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Main Workload Workspace</h3>
+                <p style="margin: 0 0 16px 0; font-size: 13px; color: #5f6b7a; line-height: 1.5;">
+                  The primary application canvas hosts the main task while secondary drawers provide contextual assistance without modal obstruction.
+                </p>
+                <cloudscape-form-field label="Target Auto Scaling Group">
+                  <cloudscape-input value="asg-frontend-production"></cloudscape-input>
+                </cloudscape-form-field>
+              </div>
+
+              <!-- Secondary Side Drawer -->
+              <div style="width: 300px; background: #fbfbfb; border: 1px solid #eaeded; border-radius: 8px; padding: 20px; flex-shrink: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaeded; padding-bottom: 8px; margin-bottom: 12px;">
+                  <strong style="font-size: 14px; color: #0f1b2a;">Help & Guidelines</strong>
+                  <button type="button" style="background: none; border: none; font-size: 16px; cursor: pointer;">✕</button>
+                </div>
+                <p style="font-size: 12px; color: #5f6b7a; line-height: 1.5; margin: 0 0 12px 0;">
+                  Auto Scaling Groups ensure your fleet has enough compute instances to handle the traffic load.
+                </p>
+                <cloudscape-link href="https://docs.aws.amazon.com/autoscaling/" external>Read Auto Scaling Best Practices</cloudscape-link>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'selection' %}
+            <!-- Selection in Forms Pattern -->
+            <div style="max-width: 800px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Selection Controls in Forms</h3>
+                <div style="font-size: 13px; color: #5f6b7a;">Guidelines for choosing between radio groups, checkboxes, selects, and rich tiles</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+                <cloudscape-form-field label="Choose Architecture Tier (Tiles Selection)" description="Best for 2-4 prominent options with rich descriptions">
+                  <cloudscape-tiles
+                    value="serverless"
+                    items='[
+                      {"value": "serverless", "label": "Serverless (Aurora Serverless v2)", "description": "Auto-scaling compute from 0.5 to 128 ACUs. Pay for what you use."},
+                      {"value": "provisioned", "label": "Provisioned Instances", "description": "Dedicated compute instances with fixed memory and predictable IOPS."}
+                    ]'>
+                  </cloudscape-tiles>
+                </cloudscape-form-field>
+
+                <cloudscape-form-field label="Automated Backups & Replication (Checkboxes)" description="Independent multi-selection checkboxes">
+                  <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+                    <cloudscape-checkbox checked>Enable point-in-time recovery (PITR) up to 35 days</cloudscape-checkbox>
+                    <cloudscape-checkbox checked>Replicate snapshots to secondary disaster recovery region</cloudscape-checkbox>
+                    <cloudscape-checkbox>Enable AWS Backup compliance lock</cloudscape-checkbox>
+                  </div>
+                </cloudscape-form-field>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'timestamps' %}
+            <!-- Timestamps Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div>
+                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Relative & Absolute Timestamp Formatting</h3>
+                <div style="font-size: 13px; color: #5f6b7a;">Cloudscape pattern for displaying relative time with hoverable exact UTC timestamps</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                <cloudscape-table
+                  items='[
+                    {"event": "Instance Reboot Initiated", "user": "pranab.sarkar@company.com", "relative": "3 minutes ago", "absolute": "2026-10-15 11:42:10 UTC", "severity": "Info"},
+                    {"event": "Security Group Rule Modified", "user": "ci-deployer-role", "relative": "42 minutes ago", "absolute": "2026-10-15 11:03:00 UTC", "severity": "Warning"},
+                    {"event": "Automated Backup Completed", "user": "aws-backup-service", "relative": "3 hours ago", "absolute": "2026-10-15 08:30:15 UTC", "severity": "Success"},
+                    {"event": "Health Check Heartbeat Restored", "user": "route53-monitor", "relative": "Yesterday", "absolute": "2026-10-14 14:15:00 UTC", "severity": "Success"}
+                  ]'
+                  column-definitions='[
+                    {"id": "event", "header": "Audit Log Event"},
+                    {"id": "user", "header": "Triggered By"},
+                    {"id": "relative", "header": "Relative Time"},
+                    {"id": "absolute", "header": "Absolute UTC Time"},
+                    {"id": "severity", "header": "Audit Level"}
+                  ]'
+                  header="CloudTrail Audit Log - Time Resolution Display">
+                </cloudscape-table>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug in ['hands-on-tutorials', 'help-system', 'onboarding'] %}
+            <!-- Hands-On Tutorials, Help System & Onboarding -->
+            <div style="display: flex; gap: 24px; width: 100%;">
+              <div style="flex: 1; background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                  <h3 style="margin: 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Guided Onboarding Workflow</h3>
+                  <cloudscape-badge color="blue">Tutorial 1 of 3</cloudscape-badge>
+                </div>
+                <p style="margin: 0 0 20px 0; font-size: 13px; color: #5f6b7a;">
+                  Welcome to Cloudscape! Follow this guided step-by-step walkthrough to deploy your first container cluster.
+                </p>
+
+                <!-- Hotspot Target -->
+                <div style="border: 2px solid #0972d3; border-radius: 8px; padding: 16px; background: #f2f8fd; position: relative;">
+                  <div style="position: absolute; top: -12px; right: 16px; background: #0972d3; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px;">1</div>
+                  <strong>Step 1 Target: Cluster Definition</strong>
+                  <p style="margin: 6px 0 0 0; font-size: 12px; color: #414d5c;">Name your cluster and assign VPC subnets.</p>
+                </div>
+              </div>
+
+              <!-- Tutorial Side Panel -->
+              <div style="width: 320px; background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px; flex-shrink: 0;">
+                <div style="font-size: 12px; font-weight: 700; color: #0972d3; text-transform: uppercase; margin-bottom: 6px;">TUTORIAL PANEL</div>
+                <h4 style="margin: 0 0 10px 0; font-size: 16px; font-weight: 700;">Deploying an EKS Cluster</h4>
+                <p style="font-size: 13px; color: #5f6b7a; line-height: 1.5; margin: 0 0 16px 0;">
+                  Click the illuminated target hotspot on the left to confirm the cluster name and proceed to node configuration.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eaeded; padding-top: 14px;">
+                  <cloudscape-button variant="normal">Skip tutorial</cloudscape-button>
+                  <cloudscape-button variant="primary">Next step →</cloudscape-button>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug in ['announcing-new-features', 'announcing-beta-preview-features'] %}
+            <!-- Announcing Features Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 800px; margin: 0 auto;">
+              <!-- Feature Announcement Banner -->
+              <cloudscape-alert type="info" header="Now in Public Preview: Vector Search for MemoryDB" dismissible>
+                Amazon MemoryDB now supports vector search with sub-millisecond query latencies. Accelerate Retrieval-Augmented Generation (RAG) workloads directly in-memory.
+              </cloudscape-alert>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <h4 style="margin: 0; font-size: 16px; font-weight: 700;">Feature Discovery Popover Simulation</h4>
+                  <cloudscape-badge color="blue">New Feature</cloudscape-badge>
+                </div>
+                <p style="margin: 0 0 16px 0; font-size: 13px; color: #5f6b7a; line-height: 1.6;">
+                  When new capabilities are released, non-intrusive dismissible callouts direct users to new controls without interrupting active tasks.
+                </p>
+                <div style="background: #f8f9fa; border: 1px solid #eaeded; border-radius: 6px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <strong>Vector Index Acceleration</strong>
+                    <div style="font-size: 12px; color: #5f6b7a;">Enable HNSW vector similarity indexing for embeddings</div>
+                  </div>
+                  <cloudscape-toggle checked>Enabled</cloudscape-toggle>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug in ['attribute-editing', 'edit', 'inline-edit', 'page-edit'] %}
+            <!-- Resource Editing: Attribute Editor & Inline Editing -->
+            <div style="max-width: 800px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Resource Attribute & Inline Editing</h3>
+                <div style="font-size: 13px; color: #5f6b7a;">Dynamic key-value pairs, tags editor, and inline field modifications</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700;">Resource Key-Value Tags (Attribute Editor)</h4>
+                <cloudscape-attribute-editor
+                  items='[
+                    {"key": "Environment", "value": "Production"},
+                    {"key": "CostCenter", "value": "CC-9041"},
+                    {"key": "ManagedBy", "value": "Terraform"}
+                  ]'
+                  add-button-text="Add new tag"
+                  remove-button-text="Remove">
+                </cloudscape-attribute-editor>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eaeded; padding-top: 16px;">
+                <cloudscape-button variant="link">Cancel</cloudscape-button>
+                <cloudscape-button variant="primary">Save Changes</cloudscape-button>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug in ['table-view', 'view'] %}
             <!-- Table View Pattern: Header + Filter + CollectionPreferences + Table + Pagination -->
             <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
               <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;">
@@ -363,7 +926,7 @@
               </div>
             </div>
 
-          {% elif 'card-view' in pat.clean_slug %}
+          {% elif pat.clean_slug == 'card-view' %}
             <!-- Card View Pattern -->
             <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -393,191 +956,176 @@
               </cloudscape-cards>
             </div>
 
-          {% elif 'single-page-create' in pat.clean_slug or pat.clean_slug == 'create' or pat.clean_slug == 'defaults' or pat.clean_slug == 'sub-resource-create' %}
-            <!-- Single Page Create Pattern: Form + FormField + Container + Action Buttons -->
-            <div style="max-width: 800px; margin: 0 auto; width: 100%;">
-              <div style="margin-bottom: 20px;">
-                <h3 style="margin: 0 0 6px 0; font-size: 22px; font-weight: 800; color: #0f1b2a;">Create Virtual Private Cloud (VPC)</h3>
-                <p style="margin: 0; font-size: 13px; color: #5f6b7a;">Configure your isolated cloud network topology with subnets and internet gateway routing.</p>
-              </div>
-
-              <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- Section 1 -->
-                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
-                  <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700; color: #0f1b2a; border-bottom: 1px solid #eaeded; padding-bottom: 10px;">General Configuration</h4>
-                  <div style="display: flex; flex-direction: column; gap: 16px;">
-                    <cloudscape-form-field label="VPC Name Tag" description="A human-readable identifier for your VPC">
-                      <cloudscape-input value="production-vpc-us-east" placeholder="e.g. production-vpc"></cloudscape-input>
-                    </cloudscape-form-field>
-                    <cloudscape-form-field label="IPv4 CIDR Block" description="Enter an allocated IPv4 block from 10.0.0.0/16 to 10.255.0.0/16">
-                      <cloudscape-input value="10.0.0.0/16"></cloudscape-input>
-                    </cloudscape-form-field>
-                    <cloudscape-form-field label="Tenancy" description="Hardware tenancy selection">
-                      <cloudscape-select options='[{"label": "Default (Shared compute)", "value": "default"}, {"label": "Dedicated (Single tenant)", "value": "dedicated"}]' selected-option='{"label": "Default (Shared compute)", "value": "default"}'></cloudscape-select>
-                    </cloudscape-form-field>
-                  </div>
-                </div>
-
-                <!-- Section 2 -->
-                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
-                  <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700; color: #0f1b2a; border-bottom: 1px solid #eaeded; padding-bottom: 10px;">Availability Zones & Subnets</h4>
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                    <cloudscape-form-field label="Number of Availability Zones">
-                      <cloudscape-select options='[{"label": "2 Availability Zones", "value": "2"}, {"label": "3 Availability Zones", "value": "3"}]' selected-option='{"label": "3 Availability Zones", "value": "3"}'></cloudscape-select>
-                    </cloudscape-form-field>
-                    <cloudscape-form-field label="NAT Gateways">
-                      <cloudscape-select options='[{"label": "1 per AZ (Highly Available)", "value": "az"}, {"label": "None", "value": "none"}]' selected-option='{"label": "1 per AZ (Highly Available)", "value": "az"}'></cloudscape-select>
-                    </cloudscape-form-field>
-                  </div>
-                </div>
-
-                <!-- Bottom Sticky Form Actions -->
-                <div style="display: flex; justify-content: flex-end; gap: 12px; padding-top: 10px; border-top: 1px solid #eaeded;">
-                  <cloudscape-button variant="link">Cancel</cloudscape-button>
-                  <cloudscape-button variant="normal">Save as Draft</cloudscape-button>
-                  <cloudscape-button variant="primary">Create VPC</cloudscape-button>
-                </div>
-              </div>
-            </div>
-
-          {% elif 'multi-page-create' in pat.clean_slug or 'wizard' in pat.clean_slug %}
-            <!-- Multi-page Create / Wizard Pattern -->
-            <div style="max-width: 900px; margin: 0 auto; width: 100%;">
-              <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eaeded; padding-bottom: 16px; margin-bottom: 24px;">
-                <div>
-                  <h3 style="margin: 0 0 4px 0; font-size: 22px; font-weight: 800; color: #0f1b2a;">Deploy Elastic Kubernetes Service (EKS)</h3>
-                  <div style="font-size: 13px; color: #5f6b7a;">Step 2 of 4: Compute Node Group Configuration</div>
-                </div>
-                <cloudscape-badge color="blue">Step 2 of 4</cloudscape-badge>
-              </div>
-
-              <!-- Wizard Steps Stepper -->
-              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
-                <div style="background: #e9f2fa; border-top: 3px solid #0972d3; padding: 10px; border-radius: 4px;">
-                  <div style="font-size: 11px; color: #0972d3; font-weight: 700;">✓ STEP 1</div>
-                  <div style="font-size: 13px; font-weight: 600;">Cluster Details</div>
-                </div>
-                <div style="background: #e9f2fa; border-top: 3px solid #0972d3; padding: 10px; border-radius: 4px;">
-                  <div style="font-size: 11px; color: #0972d3; font-weight: 700;">ACTIVE STEP 2</div>
-                  <div style="font-size: 13px; font-weight: 700; color: #0972d3;">Node Groups</div>
-                </div>
-                <div style="background: #f2f3f3; border-top: 3px solid #d1d5db; padding: 10px; border-radius: 4px; opacity: 0.7;">
-                  <div style="font-size: 11px; color: #5f6b7a;">STEP 3</div>
-                  <div style="font-size: 13px;">Networking</div>
-                </div>
-                <div style="background: #f2f3f3; border-top: 3px solid #d1d5db; padding: 10px; border-radius: 4px; opacity: 0.7;">
-                  <div style="font-size: 11px; color: #5f6b7a;">STEP 4</div>
-                  <div style="font-size: 13px;">Review & Launch</div>
-                </div>
-              </div>
-
-              <!-- Step Content -->
-              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
-                <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700;">Worker Node Architecture</h4>
-                <cloudscape-tiles
-                  value="c6g"
+          {% elif pat.clean_slug == 'split-view' %}
+            <!-- Split View Pattern: Master-Detail Side-by-Side -->
+            <div style="display: flex; gap: 20px; width: 100%; min-height: 480px;">
+              <!-- Master Table -->
+              <div style="flex: 3; background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 16px;">
+                <h4 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 700;">Clusters Master List</h4>
+                <cloudscape-table
                   items='[
-                    {"value": "t4g", "label": "General Purpose (t4g.xlarge)", "description": "4 vCPUs, 16 GiB RAM - Web servers and API workloads"},
-                    {"value": "c6g", "label": "Compute Optimized (c6g.2xlarge)", "description": "8 vCPUs, 16 GiB RAM - High performance microservices"},
-                    {"value": "r6g", "label": "Memory Optimized (r6g.2xlarge)", "description": "8 vCPUs, 64 GiB RAM - In-memory databases and queues"}
+                    {"name": "prod-core-api", "status": "Active", "nodes": "12 Nodes"},
+                    {"name": "staging-checkout", "status": "Active", "nodes": "4 Nodes"},
+                    {"name": "dev-sandbox", "status": "Paused", "nodes": "2 Nodes"}
+                  ]'
+                  column-definitions='[
+                    {"id": "name", "header": "Cluster"},
+                    {"id": "status", "header": "Status"},
+                    {"id": "nodes", "header": "Capacity"}
                   ]'>
-                </cloudscape-tiles>
+                </cloudscape-table>
               </div>
 
-              <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eaeded; padding-top: 16px;">
-                <cloudscape-button variant="normal">← Previous: Cluster Details</cloudscape-button>
-                <div style="display: flex; gap: 10px;">
-                  <cloudscape-button variant="link">Cancel</cloudscape-button>
-                  <cloudscape-button variant="primary">Next: Networking →</cloudscape-button>
-                </div>
-              </div>
-            </div>
-
-          {% elif 'delete' in pat.clean_slug %}
-            <!-- Delete Pattern (Simple, Additional, One-Click) -->
-            <div style="max-width: 650px; margin: 0 auto; width: 100%; background: #ffffff; border: 1px solid #eaeded; border-radius: 10px; padding: 28px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
-              <div style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px;">
-                <div style="background: #fdf2f2; color: #ba2705; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;">⚠️</div>
-                <div>
-                  <h3 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #ba2705;">Delete Aurora Database Cluster?</h3>
-                  <p style="margin: 0; font-size: 13px; color: #5f6b7a; line-height: 1.5;">
-                    Permanently delete cluster <strong>production-payment-db-01</strong> and all its 3 read-replicas. This action is irreversible and immediate.
-                  </p>
-                </div>
-              </div>
-
-              <div style="background: #fff8e6; border: 1px solid #ffd885; border-radius: 6px; padding: 12px 16px; font-size: 13px; color: #5c4300; margin-bottom: 20px;">
-                <strong>Warning:</strong> Automated backups associated with this cluster will be retained for 7 days before final purge.
-              </div>
-
-              <div style="margin-bottom: 24px;">
-                <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #16191f;">
-                  To confirm deletion, type <code>delete</code> in the field below:
-                </label>
-                <cloudscape-input placeholder="Type 'delete' to confirm"></cloudscape-input>
-              </div>
-
-              <div style="display: flex; justify-content: flex-end; gap: 12px; border-top: 1px solid #eaeded; padding-top: 16px;">
-                <cloudscape-button variant="link">Cancel</cloudscape-button>
-                <button type="button" style="background: #ba2705; color: white; border: none; border-radius: 4px; padding: 8px 18px; font-size: 13px; font-weight: 700; cursor: pointer; transition: background 0.15s ease;">Delete Cluster</button>
-              </div>
-            </div>
-
-          {% elif 'details' in pat.clean_slug %}
-            <!-- Details Page Pattern (Hub, Tabs, Standard) -->
-            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; border-bottom: 1px solid #eaeded; padding-bottom: 16px;">
-                <div>
-                  <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">
-                    <cloudscape-badge color="green">Available</cloudscape-badge>
-                    <span style="font-size: 12px; color: #5f6b7a;">us-east-1a • VPC vpc-09941a</span>
+              <!-- Detail Split Pane -->
+              <div style="flex: 2; background: #ffffff; border: 1px solid #0972d3; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(9,114,211,0.06);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #eaeded; padding-bottom: 12px; margin-bottom: 16px;">
+                  <div>
+                    <h4 style="margin: 0; font-size: 16px; font-weight: 700; color: #0972d3;">prod-core-api Details</h4>
+                    <span style="font-size: 12px; color: #5f6b7a;">Selected Resource Specification</span>
                   </div>
-                  <h3 style="margin: 0; font-size: 24px; font-weight: 800; color: #0f1b2a;">aurora-pg-primary-cluster</h3>
+                  <cloudscape-badge color="green">Active</cloudscape-badge>
                 </div>
-                <div style="display: flex; gap: 10px;">
+                <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px;">
+                  <div><strong>Kubernetes Version:</strong> v1.28.4</div>
+                  <div><strong>VPC Subnets:</strong> subnet-0941a, subnet-0941b</div>
+                  <div><strong>Cluster Endpoint:</strong> Private & Public</div>
+                  <div><strong>OIDC Provider:</strong> Enabled</div>
+                </div>
+                <div style="margin-top: 20px; border-top: 1px solid #eaeded; padding-top: 14px; display: flex; justify-content: flex-end; gap: 8px;">
                   <cloudscape-button variant="normal">Modify</cloudscape-button>
-                  <cloudscape-button variant="normal">Create Replica</cloudscape-button>
-                  <cloudscape-button variant="primary">Actions ▾</cloudscape-button>
+                  <cloudscape-button variant="primary">View Workloads</cloudscape-button>
                 </div>
               </div>
-
-              <!-- Key Value Overview Grid -->
-              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
-                <h4 style="margin: 0 0 16px 0; font-size: 15px; font-weight: 700;">Cluster Specifications</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; font-size: 13px;">
-                  <div>
-                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Engine Version</div>
-                    <div style="font-weight: 600; margin-top: 2px;">PostgreSQL 15.3</div>
-                  </div>
-                  <div>
-                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Master Endpoint</div>
-                    <div style="font-weight: 600; margin-top: 2px; color: #0972d3;">pg-prod.c91.rds.amazonaws.com</div>
-                  </div>
-                  <div>
-                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Storage Allocated</div>
-                    <div style="font-weight: 600; margin-top: 2px;">420 GB / 2 TB (Aurora Auto)</div>
-                  </div>
-                  <div>
-                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Maintenance Window</div>
-                    <div style="font-weight: 600; margin-top: 2px;">Sun 02:00 - 03:00 UTC</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Tabs Navigation Pattern -->
-              <cloudscape-tabs
-                tabs='[
-                  {"id": "monitoring", "label": "Metrics & Monitoring", "content": "Live CPU utilization, IOPS, and query latency telemetry charts."},
-                  {"id": "logs", "label": "Logs & Events", "content": "PostgreSQL slow query logs and failover event stream history."},
-                  {"id": "config", "label": "Configuration", "content": "Attached DB parameter group: custom-pg15-prod with max_connections=500."},
-                  {"id": "maintenance", "label": "Maintenance & Backups", "content": "Automated snapshot schedule: daily at 01:00 UTC with 35 days retention."}
-                ]'
-                active-tab-id="monitoring">
-              </cloudscape-tabs>
             </div>
 
-          {% elif 'dashboard' in pat.clean_slug %}
-            <!-- Dashboard Pattern (Configurable, Static, Items) -->
+          {% elif pat.clean_slug in ['table-with-grouped-resources', 'table-with-nested-resources'] %}
+            <!-- Hierarchical & Grouped Table Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+              <div>
+                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">VPC Topology & Subnet Hierarchy</h3>
+                <div style="font-size: 13px; color: #5f6b7a;">Table with grouped and nested resources showing parent VPCs and child subnets</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                <!-- Parent Group 1 -->
+                <div style="background: #f2f8fd; border: 1px solid #b2d7f8; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-weight: 700; font-size: 14px; color: #0972d3;">▼ VPC: production-vpc-primary</span>
+                    <code style="font-size: 12px;">10.0.0.0/16</code>
+                  </div>
+                  <cloudscape-badge color="green">Available</cloudscape-badge>
+                </div>
+                <!-- Child Resources -->
+                <div style="margin-left: 24px; margin-bottom: 20px;">
+                  <cloudscape-table
+                    items='[
+                      {"id": "subnet-01a", "name": "prod-public-az1", "cidr": "10.0.1.0/24", "az": "us-east-1a", "type": "Public"},
+                      {"id": "subnet-01b", "name": "prod-private-az1", "cidr": "10.0.2.0/24", "az": "us-east-1a", "type": "Private (NAT)"},
+                      {"id": "subnet-02a", "name": "prod-private-az2", "cidr": "10.0.3.0/24", "az": "us-east-1b", "type": "Private (NAT)"}
+                    ]'
+                    column-definitions='[
+                      {"id": "name", "header": "Subnet Name"},
+                      {"id": "id", "header": "Subnet ID"},
+                      {"id": "cidr", "header": "IPv4 CIDR Block"},
+                      {"id": "az", "header": "AZ"},
+                      {"id": "type", "header": "Routing"}
+                    ]'>
+                  </cloudscape-table>
+                </div>
+
+                <!-- Parent Group 2 -->
+                <div style="background: #fafafa; border: 1px solid #eaeded; border-radius: 6px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-weight: 700; font-size: 14px; color: #16191f;">▶ VPC: staging-vpc-isolated</span>
+                    <code style="font-size: 12px;">10.100.0.0/16</code>
+                  </div>
+                  <span style="font-size: 12px; color: #5f6b7a;">2 Nested Subnets</span>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug in ['chart-metric-drill-down', 'data-vis'] %}
+            <!-- Data Visualization & Metric Drill Down Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Telemetry Visualization & Metric Drill Down</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Time series charts with granular threshold alerts and metric breakdown</div>
+                </div>
+                <cloudscape-segmented-control
+                  selected-id="1h"
+                  options='[{"id": "1h", "text": "1 Hour"}, {"id": "24h", "text": "24 Hours"}, {"id": "7d", "text": "7 Days"}]'>
+                </cloudscape-segmented-control>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+                <!-- Primary Chart -->
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <h4 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 700;">P99 Transaction Latency (ms)</h4>
+                  <cloudscape-line-chart
+                    x-scale-type="categorical"
+                    x-title="Time (UTC)"
+                    y-title="Latency (ms)"
+                    series='[
+                      {"title": "Prod API Gateway", "type": "line", "data": [{"x": "11:00", "y": 32}, {"x": "11:15", "y": 38}, {"x": "11:30", "y": 45}, {"x": "11:45", "y": 41}, {"x": "12:00", "y": 35}]},
+                      {"title": "Internal Auth Lambda", "type": "line", "data": [{"x": "11:00", "y": 14}, {"x": "11:15", "y": 18}, {"x": "11:30", "y": 22}, {"x": "11:45", "y": 19}, {"x": "12:00", "y": 16}]}
+                    ]'
+                    i18n-strings='{"filterLabel": "Filter displayed data", "legendAriaLabel": "Legend"}'>
+                  </cloudscape-line-chart>
+                </div>
+
+                <!-- Drill Down Panel -->
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                  <h4 style="margin: 0 0 14px 0; font-size: 15px; font-weight: 700;">Peak Latency Drill-Down</h4>
+                  <div style="background: #fff8e6; border-left: 3px solid #ff9900; padding: 10px 12px; font-size: 12px; margin-bottom: 14px; border-radius: 2px;">
+                    <strong>Spike detected at 11:30 UTC:</strong> 45ms peak caused by database connection pool warmup.
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+                    <div>Avg Latency: <strong>38.2 ms</strong></div>
+                    <div>Max Spike: <strong>45.0 ms</strong></div>
+                    <div>Min Baseline: <strong>32.1 ms</strong></div>
+                    <div>99th Percentile SLA: <cloudscape-badge color="green">Met (&lt;50ms)</cloudscape-badge></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug in ['unsaved-changes', 'error-messages', 'errors', 'validation', 'user-feedback', 'collect-user-feedback'] %}
+            <!-- Feedback, Errors, Validation & Unsaved Changes Pattern -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 800px; margin: 0 auto;">
+              <cloudscape-alert type="error" header="Cluster Validation Failed" dismissible>
+                CIDR block 10.0.0.0/16 overlaps with existing VPC vpc-08812af in this availability region.
+              </cloudscape-alert>
+
+              <cloudscape-alert type="warning" header="Unsaved Changes">
+                You have unsaved changes in your security group inbound rules. Leaving now will discard edits.
+              </cloudscape-alert>
+
+              <!-- Inline Validation Form Demonstration -->
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 700;">Inline Form Validation Pattern</h4>
+                <cloudscape-form-field
+                  label="Database Master Password"
+                  description="Password must contain at least 12 characters, 1 uppercase letter and 1 symbol"
+                  error-text="Password must contain at least 1 symbol (@, #, $, %, etc.)">
+                  <cloudscape-input type="password" value="CloudPassword123"></cloudscape-input>
+                </cloudscape-form-field>
+
+                <cloudscape-form-field
+                  label="Allocated Storage Capacity (GB)"
+                  description="Specify allocated storage between 20 GB and 65,536 GB">
+                  <cloudscape-input type="number" value="500"></cloudscape-input>
+                </cloudscape-form-field>
+
+                <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eaeded; padding-top: 16px;">
+                  <cloudscape-button variant="link">Cancel</cloudscape-button>
+                  <cloudscape-button variant="primary">Submit Form</cloudscape-button>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug in ['configurable-dashboard', 'dashboard-items', 'service-dashboard', 'static-dashboard'] %}
+            <!-- Dashboard Pattern (Configurable, Static, Service Dashboard) -->
             <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
@@ -630,48 +1178,186 @@
               </div>
             </div>
 
-          {% elif 'edit' in pat.clean_slug or 'attribute' in pat.clean_slug %}
-            <!-- Edit / Attribute Editing Pattern -->
-            <div style="max-width: 750px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 20px;">
-              <div>
-                <h3 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">Edit Cluster Parameters & Tags</h3>
-                <div style="font-size: 13px; color: #5f6b7a;">Update runtime configuration variables and key-value tags</div>
+          {% elif pat.clean_slug in ['single-page-create', 'create', 'defaults', 'sub-resource-create'] %}
+            <!-- Single Page Create Pattern: Form + FormField + Container + Action Buttons -->
+            <div style="max-width: 800px; margin: 0 auto; width: 100%;">
+              <div style="margin-bottom: 20px;">
+                <h3 style="margin: 0 0 6px 0; font-size: 22px; font-weight: 800; color: #0f1b2a;">Create Virtual Private Cloud (VPC)</h3>
+                <p style="margin: 0; font-size: 13px; color: #5f6b7a;">Configure your isolated cloud network topology with subnets and internet gateway routing.</p>
               </div>
 
-              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
-                <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700;">Resource Key-Value Tags</h4>
-                <cloudscape-attribute-editor
+              <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                  <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700; color: #0f1b2a; border-bottom: 1px solid #eaeded; padding-bottom: 10px;">General Configuration</h4>
+                  <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <cloudscape-form-field label="VPC Name Tag" description="A human-readable identifier for your VPC">
+                      <cloudscape-input value="production-vpc-us-east" placeholder="e.g. production-vpc"></cloudscape-input>
+                    </cloudscape-form-field>
+                    <cloudscape-form-field label="IPv4 CIDR Block" description="Enter an allocated IPv4 block from 10.0.0.0/16 to 10.255.0.0/16">
+                      <cloudscape-input value="10.0.0.0/16"></cloudscape-input>
+                    </cloudscape-form-field>
+                    <cloudscape-form-field label="Tenancy" description="Hardware tenancy selection">
+                      <cloudscape-select options='[{"label": "Default (Shared compute)", "value": "default"}, {"label": "Dedicated (Single tenant)", "value": "dedicated"}]' selected-option='{"label": "Default (Shared compute)", "value": "default"}'></cloudscape-select>
+                    </cloudscape-form-field>
+                  </div>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px;">
+                  <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700; color: #0f1b2a; border-bottom: 1px solid #eaeded; padding-bottom: 10px;">Availability Zones & Subnets</h4>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <cloudscape-form-field label="Number of Availability Zones">
+                      <cloudscape-select options='[{"label": "2 Availability Zones", "value": "2"}, {"label": "3 Availability Zones", "value": "3"}]' selected-option='{"label": "3 Availability Zones", "value": "3"}'></cloudscape-select>
+                    </cloudscape-form-field>
+                    <cloudscape-form-field label="NAT Gateways">
+                      <cloudscape-select options='[{"label": "1 per AZ (Highly Available)", "value": "az"}, {"label": "None", "value": "none"}]' selected-option='{"label": "1 per AZ (Highly Available)", "value": "az"}'></cloudscape-select>
+                    </cloudscape-form-field>
+                  </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 12px; padding-top: 10px; border-top: 1px solid #eaeded;">
+                  <cloudscape-button variant="link">Cancel</cloudscape-button>
+                  <cloudscape-button variant="normal">Save as Draft</cloudscape-button>
+                  <cloudscape-button variant="primary">Create VPC</cloudscape-button>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug == 'multi-page-create' %}
+            <!-- Multi-page Create / Wizard Pattern -->
+            <div style="max-width: 900px; margin: 0 auto; width: 100%;">
+              <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eaeded; padding-bottom: 16px; margin-bottom: 24px;">
+                <div>
+                  <h3 style="margin: 0 0 4px 0; font-size: 22px; font-weight: 800; color: #0f1b2a;">Deploy Elastic Kubernetes Service (EKS)</h3>
+                  <div style="font-size: 13px; color: #5f6b7a;">Step 2 of 4: Compute Node Group Configuration</div>
+                </div>
+                <cloudscape-badge color="blue">Step 2 of 4</cloudscape-badge>
+              </div>
+
+              <!-- Wizard Steps Stepper -->
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+                <div style="background: #e9f2fa; border-top: 3px solid #0972d3; padding: 10px; border-radius: 4px;">
+                  <div style="font-size: 11px; color: #0972d3; font-weight: 700;">✓ STEP 1</div>
+                  <div style="font-size: 13px; font-weight: 600;">Cluster Details</div>
+                </div>
+                <div style="background: #e9f2fa; border-top: 3px solid #0972d3; padding: 10px; border-radius: 4px;">
+                  <div style="font-size: 11px; color: #0972d3; font-weight: 700;">ACTIVE STEP 2</div>
+                  <div style="font-size: 13px; font-weight: 700; color: #0972d3;">Node Groups</div>
+                </div>
+                <div style="background: #f2f3f3; border-top: 3px solid #d1d5db; padding: 10px; border-radius: 4px; opacity: 0.7;">
+                  <div style="font-size: 11px; color: #5f6b7a;">STEP 3</div>
+                  <div style="font-size: 13px;">Networking</div>
+                </div>
+                <div style="background: #f2f3f3; border-top: 3px solid #d1d5db; padding: 10px; border-radius: 4px; opacity: 0.7;">
+                  <div style="font-size: 11px; color: #5f6b7a;">STEP 4</div>
+                  <div style="font-size: 13px;">Review & Launch</div>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
+                <h4 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 700;">Worker Node Architecture</h4>
+                <cloudscape-tiles
+                  value="c6g"
                   items='[
-                    {"key": "Environment", "value": "Production"},
-                    {"key": "CostCenter", "value": "CC-9041"},
-                    {"key": "ManagedBy", "value": "Terraform"}
-                  ]'
-                  add-button-text="Add new tag"
-                  remove-button-text="Remove">
-                </cloudscape-attribute-editor>
+                    {"value": "t4g", "label": "General Purpose (t4g.xlarge)", "description": "4 vCPUs, 16 GiB RAM - Web servers and API workloads"},
+                    {"value": "c6g", "label": "Compute Optimized (c6g.2xlarge)", "description": "8 vCPUs, 16 GiB RAM - High performance microservices"},
+                    {"value": "r6g", "label": "Memory Optimized (r6g.2xlarge)", "description": "8 vCPUs, 64 GiB RAM - In-memory databases and queues"}
+                  ]'>
+                </cloudscape-tiles>
               </div>
 
-              <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eaeded; padding-top: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eaeded; padding-top: 16px;">
+                <cloudscape-button variant="normal">← Previous: Cluster Details</cloudscape-button>
+                <div style="display: flex; gap: 10px;">
+                  <cloudscape-button variant="link">Cancel</cloudscape-button>
+                  <cloudscape-button variant="primary">Next: Networking →</cloudscape-button>
+                </div>
+              </div>
+            </div>
+
+          {% elif pat.clean_slug in ['delete', 'delete-with-additional-confirmation', 'delete-with-simple-confirmation', 'one-click-delete'] %}
+            <!-- Delete Pattern (Simple, Additional, One-Click) -->
+            <div style="max-width: 650px; margin: 0 auto; width: 100%; background: #ffffff; border: 1px solid #eaeded; border-radius: 10px; padding: 28px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+              <div style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px;">
+                <div style="background: #fdf2f2; color: #ba2705; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;">⚠️</div>
+                <div>
+                  <h3 style="margin: 0 0 6px 0; font-size: 20px; font-weight: 800; color: #ba2705;">Delete Aurora Database Cluster?</h3>
+                  <p style="margin: 0; font-size: 13px; color: #5f6b7a; line-height: 1.5;">
+                    Permanently delete cluster <strong>production-payment-db-01</strong> and all its 3 read-replicas. This action is irreversible and immediate.
+                  </p>
+                </div>
+              </div>
+
+              <div style="background: #fff8e6; border: 1px solid #ffd885; border-radius: 6px; padding: 12px 16px; font-size: 13px; color: #5c4300; margin-bottom: 20px;">
+                <strong>Warning:</strong> Automated backups associated with this cluster will be retained for 7 days before final purge.
+              </div>
+
+              <div style="margin-bottom: 24px;">
+                <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #16191f;">
+                  To confirm deletion, type <code>delete</code> in the field below:
+                </label>
+                <cloudscape-input placeholder="Type 'delete' to confirm"></cloudscape-input>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; gap: 12px; border-top: 1px solid #eaeded; padding-top: 16px;">
                 <cloudscape-button variant="link">Cancel</cloudscape-button>
-                <cloudscape-button variant="primary">Save Changes</cloudscape-button>
+                <button type="button" style="background: #ba2705; color: white; border: none; border-radius: 4px; padding: 8px 18px; font-size: 13px; font-weight: 700; cursor: pointer;">Delete Cluster</button>
               </div>
             </div>
 
-          {% elif 'empty' in pat.clean_slug %}
-            <!-- Empty State Pattern -->
-            <div style="max-width: 600px; margin: 30px auto; text-align: center; background: #ffffff; border: 1px solid #eaeded; border-radius: 12px; padding: 48px 32px;">
-              <div style="font-size: 48px; color: #5f6b7a; margin-bottom: 12px;">📦</div>
-              <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800; color: #0f1b2a;">No S3 Storage Buckets Found</h3>
-              <p style="margin: 0 0 24px 0; font-size: 14px; color: #5f6b7a; line-height: 1.5;">
-                You don't have any Amazon S3 buckets in <strong>us-east-1</strong>. Create a storage bucket to store files, datasets, and backups.
-              </p>
-              <div style="display: flex; justify-content: center; gap: 12px;">
-                <cloudscape-button variant="normal" icon-name="external">Learn More</cloudscape-button>
-                <cloudscape-button variant="primary" icon-name="add-plus">Create Bucket</cloudscape-button>
+          {% elif pat.clean_slug in ['details-page', 'details-page-as-hub', 'details-page-with-tabs', 'details'] %}
+            <!-- Details Page Pattern (Hub, Tabs, Standard) -->
+            <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; border-bottom: 1px solid #eaeded; padding-bottom: 16px;">
+                <div>
+                  <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">
+                    <cloudscape-badge color="green">Available</cloudscape-badge>
+                    <span style="font-size: 12px; color: #5f6b7a;">us-east-1a • VPC vpc-09941a</span>
+                  </div>
+                  <h3 style="margin: 0; font-size: 24px; font-weight: 800; color: #0f1b2a;">aurora-pg-primary-cluster</h3>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                  <cloudscape-button variant="normal">Modify</cloudscape-button>
+                  <cloudscape-button variant="normal">Create Replica</cloudscape-button>
+                  <cloudscape-button variant="primary">Actions ▾</cloudscape-button>
+                </div>
               </div>
+
+              <!-- Key Value Overview Grid -->
+              <div style="background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+                <h4 style="margin: 0 0 16px 0; font-size: 15px; font-weight: 700;">Cluster Specifications</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; font-size: 13px;">
+                  <div>
+                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Engine Version</div>
+                    <div style="font-weight: 600; margin-top: 2px;">PostgreSQL 15.3</div>
+                  </div>
+                  <div>
+                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Master Endpoint</div>
+                    <div style="font-weight: 600; margin-top: 2px; color: #0972d3;">pg-prod.c91.rds.amazonaws.com</div>
+                  </div>
+                  <div>
+                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Storage Allocated</div>
+                    <div style="font-weight: 600; margin-top: 2px;">420 GB / 2 TB (Aurora Auto)</div>
+                  </div>
+                  <div>
+                    <div style="color: #5f6b7a; font-size: 11px; text-transform: uppercase; font-weight: 600;">Maintenance Window</div>
+                    <div style="font-weight: 600; margin-top: 2px;">Sun 02:00 - 03:00 UTC</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tabs Navigation Pattern -->
+              <cloudscape-tabs
+                tabs='[
+                  {"id": "monitoring", "label": "Metrics & Monitoring", "content": "Live CPU utilization, IOPS, and query latency telemetry charts."},
+                  {"id": "logs", "label": "Logs & Events", "content": "PostgreSQL slow query logs and failover event stream history."},
+                  {"id": "config", "label": "Configuration", "content": "Attached DB parameter group: custom-pg15-prod with max_connections=500."},
+                  {"id": "maintenance", "label": "Maintenance & Backups", "content": "Automated snapshot schedule: daily at 01:00 UTC with 35 days retention."}
+                ]'
+                active-tab-id="monitoring">
+              </cloudscape-tabs>
             </div>
 
-          {% elif 'filter' in pat.clean_slug %}
+          {% elif pat.clean_slug in ['filter-persistence-in-collection-views', 'filter-patterns', 'saved-filter-sets'] %}
             <!-- Filter Pattern (Property Filter & Saved Filter Sets) -->
             <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
               <div>
@@ -702,8 +1388,8 @@
               </div>
             </div>
 
-          {% elif 'navigation' in pat.clean_slug %}
-            <!-- Service Navigation Pattern -->
+          {% elif pat.clean_slug in ['service-navigation', 'side-navigation', 'top-navigation'] %}
+            <!-- Service & Top Navigation Pattern -->
             <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
               <div style="background: #0f1b2a; border-radius: 6px; padding: 10px 16px; color: white; display: flex; justify-content: space-between; align-items: center;">
                 <div style="display: flex; gap: 12px; align-items: center;">
@@ -739,24 +1425,8 @@
               </div>
             </div>
 
-          {% elif 'feedback' in pat.clean_slug or 'announcing' in pat.clean_slug or 'unsaved' in pat.clean_slug or 'error' in pat.clean_slug %}
-            <!-- Feedback, Announcing & Errors Pattern -->
-            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 750px; margin: 0 auto;">
-              <cloudscape-alert type="info" header="New Feature Announcement" dismissible>
-                Aurora Serverless v2 PostgreSQL clusters now support automated cross-region replication.
-              </cloudscape-alert>
-
-              <cloudscape-alert type="warning" header="Unsaved Changes">
-                You have unsaved changes in your security group inbound rules. Leaving now will discard edits.
-              </cloudscape-alert>
-
-              <cloudscape-alert type="error" header="Cluster Validation Failed" dismissible>
-                CIDR block 10.0.0.0/16 overlaps with existing VPC vpc-08812af in this availability region.
-              </cloudscape-alert>
-            </div>
-
           {% else %}
-            <!-- General UI Pattern Implementation -->
+            <!-- Tailored Pattern Replica -->
             <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
               <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaeded; padding-bottom: 12px;">
                 <h4 style="margin: 0; font-size: 16px; font-weight: 700;">{{ pat.title }} Production Workflow</h4>
