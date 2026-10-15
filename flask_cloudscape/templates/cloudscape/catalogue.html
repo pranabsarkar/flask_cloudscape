@@ -633,6 +633,35 @@
                 <div style="width: 100%;">
                   <cloudscape-input placeholder="s3://my-bucket/path/" value="s3://production-backups/"></cloudscape-input>
                 </div>
+              {% elif comp.slug == 'bar-chart' %}
+                <div style="width: 100%;">
+                  <cloudscape-bar-chart
+                    x-scale-type="categorical"
+                    series='[{"title": "Running", "type": "bar", "data": [{"x": "Q1", "y": 35}, {"x": "Q2", "y": 70}, {"x": "Q3", "y": 55}, {"x": "Q4", "y": 90}]}]'
+                    i18n-strings='{"filterLabel": "Filter data"}'>
+                  </cloudscape-bar-chart>
+                </div>
+              {% elif comp.slug == 'line-chart' %}
+                <div style="width: 100%;">
+                  <cloudscape-line-chart
+                    x-scale-type="categorical"
+                    series='[
+                      {"title": "CPU Usage", "type": "line", "data": [{"x": "00:00", "y": 25}, {"x": "06:00", "y": 68}, {"x": "12:00", "y": 85}, {"x": "18:00", "y": 50}]},
+                      {"title": "Threshold", "type": "threshold", "y": 80}
+                    ]'
+                    i18n-strings='{"filterLabel": "Filter data"}'>
+                  </cloudscape-line-chart>
+                </div>
+              {% elif comp.slug == 'area-chart' %}
+                <div style="width: 100%;">
+                  <cloudscape-area-chart
+                    x-scale-type="categorical"
+                    series='[
+                      {"title": "Traffic", "type": "area", "data": [{"x": "1h", "y": 15}, {"x": "2h", "y": 42}, {"x": "3h", "y": 30}, {"x": "4h", "y": 65}]}
+                    ]'
+                    i18n-strings='{"filterLabel": "Filter data"}'>
+                  </cloudscape-area-chart>
+                </div>
               {% elif comp.slug == 'pie-chart' or comp.slug == 'pie-chart-legacy' %}
                 <div style="width: 100%;">
                   <cloudscape-pie-chart
@@ -641,13 +670,24 @@
                     i18n-strings='{"filterLabel": "Filter data"}'>
                   </cloudscape-pie-chart>
                 </div>
-              {% elif 'chart' in comp.slug %}
+              {% elif comp.slug == 'mixed-line-bar-chart' %}
                 <div style="width: 100%;">
-                  <cloudscape-bar-chart
+                  <cloudscape-mixed-line-bar-chart
                     x-scale-type="categorical"
-                    series='[{"title": "Load", "type": "bar", "data": [{"x": "Q1", "y": 30}, {"x": "Q2", "y": 70}, {"x": "Q3", "y": 50}, {"x": "Q4", "y": 90}]}]'
+                    series='[
+                      {"title": "Actual", "type": "bar", "data": [{"x": "Jan", "y": 40}, {"x": "Feb", "y": 65}, {"x": "Mar", "y": 80}]},
+                      {"title": "Forecast", "type": "line", "data": [{"x": "Jan", "y": 45}, {"x": "Feb", "y": 60}, {"x": "Mar", "y": 75}]}
+                    ]'
                     i18n-strings='{"filterLabel": "Filter data"}'>
-                  </cloudscape-bar-chart>
+                  </cloudscape-mixed-line-bar-chart>
+                </div>
+              {% elif comp.slug == 'cartesian-chart' or comp.slug == 'charts' or comp.slug == 'charts-legacy' %}
+                <div style="width: 100%;">
+                  <cloudscape-line-chart
+                    x-scale-type="categorical"
+                    series='[{"title": "Metric Trend", "type": "line", "data": [{"x": "A", "y": 20}, {"x": "B", "y": 45}, {"x": "C", "y": 80}]}]'
+                    i18n-strings='{"filterLabel": "Filter data"}'>
+                  </cloudscape-line-chart>
                 </div>
               {% elif comp.slug == 'top-navigation' %}
                 <div style="background: #0f1b2a; color: #fff; padding: 8px 14px; border-radius: 6px; width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
