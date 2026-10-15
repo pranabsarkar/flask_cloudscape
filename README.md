@@ -4,14 +4,18 @@
 
 Cloudscape components are compiled into **Web Components** and served as bundled JS + CSS assets. You interact with them through **Jinja macros**, **Python component classes**, or raw `<cloudscape-*>` HTML tags.
 
-Includes a built-in **Component Catalogue** (`http://127.0.0.1:5001/`) showcasing all 113 components across 11 organized categories with real-time search filtering.
+Includes a built-in **Component Catalogue** (`http://127.0.0.1:5001/`) showcasing all 113 components across 11 organized categories with isolated sub-pages (`/components/<slug>`) and real-time search filtering.
+
+> 🤖 **For AI Agents & Automation**: See [AGENT_GUIDE.md](file:///Users/pranabsarkar/Documents/Pambify/code/flask_cloudscape/AGENT_GUIDE.md) for the fast lookup index and the automated 4-step workflow: **Check Catalogue → Inspect Sub-Page → Snapshot (Optional) → Build**.
 
 ---
 
 ## Table of Contents
 
+- [Agent Reference Guide (Check -> Snapshot -> Build)](AGENT_GUIDE.md)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
+- [Component Catalogue & Sub-Pages](#component-catalogue--sub-pages)
 - [Flask Integration](#flask-integration)
 - [Usage Methods](#usage-methods)
   - [Method 1: Jinja Macros](#method-1-jinja-macros-recommended)
@@ -74,6 +78,28 @@ git clone https://github.com/pranabsarkar/flask_cloudscape.git
 # Install the package in editable mode
 pip install -e ./flask_cloudscape
 ```
+
+---
+
+## Component Catalogue & Sub-Pages
+
+Flask-Cloudscape includes a built-in development catalogue and dedicated sub-pages for all **113 official Cloudscape components**:
+
+- **Main Overview**: `http://127.0.0.1:5001/` (Real-time search filter across all 11 categories)
+- **Component Sub-Pages**: `http://127.0.0.1:5001/components/<slug>` (Full unconstrained canvas stage, code snippets, and AWS specs)
+
+To launch the catalogue server:
+```bash
+python3 -m flask_cloudscape
+# Or run direct entrypoint:
+PYTHONPATH=. python3 flask_cloudscape/__init__.py
+```
+
+For AI agents building pages, refer to [AGENT_GUIDE.md](AGENT_GUIDE.md) for the workflow checklist:
+1. Verify Server (`http://127.0.0.1:5001/`)
+2. Inspect Sub-Page (`/components/<slug>`)
+3. Optional Visual Snapshot
+4. Copy tag / Python class / Jinja macro to build
 
 ---
 
