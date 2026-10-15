@@ -131,17 +131,38 @@ if __name__ == "__main__":
     with open(cat_path, "r") as f:
         categories = json.load(f)
 
-    # Add Python class name to each component for display
+    # Build flat dictionary of all components for fast lookup & sidebar listing
+    all_components = []
+    comp_by_slug = {}
+    comp_category_map = {}
+
     def _to_pascal(s):
         return "".join(w.title() for w in s.replace("-", "_").split("_"))
 
     for cat in categories:
         for comp in cat["components"]:
             comp["python_class"] = _to_pascal(comp["slug"])
+            all_components.append(comp)
+            comp_by_slug[comp["slug"]] = comp
+            comp_category_map[comp["slug"]] = cat
 
     @app.route("/")
     def index():
         return render_template("cloudscape/catalogue.html", categories=categories)
+
+    @app.route("/components/<slug>")
+    def component_detail(slug):
+        from flask import abort
+        comp = comp_by_slug.get(slug)
+        if not comp:
+            abort(404)
+        cat = comp_category_map.get(slug)
+        return render_template(
+            "cloudscape/component_detail.html",
+            comp=comp,
+            category=cat,
+            all_components=all_components
+        )
 
     port = int(os.environ.get("PORT", 5001))
     print(f" * Starting Flask-Cloudscape demo server on http://127.0.0.1:{port}")

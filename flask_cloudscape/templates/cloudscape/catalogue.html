@@ -722,8 +722,10 @@
             </div>
 
             <div class="comp-card-footer">
-              <span style="color: #5f6b7a;">Python: <code>{{ comp.python_class }}</code></span>
-              <a href="{{ comp.url }}" target="_blank" rel="noopener noreferrer">
+              <a href="/components/{{ comp.slug }}" style="color: #0972d3; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                Open Page →
+              </a>
+              <a href="{{ comp.url }}" target="_blank" rel="noopener noreferrer" style="color: #5f6b7a; font-size: 11px;">
                 AWS Spec <cloudscape-icon name="external" size="small"></cloudscape-icon>
               </a>
             </div>

@@ -1,0 +1,541 @@
+{% extends "cloudscape/_base.html" %}
+
+{% block title %}{{ comp.title }} Component Details | Flask-Cloudscape{% endblock %}
+
+{% block head %}
+<style>
+  :root {
+    --detail-sidebar-width: 280px;
+    --detail-bg: #f8f9fa;
+    --detail-border: #eaeded;
+    --detail-accent: #0972d3;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--detail-bg);
+    color: #16191f;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .detail-shell {
+    display: flex;
+    min-height: 100vh;
+  }
+  .detail-sidebar {
+    width: var(--detail-sidebar-width);
+    background: #ffffff;
+    border-right: 1px solid var(--detail-border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .detail-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--detail-border);
+  }
+  .detail-brand-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--detail-accent);
+    margin: 0;
+  }
+  .sidebar-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #414d5c;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: #f2f3f3;
+    margin-bottom: 16px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .sidebar-back-btn:hover {
+    background: #e9f2fa;
+    color: var(--detail-accent);
+  }
+  .sidebar-filter {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #aab7b8;
+    border-radius: 6px;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin-bottom: 14px;
+  }
+  .detail-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    color: #414d5c;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.1s ease;
+  }
+  .detail-nav-item:hover {
+    background-color: #f2f3f3;
+    color: var(--detail-accent);
+  }
+  .detail-nav-item.active {
+    background-color: #e9f2fa;
+    color: var(--detail-accent);
+    font-weight: 700;
+  }
+  .detail-main {
+    flex: 1;
+    min-width: 0;
+    padding: 32px 48px 80px 48px;
+    box-sizing: border-box;
+  }
+  .detail-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #5f6b7a;
+    margin-bottom: 16px;
+  }
+  .detail-breadcrumb a {
+    color: var(--detail-accent);
+    text-decoration: none;
+  }
+  .detail-breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  .component-hero {
+    background: #ffffff;
+    border: 1px solid var(--detail-border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .component-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .preview-stage {
+    background: #ffffff;
+    border: 1px solid var(--detail-border);
+    border-radius: 10px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .stage-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #f2f3f3;
+  }
+  .canvas-box {
+    background: #fafafa;
+    border: 1px solid #eaeded;
+    border-radius: 8px;
+    padding: 32px;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .code-panel {
+    background: #0f1b2a;
+    color: #f1f5f9;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  .meta-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  .meta-table th, .meta-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #eaeded;
+  }
+  .meta-table th {
+    background: #fafafa;
+    color: #5f6b7a;
+    font-weight: 600;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% from "cloudscape/_macros.html" import
+    cs_alert, cs_badge, cs_box, cs_button, cs_checkbox,
+    cs_container, cs_end_container,
+    cs_expandable_section, cs_end_expandable_section,
+    cs_form, cs_end_form, cs_form_field, cs_end_form_field,
+    cs_header, cs_icon, cs_input, cs_link,
+    cs_modal, cs_end_modal,
+    cs_pagination, cs_select,
+    cs_space_between, cs_end_space_between,
+    cs_spinner, cs_status_indicator,
+    cs_table, cs_end_table, cs_tabs, cs_toggle
+%}
+
+<div class="detail-shell">
+  <!-- Sidebar Component List -->
+  <aside class="detail-sidebar">
+    <div class="detail-brand">
+      <cloudscape-icon name="view-full" size="medium"></cloudscape-icon>
+      <div>
+        <h2 class="detail-brand-title">Flask-Cloudscape</h2>
+        <small style="color: #5f6b7a;">Component Explorer</small>
+      </div>
+    </div>
+
+    <a href="/" class="sidebar-back-btn">
+      <cloudscape-icon name="arrow-left" size="small"></cloudscape-icon>
+      <span>← Back to Full Catalogue</span>
+    </a>
+
+    <input type="text" class="sidebar-filter" id="sideCompFilter" placeholder="Filter 113 components..." oninput="filterSidebar(this.value)">
+
+    <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6b7a; margin-bottom: 8px; padding-left: 6px;">
+      All Components (113)
+    </div>
+
+    <nav id="sidebarNavList">
+      {% for item in all_components %}
+      <a href="/components/{{ item.slug }}" class="detail-nav-item {% if item.slug == comp.slug %}active{% endif %}">
+        <span>{{ item.title }}</span>
+        <span style="font-size: 10px; opacity: 0.6;">&lt;cs-{{ item.slug }}&gt;</span>
+      </a>
+      {% endfor %}
+    </nav>
+  </aside>
+
+  <!-- Main Detail View Area -->
+  <main class="detail-main">
+    <!-- Breadcrumbs -->
+    <div class="detail-breadcrumb">
+      <a href="/">Catalogue</a>
+      <span>/</span>
+      <span>{{ category.name }}</span>
+      <span>/</span>
+      <strong>{{ comp.title }}</strong>
+    </div>
+
+    <!-- Component Hero Section -->
+    <div class="component-hero">
+      <div class="component-title-row">
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+            <cloudscape-badge color="blue">{{ category.name }}</cloudscape-badge>
+            <cloudscape-badge color="green">Web Component Ready</cloudscape-badge>
+          </div>
+          <h1 style="margin: 0 0 6px 0; font-size: 28px; font-weight: 800; color: #0f1b2a;">{{ comp.title }}</h1>
+          <code style="font-size: 14px; color: #0972d3; background: #e9f2fa; padding: 3px 8px; border-radius: 4px;">&lt;cloudscape-{{ comp.slug }}&gt;</code>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <cloudscape-button variant="normal" icon-name="external" href="{{ comp.url }}">AWS Documentation</cloudscape-button>
+          <cloudscape-button variant="primary" icon-name="copy" id="copy-tag-btn">Copy Tag</cloudscape-button>
+        </div>
+      </div>
+      <p style="margin: 12px 0 0 0; color: #5f6b7a; font-size: 14px; line-height: 1.5; max-width: 800px;">
+        {{ comp.desc if comp.desc else "Official AWS Cloudscape Design System component compiled as a Web Component for Flask and Jinja2 templates." }}
+      </p>
+    </div>
+
+    <!-- Live Isolated Preview Stage -->
+    <div class="preview-stage">
+      <div class="stage-header">
+        <div>
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700; color: #0f1b2a;">Isolated Rendering Stage</h2>
+          <small style="color: #5f6b7a;">Rendered at full container dimensions without layout clipping</small>
+        </div>
+        <cloudscape-badge color="blue">Live DOM</cloudscape-badge>
+      </div>
+
+      <div class="canvas-box">
+        <div style="width: 100%; max-width: 900px;">
+          {% if comp.slug == 'button' %}
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+              <cloudscape-button variant="primary">Primary Button</cloudscape-button>
+              <cloudscape-button variant="normal">Normal Button</cloudscape-button>
+              <cloudscape-button variant="link">Link Button</cloudscape-button>
+              <cloudscape-button variant="primary" icon-name="download">With Icon</cloudscape-button>
+              <cloudscape-button variant="normal" loading>Loading State</cloudscape-button>
+              <cloudscape-button variant="normal" disabled>Disabled</cloudscape-button>
+            </div>
+          {% elif comp.slug == 'button-dropdown' %}
+            <cloudscape-button-dropdown items='[{"id": "edit", "text": "Edit Profile"}, {"id": "sec", "text": "Security Settings"}, {"id": "del", "text": "Delete Resource", "disabled": true}]'>
+              Action Menu
+            </cloudscape-button-dropdown>
+          {% elif comp.slug == 'button-group' %}
+            <cloudscape-button-group items='[{"type": "icon-button", "id": "add", "iconName": "add-plus", "text": "Add"}, {"type": "icon-button", "id": "edit", "iconName": "edit", "text": "Edit"}, {"type": "icon-button", "id": "copy", "iconName": "copy", "text": "Copy"}]'></cloudscape-button-group>
+          {% elif comp.slug == 'toggle-button' %}
+            <div style="display: flex; gap: 12px;">
+              <cloudscape-toggle-button>Bookmark (Inactive)</cloudscape-toggle-button>
+              <cloudscape-toggle-button pressed>Bookmarked (Active)</cloudscape-toggle-button>
+            </div>
+          {% elif comp.slug == 'segmented-control' %}
+            <cloudscape-segmented-control selected-id="month" options='[{"id": "day", "text": "Daily"}, {"id": "week", "text": "Weekly"}, {"id": "month", "text": "Monthly"}, {"id": "year", "text": "Annual"}]'></cloudscape-segmented-control>
+          {% elif comp.slug == 'copy-to-clipboard' %}
+            <cloudscape-copy-to-clipboard text-to-copy="arn:aws:iam::123456789012:role/ProductionAdmin" copy-button-text="Copy AWS IAM Role ARN"></cloudscape-copy-to-clipboard>
+          {% elif comp.slug == 'alert' %}
+            <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+              {{ cs_alert(type="success", header="Deployment Succeeded", children="Version 2.4.0 successfully deployed to all 4 clusters.") }}
+              {{ cs_alert(type="warning", header="Capacity Warning", children="Cluster storage capacity is above 80% threshold.") }}
+              {{ cs_alert(type="error", header="Replica Disconnected", dismissible=true, children="Read-replica in us-east-1b has fallen out of sync.") }}
+            </div>
+          {% elif comp.slug == 'badge' %}
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <cloudscape-badge color="blue">Blue Badge</cloudscape-badge>
+              <cloudscape-badge color="green">Green (Healthy)</cloudscape-badge>
+              <cloudscape-badge color="red">Red (Critical)</cloudscape-badge>
+              <cloudscape-badge color="grey">Grey (Draft)</cloudscape-badge>
+            </div>
+          {% elif comp.slug == 'status-indicator' %}
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              {{ cs_status_indicator(type="success", children="Operational") }}
+              {{ cs_status_indicator(type="in-progress", children="Provisioning Nodes...") }}
+              {{ cs_status_indicator(type="warning", children="Degraded Performance") }}
+              {{ cs_status_indicator(type="error", children="Healthcheck Failed") }}
+              {{ cs_status_indicator(type="stopped", children="Cluster Suspended") }}
+            </div>
+          {% elif comp.slug == 'flashbar' %}
+            <cloudscape-flashbar items='[{"type": "info", "dismissible": false, "content": "Scheduled maintenance maintenance planned for Saturday 02:00 UTC.", "action": "<button class=\"awsui-button\">View Details</button>"}]'></cloudscape-flashbar>
+          {% elif comp.slug == 'progress-bar' %}
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+              <cloudscape-progress-bar value="45" label="Database Migration Progress" description="Processing 450 of 1000 partitions"></cloudscape-progress-bar>
+              <cloudscape-progress-bar value="85" status="success" label="Volume Replication Status"></cloudscape-progress-bar>
+            </div>
+          {% elif comp.slug == 'spinner' %}
+            <div style="display: flex; gap: 24px; align-items: center;">
+              <div>{{ cs_spinner(size="normal") }} <span style="font-size: 13px; color: #5f6b7a;">Normal</span></div>
+              <div>{{ cs_spinner(size="big") }} <span style="font-size: 13px; color: #5f6b7a;">Big</span></div>
+            </div>
+          {% elif comp.slug == 'loading-bar' %}
+            <cloudscape-loading-bar></cloudscape-loading-bar>
+          {% elif comp.slug == 'table' %}
+            <cloudscape-table
+              items='[
+                {"id": "i-0941ab", "name": "prod-web-frontend", "az": "us-east-1a", "type": "c6g.xlarge", "status": "Active"},
+                {"id": "i-0882cc", "name": "prod-api-gateway", "az": "us-east-1b", "type": "m6g.2xlarge", "status": "Active"},
+                {"id": "i-0331dd", "name": "staging-worker", "az": "us-east-1c", "type": "t4g.medium", "status": "Stopped"}
+              ]'
+              column-definitions='[
+                {"id": "name", "header": "Instance Name"},
+                {"id": "id", "header": "Instance ID"},
+                {"id": "az", "header": "Availability Zone"},
+                {"id": "type", "header": "Instance Type"},
+                {"id": "status", "header": "State"}
+              ]'
+              header="EC2 Fleet Overview">
+            </cloudscape-table>
+          {% elif comp.slug == 'cards' or comp.slug == 'action-card' or comp.slug == 'item-card' %}
+            <cloudscape-cards
+              items='[
+                {"name": "Database Cluster Primary", "engine": "Aurora PostgreSQL 15.3", "status": "Healthy", "storage": "500 GB"},
+                {"name": "Cache Cluster Replica", "engine": "Redis 7.0", "status": "Healthy", "storage": "64 GB"},
+                {"name": "Analytics Warehouse", "engine": "Amazon Redshift", "status": "Maintenance", "storage": "2 TB"}
+              ]'
+              card-definition='{
+                "headerField": "name",
+                "sections": [
+                  {"id": "engine", "header": "Engine", "contentField": "engine"},
+                  {"id": "status", "header": "Health Status", "contentField": "status"},
+                  {"id": "storage", "header": "Storage", "contentField": "storage"}
+                ]
+              }'>
+            </cloudscape-cards>
+          {% elif comp.slug == 'tabs' %}
+            <cloudscape-tabs
+              tabs='[
+                {"id": "overview", "label": "Cluster Overview", "content": "Aggregated metrics, vCPU utilization, and network throughput charts."},
+                {"id": "security", "label": "IAM & Encryption", "content": "Attached KMS encryption keys, security groups, and ingress firewall rules."},
+                {"id": "tags", "label": "Resource Tags", "content": "Environment: Production, CostCenter: 402, ManagedBy: Terraform."}
+              ]'
+              active-tab-id="overview">
+            </cloudscape-tabs>
+          {% elif comp.slug == 'tiles' %}
+            <cloudscape-tiles
+              value="c6g"
+              items='[
+                {"value": "t4g", "label": "t4g.xlarge (General Purpose)", "description": "4 vCPUs, 16 GiB RAM - Good balance of compute and cost"},
+                {"value": "c6g", "label": "c6g.2xlarge (Compute Optimized)", "description": "8 vCPUs, 16 GiB RAM - High performance compute engines"},
+                {"value": "r6g", "label": "r6g.2xlarge (Memory Optimized)", "description": "8 vCPUs, 64 GiB RAM - Ideal for in-memory databases"}
+              ]'>
+            </cloudscape-tiles>
+          {% elif comp.slug == 'form' or comp.slug == 'form-field' or comp.slug == 'input' %}
+            <cloudscape-form>
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <cloudscape-form-field label="Application Name" description="Unique alphanumeric identifier">
+                  <cloudscape-input value="payment-gateway-service" placeholder="Enter app name"></cloudscape-input>
+                </cloudscape-form-field>
+                <cloudscape-form-field label="Environment" description="Deployment target tier">
+                  <cloudscape-select options='[{"label": "Production (us-east-1)", "value": "prod"}, {"label": "Staging (us-west-2)", "value": "stage"}]' selected-option='{"label": "Production (us-east-1)", "value": "prod"}'></cloudscape-select>
+                </cloudscape-form-field>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+                  <cloudscape-button variant="link">Cancel</cloudscape-button>
+                  <cloudscape-button variant="primary">Create Application</cloudscape-button>
+                </div>
+              </div>
+            </cloudscape-form>
+          {% elif comp.slug == 'chat-bubble' %}
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <cloudscape-chat-bubble type="incoming">Hello Pranab! I am your AI cloud infrastructure assistant. How can I help optimize your EC2 instances?</cloudscape-chat-bubble>
+              <cloudscape-chat-bubble type="outgoing">Can you check the current CPU load across all our Aurora PostgreSQL clusters?</cloudscape-chat-bubble>
+              <cloudscape-chat-bubble type="incoming">All clusters are performing nominally with an average CPU utilization of 34% over the last 6 hours.</cloudscape-chat-bubble>
+            </div>
+          {% elif comp.slug == 'date-picker' or comp.slug == 'calendar' %}
+            <cloudscape-date-picker value="2026-10-15" placeholder="YYYY/MM/DD"></cloudscape-date-picker>
+          {% elif comp.slug == 'pagination' %}
+            <div style="display: flex; justify-content: center;">
+              {{ cs_pagination(current_page_index=3, pages_count=10) }}
+            </div>
+          {% elif comp.slug == 'token-group' or comp.slug == 'token' %}
+            <cloudscape-token-group items='[{"label": "Cluster: Production", "dismissLabel": "Remove"}, {"label": "AZ: us-east-1a", "dismissLabel": "Remove"}, {"label": "Owner: DevOps", "dismissLabel": "Remove"}]'></cloudscape-token-group>
+          {% elif 'chart' in comp.slug %}
+            <div style="width: 100%; border: 1px solid #eaeded; border-radius: 8px; padding: 24px; background: #ffffff;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <strong>{{ comp.title }} Demonstration</strong>
+                <cloudscape-badge color="blue">Telemetry Metric</cloudscape-badge>
+              </div>
+              <div style="display: flex; justify-content: space-around; align-items: flex-end; height: 160px; border-bottom: 2px solid #eaeded; padding-bottom: 8px;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                  <div style="background: #0972d3; width: 40px; height: 60px; border-radius: 4px;"></div>
+                  <span style="font-size: 11px; color: #5f6b7a;">00:00</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                  <div style="background: #0972d3; width: 40px; height: 110px; border-radius: 4px;"></div>
+                  <span style="font-size: 11px; color: #5f6b7a;">06:00</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                  <div style="background: #0972d3; width: 40px; height: 85px; border-radius: 4px;"></div>
+                  <span style="font-size: 11px; color: #5f6b7a;">12:00</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                  <div style="background: #0972d3; width: 40px; height: 140px; border-radius: 4px;"></div>
+                  <span style="font-size: 11px; color: #5f6b7a;">18:00</span>
+                </div>
+              </div>
+            </div>
+          {% else %}
+            <!-- Generic Cloudscape Custom Element Demonstration -->
+            <cloudscape-{{ comp.slug }}>
+              <div style="padding: 16px; font-size: 14px; color: #414d5c; text-align: center;">
+                <strong>&lt;cloudscape-{{ comp.slug }}&gt;</strong> component mounted in active document stage.
+              </div>
+            </cloudscape-{{ comp.slug }}>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Usage Code Snippets -->
+    <div class="component-hero">
+      <h2 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 700; color: #0f1b2a;">Integration & Syntax</h2>
+
+      <h3 style="margin: 16px 0 6px 0; font-size: 14px; font-weight: 600; color: #5f6b7a;">Method 1: HTML Custom Element Tag</h3>
+      <div class="code-panel">
+&lt;cloudscape-{{ comp.slug }} id="my-{{ comp.slug }}"&gt;
+  ...content...
+&lt;/cloudscape-{{ comp.slug }}&gt;
+      </div>
+
+      <h3 style="margin: 20px 0 6px 0; font-size: 14px; font-weight: 600; color: #5f6b7a;">Method 2: Server-side Python Component Class</h3>
+      <div class="code-panel">
+from flask_cloudscape.components import {{ comp.python_class }}
+
+element = {{ comp.python_class }}(id="my-{{ comp.slug }}")
+return render_template("view.html", component_html=element.render())
+      </div>
+
+      <h3 style="margin: 20px 0 6px 0; font-size: 14px; font-weight: 600; color: #5f6b7a;">Method 3: Dynamic Jinja Macro Helper</h3>
+      <div class="code-panel">
+{{ '{{' }} cs_render("{{ comp.slug }}", id="my-{{ comp.slug }}") {{ '}}' }}
+      </div>
+    </div>
+
+    <!-- Technical Metadata Table -->
+    <div class="component-hero">
+      <h2 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 700; color: #0f1b2a;">Component Specification</h2>
+      <table class="meta-table">
+        <tr>
+          <th>Attribute</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Component Name</td>
+          <td><strong>{{ comp.title }}</strong></td>
+        </tr>
+        <tr>
+          <td>Web Component Tag</td>
+          <td><code>&lt;cloudscape-{{ comp.slug }}&gt;</code></td>
+        </tr>
+        <tr>
+          <td>Python Class</td>
+          <td><code>flask_cloudscape.components.{{ comp.python_class }}</code></td>
+        </tr>
+        <tr>
+          <td>Category</td>
+          <td>{{ category.name }}</td>
+        </tr>
+        <tr>
+          <td>Official Documentation</td>
+          <td><a href="{{ comp.url }}" target="_blank" style="color: #0972d3;">{{ comp.url }}</a></td>
+        </tr>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function filterSidebar(query) {
+    const q = query.trim().toLowerCase();
+    const items = document.querySelectorAll('.detail-nav-item');
+    items.forEach(item => {
+      const text = item.innerText.toLowerCase();
+      if (!q || text.includes(q)) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // Copy Tag button
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyBtn = document.getElementById('copy-tag-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText('<cloudscape-{{ comp.slug }}></cloudscape-{{ comp.slug }}>');
+        alert('Copied tag: <cloudscape-{{ comp.slug }}></cloudscape-{{ comp.slug }}>');
+      });
+    }
+  });
+</script>
+{% endblock %}
