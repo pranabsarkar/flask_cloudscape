@@ -19,6 +19,7 @@
    - [Navigation (10)](#navigation)
    - [Board & Drag-and-Drop (4)](#board-drag-and-drop)
    - [Utilities & Content (12)](#utilities-content)
+5. [59 Patterns Reference (How Components Combine)](#59-patterns-reference-how-components-combine)
 
 ---
 
@@ -265,3 +266,130 @@ return render_template("view.html", btn_html=btn.render())
 | **Tutorial panel** | `tutorial-panel` | [`/components/tutorial-panel`](http://127.0.0.1:5001/components/tutorial-panel) | `TutorialPanel` | `<cloudscape-tutorial-panel>` | [AWS Spec](https://cloudscape.design/components/tutorial-panel/) |
 | **Annotation context** | `annotation-context` | [`/components/annotation-context`](http://127.0.0.1:5001/components/annotation-context) | `AnnotationContext` | `<cloudscape-annotation-context>` | [AWS Spec](https://cloudscape.design/components/annotation-context/) |
 | **Hotspot** | `hotspot` | [`/components/hotspot`](http://127.0.0.1:5001/components/hotspot) | `Hotspot` | `<cloudscape-hotspot>` | [AWS Spec](https://cloudscape.design/components/hotspot/) |
+
+---
+
+## 59 Patterns Reference (How Components Combine)
+
+> **Patterns Catalogue URL**: [http://127.0.0.1:5001/patterns](http://127.0.0.1:5001/patterns)
+> Patterns illustrate how individual Cloudscape components combine to form complete, production-ready AWS UX workflows.
+
+### General UI (13 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Actions** | `general/actions` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/actions/) |
+| **Density settings** | `general/density-settings` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/density-settings/) |
+| **Disabled and read-only states** | `general/disabled-and-read-only-states` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/disabled-and-read-only-states/) |
+| **Drag-and-drop** | `general/drag-and-drop` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/drag-and-drop/) |
+| **Empty states** | `general/empty-states` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/empty-states/) |
+| **Global actions** | `general/actions/global-actions` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/actions/global-actions/) |
+| **Hero header** | `general/hero-header` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/hero-header/) |
+| **Image magnifier** | `general/image-magnifier` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/image-magnifier/) |
+| **In-context actions** | `general/actions/incontext-actions` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/actions/incontext-actions/) |
+| **Loading and refreshing** | `general/loading-and-refreshing` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/loading-and-refreshing/) |
+| **Secondary panels** | `general/secondary-panels` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/secondary-panels/) |
+| **Selection in forms** | `general/selection` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/selection/) |
+| **Timestamps** | `general/timestamps` | `button`, `button-dropdown`, `button-group`, `badge`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/timestamps/) |
+
+### Onboarding & Help (5 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Announcing beta and preview features** | `general/announcing-beta-preview-features` | `tutorial-panel`, `help-panel`, `popover`, `hotspot`, `annotation-context` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/announcing-beta-preview-features/) |
+| **Announcing new features** | `general/announcing-new-features` | `tutorial-panel`, `help-panel`, `popover`, `hotspot`, `annotation-context` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/announcing-new-features/) |
+| **Hands-on tutorials** | `general/onboarding/hands-on-tutorials` | `tutorial-panel`, `help-panel`, `popover`, `hotspot`, `annotation-context` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/onboarding/hands-on-tutorials/) |
+| **Help system** | `general/help-system` | `tutorial-panel`, `help-panel`, `popover`, `hotspot`, `annotation-context` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/help-system/) |
+| **Onboarding** | `general/onboarding` | `tutorial-panel`, `help-panel`, `popover`, `hotspot`, `annotation-context` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/onboarding/) |
+
+### Resource Editing (4 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Attribute editing** | `resource-management/edit/attribute-editing` | `form`, `attribute-editor`, `input`, `select`, `button`, `popover` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/edit/attribute-editing/) |
+| **Edit resource** | `resource-management/edit` | `form`, `attribute-editor`, `input`, `select`, `button`, `popover` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/edit/) |
+| **Inline edit** | `resource-management/edit/inline-edit` | `form`, `attribute-editor`, `input`, `select`, `button`, `popover` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/edit/inline-edit/) |
+| **Page edit** | `resource-management/edit/page-edit` | `form`, `attribute-editor`, `input`, `select`, `button`, `popover` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/edit/page-edit/) |
+
+### Resource Viewing (6 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Card view** | `resource-management/view/card-view` | `table`, `cards`, `pagination`, `text-filter`, `collection-preferences`, `split-panel` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/view/card-view/) |
+| **Split view** | `resource-management/view/split-view` | `table`, `cards`, `pagination`, `text-filter`, `collection-preferences`, `split-panel` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/view/split-view/) |
+| **Table view** | `resource-management/view/table-view` | `table`, `cards`, `pagination`, `text-filter`, `collection-preferences`, `split-panel` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/view/table-view/) |
+| **Table with grouped resources** | `resource-management/view/table-with-grouped-resources` | `table`, `cards`, `pagination`, `text-filter`, `collection-preferences`, `split-panel` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/view/table-with-grouped-resources/) |
+| **Table with nested resources** | `resource-management/view/table-with-nested-resources` | `table`, `cards`, `pagination`, `text-filter`, `collection-preferences`, `split-panel` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/view/table-with-nested-resources/) |
+| **View resources** | `resource-management/view` | `table`, `cards`, `pagination`, `text-filter`, `collection-preferences`, `split-panel` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/view/) |
+
+### Data Visualization (2 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Chart metric drill down** | `general/data-vis/chart-metric-drill-down` | `line-chart`, `bar-chart`, `pie-chart`, `area-chart`, `mixed-line-bar-chart` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/data-vis/chart-metric-drill-down/) |
+| **Data visualization** | `general/data-vis` | `line-chart`, `bar-chart`, `pie-chart`, `area-chart`, `mixed-line-bar-chart` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/data-vis/) |
+
+### Feedback & Alerts (6 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Communicating unsaved changes** | `general/unsaved-changes` | `alert`, `flashbar`, `modal`, `status-indicator`, `form-field` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/unsaved-changes/) |
+| **Error messages** | `general/errors/error-messages` | `alert`, `flashbar`, `modal`, `status-indicator`, `form-field` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/errors/error-messages/) |
+| **Errors** | `general/errors` | `alert`, `flashbar`, `modal`, `status-indicator`, `form-field` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/errors/) |
+| **Feedback mechanisms** | `general/user-feedback` | `alert`, `flashbar`, `modal`, `status-indicator`, `form-field` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/user-feedback/) |
+| **User feedback** | `general/collect-user-feedback` | `alert`, `flashbar`, `modal`, `status-indicator`, `form-field` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/collect-user-feedback/) |
+| **Validation** | `general/errors/validation` | `alert`, `flashbar`, `modal`, `status-indicator`, `form-field` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/errors/validation/) |
+
+### Dashboard & Analytics (4 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Configurable dashboard** | `general/service-dashboard/configurable-dashboard` | `grid`, `container`, `header`, `bar-chart`, `line-chart`, `key-value-pairs` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/service-dashboard/configurable-dashboard/) |
+| **Dashboard items** | `general/service-dashboard/dashboard-items` | `grid`, `container`, `header`, `bar-chart`, `line-chart`, `key-value-pairs` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/service-dashboard/dashboard-items/) |
+| **Service Dashboard** | `general/service-dashboard` | `grid`, `container`, `header`, `bar-chart`, `line-chart`, `key-value-pairs` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/service-dashboard/) |
+| **Static dashboard** | `general/service-dashboard/static-dashboard` | `grid`, `container`, `header`, `bar-chart`, `line-chart`, `key-value-pairs` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/service-dashboard/static-dashboard/) |
+
+### Resource Creation (5 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Create resource** | `resource-management/create` | `form`, `form-field`, `wizard`, `button`, `container`, `space-between`, `header` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/create/) |
+| **Defaults** | `resource-management/create/defaults` | `form`, `form-field`, `wizard`, `button`, `container`, `space-between`, `header` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/create/defaults/) |
+| **Multipage create** | `resource-management/create/multi-page-create` | `form`, `form-field`, `wizard`, `button`, `container`, `space-between`, `header` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/create/multi-page-create/) |
+| **Single page create** | `resource-management/create/single-page-create` | `form`, `form-field`, `wizard`, `button`, `container`, `space-between`, `header` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/create/single-page-create/) |
+| **Sub resource create** | `resource-management/create/sub-resource-create` | `form`, `form-field`, `wizard`, `button`, `container`, `space-between`, `header` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/create/sub-resource-create/) |
+
+### Resource Deletion (4 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Delete patterns** | `resource-management/delete` | `modal`, `alert`, `button`, `input`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/delete/) |
+| **Delete with additional confirmation** | `resource-management/delete/delete-with-additional-confirmation` | `modal`, `alert`, `button`, `input`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/delete/delete-with-additional-confirmation/) |
+| **Delete with simple confirmation** | `resource-management/delete/delete-with-simple-confirmation` | `modal`, `alert`, `button`, `input`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/delete/delete-with-simple-confirmation/) |
+| **One-click delete** | `resource-management/delete/one-click-delete` | `modal`, `alert`, `button`, `input`, `box` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/delete/one-click-delete/) |
+
+### Resource Details (4 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Details page** | `resource-management/details/details-page` | `header`, `container`, `key-value-pairs`, `tabs`, `button-dropdown`, `space-between` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/details/details-page/) |
+| **Details page as a hub** | `resource-management/details/details-page-as-hub` | `header`, `container`, `key-value-pairs`, `tabs`, `button-dropdown`, `space-between` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/details/details-page-as-hub/) |
+| **Details page with tabs** | `resource-management/details/details-page-with-tabs` | `header`, `container`, `key-value-pairs`, `tabs`, `button-dropdown`, `space-between` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/details/details-page-with-tabs/) |
+| **Resource details** | `resource-management/details` | `header`, `container`, `key-value-pairs`, `tabs`, `button-dropdown`, `space-between` | [AWS Pattern Spec](https://cloudscape.design/patterns/resource-management/details/) |
+
+### Filtering (3 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Filter persistence in collection views** | `general/filter-patterns/filter-persistence-in-collection-views` | `property-filter`, `text-filter`, `select`, `multiselect`, `token-group` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/filter-patterns/filter-persistence-in-collection-views/) |
+| **Filtering patterns** | `general/filter-patterns` | `property-filter`, `text-filter`, `select`, `multiselect`, `token-group` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/filter-patterns/) |
+| **Saved filter sets** | `general/filter-patterns/saved-filter-sets` | `property-filter`, `text-filter`, `select`, `multiselect`, `token-group` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/filter-patterns/saved-filter-sets/) |
+
+### Navigation (3 Patterns)
+
+| Pattern Title | Slug | Key Components Combined | AWS Pattern Documentation |
+| :--- | :--- | :--- | :--- |
+| **Service navigation** | `general/service-navigation` | `top-navigation`, `side-navigation`, `app-layout`, `breadcrumb-group` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/service-navigation/) |
+| **Side navigation** | `general/service-navigation/side-navigation` | `top-navigation`, `side-navigation`, `app-layout`, `breadcrumb-group` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/service-navigation/side-navigation/) |
+| **Top navigation** | `general/service-navigation/top-navigation` | `top-navigation`, `side-navigation`, `app-layout`, `breadcrumb-group` | [AWS Pattern Spec](https://cloudscape.design/patterns/general/service-navigation/top-navigation/) |
+

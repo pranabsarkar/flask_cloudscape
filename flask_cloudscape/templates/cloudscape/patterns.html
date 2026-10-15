@@ -1,0 +1,605 @@
+{% extends "cloudscape/_base.html" %}
+
+{% block title %}AWS Cloudscape Pattern Replicas (59 Patterns) | Flask-Cloudscape{% endblock %}
+
+{% block head %}
+<style>
+  :root {
+    --cat-sidebar-width: 300px;
+    --cat-bg: #f8f9fa;
+    --cat-border: #eaeded;
+    --cat-text: #16191f;
+    --cat-subtext: #5f6b7a;
+    --cat-accent: #0972d3;
+    --cat-card-bg: #ffffff;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--cat-bg);
+    color: var(--cat-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .catalogue-shell {
+    display: flex;
+    min-height: 100vh;
+  }
+  .catalogue-sidebar {
+    width: var(--cat-sidebar-width);
+    background: #ffffff;
+    border-right: 1px solid var(--cat-border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .catalogue-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 20px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--cat-border);
+  }
+  .catalogue-brand-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cat-accent);
+    margin: 0;
+  }
+  .catalogue-search {
+    margin-bottom: 20px;
+  }
+  .catalogue-search input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #aab7b8;
+    border-radius: 6px;
+    font-size: 13px;
+    box-sizing: border-box;
+    background: #ffffff;
+  }
+  .catalogue-search input:focus {
+    outline: none;
+    border-color: var(--cat-accent);
+    box-shadow: 0 0 0 2px rgba(9, 114, 211, 0.2);
+  }
+  .catalogue-nav-group-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 700;
+    color: var(--cat-subtext);
+    margin: 18px 0 8px 8px;
+  }
+  .catalogue-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    color: #414d5c;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .catalogue-nav-link:hover {
+    background-color: #f2f3f3;
+    color: var(--cat-accent);
+  }
+  .catalogue-nav-count {
+    font-size: 11px;
+    background: #eaeded;
+    color: var(--cat-subtext);
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .catalogue-main {
+    flex: 1;
+    min-width: 0;
+    padding: 32px 48px 80px 48px;
+    box-sizing: border-box;
+  }
+  .hero-banner {
+    background: #ffffff;
+    border: 1px solid var(--cat-border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 36px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--cat-border);
+  }
+  .stat-card {
+    background: #fbfbfb;
+    border: 1px solid #eaeded;
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+  .stat-num {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--cat-accent);
+  }
+  .stat-lbl {
+    font-size: 12px;
+    color: var(--cat-subtext);
+    font-weight: 500;
+  }
+  .category-section {
+    margin-bottom: 48px;
+    scroll-margin-top: 32px;
+  }
+  .category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--cat-border);
+  }
+  .category-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f1b2a;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .patterns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+  }
+  .pattern-card {
+    background: #ffffff;
+    border: 1px solid var(--cat-border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .pattern-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+    border-color: #0972d3;
+  }
+  .pattern-card-top {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f2f3f3;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    background: #fafafa;
+  }
+  .pattern-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #16191f;
+    margin: 0 0 4px 0;
+  }
+  .pattern-card-tag {
+    font-size: 11px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: #0972d3;
+    background: #e9f2fa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .pattern-card-body {
+    padding: 18px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .pattern-card-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--cat-subtext);
+    margin: 0 0 16px 0;
+  }
+  .pattern-card-preview {
+    background: #ffffff;
+    border: 1px solid #eaeded;
+    border-radius: 6px;
+    padding: 14px;
+    margin-bottom: 14px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pattern-components-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .pattern-comp-chip {
+    font-size: 11px;
+    background: #f2f3f3;
+    color: #414d5c;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid #e1e4e8;
+    transition: all 0.15s ease;
+  }
+  .pattern-comp-chip:hover {
+    background: #e9f2fa;
+    color: #0972d3;
+    border-color: #b2d7f8;
+  }
+  .pattern-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid #f2f3f3;
+    font-size: 12px;
+  }
+  .pattern-card-footer a {
+    color: var(--cat-accent);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .pattern-card-footer a:hover {
+    text-decoration: underline;
+  }
+  .top-mode-switch {
+    display: flex;
+    gap: 8px;
+    background: #eaeded;
+    padding: 3px;
+    border-radius: 6px;
+  }
+  .top-mode-btn {
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #5f6b7a;
+    transition: all 0.15s ease;
+  }
+  .top-mode-btn.active {
+    background: #ffffff;
+    color: #0972d3;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="catalogue-shell">
+  <!-- Sidebar Navigation -->
+  <aside class="catalogue-sidebar">
+    <div class="catalogue-brand">
+      <div style="background: #0972d3; color: white; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">
+        P
+      </div>
+      <div>
+        <h2 class="catalogue-brand-title">Cloudscape Patterns</h2>
+        <span style="font-size: 11px; color: var(--cat-subtext);">59 Official Replicas</span>
+      </div>
+    </div>
+
+    <!-- Navigation Switch between Components and Patterns -->
+    <div style="margin-bottom: 16px;">
+      <div class="top-mode-switch">
+        <a href="/" class="top-mode-btn">Components (113)</a>
+        <a href="/patterns" class="top-mode-btn active">Patterns (59)</a>
+      </div>
+    </div>
+
+    <!-- Search filter -->
+    <div class="catalogue-search">
+      <input type="text" id="patternSearchInput" placeholder="Filter 59 patterns..." autocomplete="off">
+    </div>
+
+    <!-- Subcategory Links -->
+    <div class="catalogue-nav-group-title">Pattern Groups</div>
+    <nav>
+      {% for group_name, plist in pattern_groups.items() %}
+      <a href="#group-{{ group_name | lower | replace(' ', '-') | replace('&', 'and') }}" class="catalogue-nav-link">
+        <span>{{ group_name }}</span>
+        <span class="catalogue-nav-count">{{ plist | length }}</span>
+      </a>
+      {% endfor %}
+    </nav>
+
+    <div style="margin-top: 32px; padding: 14px; background: #f2f8fd; border: 1px solid #b2d7f8; border-radius: 8px; font-size: 11px; color: #0f1b2a;">
+      <strong style="color: #0972d3;">Cloudscape Pattern Replicas</strong><br>
+      Exact replicas of all 59 patterns from <a href="https://cloudscape.design/patterns/" target="_blank" style="color: #0972d3; font-weight: 600;">cloudscape.design/patterns/</a>. Learn which components combine to build production cloud workflows.
+    </div>
+  </aside>
+
+  <!-- Main Content Body -->
+  <main class="catalogue-main">
+    <!-- Header Hero Banner -->
+    <div class="hero-banner">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+            <cloudscape-badge color="blue">Cloudscape Design System</cloudscape-badge>
+            <cloudscape-badge color="green">59 of 59 Pattern Replicas</cloudscape-badge>
+          </div>
+          <h1 style="margin: 0 0 10px 0; font-size: 30px; font-weight: 800; color: #0f1b2a;">Official Cloudscape Patterns Catalogue</h1>
+          <p style="margin: 0; color: var(--cat-subtext); font-size: 14px; max-width: 780px; line-height: 1.5;">
+            Patterns show how Cloudscape components combine to solve common UX problems and design coherent AWS applications. Explore interactive replicas below with component dependencies, specifications, and code recipes for AI agents and human developers.
+          </p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <cloudscape-button variant="normal" href="/">View All 113 Components</cloudscape-button>
+          <cloudscape-button variant="primary" icon-name="external" href="https://cloudscape.design/patterns/">AWS Pattern Specs</cloudscape-button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num" id="totalPatternCount">59</div>
+          <div class="stat-lbl">Official Patterns</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">12</div>
+          <div class="stat-lbl">Workflow Categories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">113</div>
+          <div class="stat-lbl">Components Integrated</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Agent Ready</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patterns List Grouped by Subcategory -->
+    {% for group_name, plist in pattern_groups.items() %}
+    <section id="group-{{ group_name | lower | replace(' ', '-') | replace('&', 'and') }}" class="category-section" data-group-name="{{ group_name }}">
+      <div class="category-header">
+        <h2 class="category-title">
+          <span>{{ group_name }}</span>
+          <cloudscape-badge color="grey">{{ plist | length }}</cloudscape-badge>
+        </h2>
+        <a href="#patternSearchInput" style="font-size: 12px; color: #5f6b7a; text-decoration: none;">Back to top ↑</a>
+      </div>
+
+      <div class="patterns-grid">
+        {% for pat in plist %}
+        <div class="pattern-card" data-pat-title="{{ pat.title }}" data-pat-slug="{{ pat.slug }}" data-pat-desc="{{ pat.desc }}">
+          <div class="pattern-card-top">
+            <div>
+              <h3 class="pattern-card-title">{{ pat.title }}</h3>
+              <span class="pattern-card-tag">{{ pat.category }}</span>
+            </div>
+            <cloudscape-badge color="blue">{{ pat.subcategory }}</cloudscape-badge>
+          </div>
+
+          <div class="pattern-card-body">
+            <p class="pattern-card-desc">{{ pat.desc }}</p>
+
+            <!-- Interactive Pattern Replica Box -->
+            <div class="pattern-card-preview">
+              {% if pat.slug == 'resource-management/view/table-view' %}
+                <div style="width: 100%; font-size: 11px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <strong>Instances (3)</strong>
+                    <cloudscape-button variant="primary">Launch</cloudscape-button>
+                  </div>
+                  <div style="background: #fafafa; border: 1px solid #eaeded; border-radius: 4px; padding: 6px;">
+                    <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr; border-bottom: 1px solid #eaeded; font-weight: 600; padding-bottom: 4px;">
+                      <span>Name</span><span>Type</span><span>Status</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr; padding-top: 4px; color: #5f6b7a;">
+                      <span>web-server-1</span><span>c6g.xlarge</span><span style="color: #037f0c;">● Active</span>
+                    </div>
+                  </div>
+                </div>
+
+              {% elif pat.slug == 'resource-management/view/card-view' %}
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%;">
+                  <div style="background: #fafafa; border: 1px solid #eaeded; border-radius: 4px; padding: 8px; font-size: 11px;">
+                    <strong>Aurora Cluster</strong>
+                    <div style="color: #5f6b7a; font-size: 10px; margin-top: 2px;">Postgres 15.3</div>
+                    <cloudscape-badge color="green">Healthy</cloudscape-badge>
+                  </div>
+                  <div style="background: #fafafa; border: 1px solid #eaeded; border-radius: 4px; padding: 8px; font-size: 11px;">
+                    <strong>DynamoDB Table</strong>
+                    <div style="color: #5f6b7a; font-size: 10px; margin-top: 2px;">Orders_v2</div>
+                    <cloudscape-badge color="blue">Replicating</cloudscape-badge>
+                  </div>
+                </div>
+
+              {% elif pat.slug == 'resource-management/create/single-page-create' or pat.slug == 'resource-management/create' %}
+                <div style="width: 100%; font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
+                  <label style="font-weight: 600;">Resource Name</label>
+                  <input type="text" value="production-payment-vpc" style="padding: 4px 8px; border: 1px solid #aab7b8; border-radius: 4px; font-size: 11px;" readonly>
+                  <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 4px;">
+                    <cloudscape-button variant="link">Cancel</cloudscape-button>
+                    <cloudscape-button variant="primary">Create</cloudscape-button>
+                  </div>
+                </div>
+
+              {% elif pat.slug == 'resource-management/create/multi-page-create' %}
+                <div style="width: 100%; font-size: 11px;">
+                  <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 6px;">
+                    <span style="background: #0972d3; color: white; width: 16px; height: 16px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px;">1</span>
+                    <strong>Step 1: Choose engine</strong>
+                    <span style="color: #94a3b8;">→ Step 2</span>
+                  </div>
+                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; padding: 6px 8px; border-radius: 4px;">
+                    MySQL Community Edition selected
+                  </div>
+                </div>
+
+              {% elif 'delete' in pat.slug %}
+                <div style="width: 100%; border: 1px solid #eaeded; border-radius: 6px; padding: 8px; background: #fafafa; font-size: 11px;">
+                  <div style="font-weight: 700; color: #ba2705; margin-bottom: 4px;">⚠️ Delete production-db?</div>
+                  <p style="margin: 0 0 6px 0; color: #5f6b7a; font-size: 10px;">This action cannot be undone. Enter confirmation text.</p>
+                  <div style="display: flex; justify-content: flex-end; gap: 6px;">
+                    <cloudscape-button variant="link">Cancel</cloudscape-button>
+                    <button type="button" style="background: #ba2705; color: white; border: none; border-radius: 4px; padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer;">Delete</button>
+                  </div>
+                </div>
+
+              {% elif 'details' in pat.slug %}
+                <div style="width: 100%; font-size: 11px;">
+                  <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eaeded; padding-bottom: 4px; margin-bottom: 6px;">
+                    <span style="font-weight: 700;">db-primary-east</span>
+                    <span style="color: #037f0c;">● Available</span>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; color: #5f6b7a;">
+                    <div>Region: <strong>us-east-1</strong></div>
+                    <div>vCPUs: <strong>8 Core</strong></div>
+                  </div>
+                </div>
+
+              {% elif 'dashboard' in pat.slug %}
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; font-size: 11px;">
+                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; padding: 6px; border-radius: 4px;">
+                    <div style="font-size: 10px; color: #5f6b7a;">Active Nodes</div>
+                    <div style="font-size: 16px; font-weight: 700; color: #0972d3;">24 / 24</div>
+                  </div>
+                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; padding: 6px; border-radius: 4px;">
+                    <div style="font-size: 10px; color: #5f6b7a;">Error Rate</div>
+                    <div style="font-size: 16px; font-weight: 700; color: #037f0c;">0.01%</div>
+                  </div>
+                </div>
+
+              {% elif 'edit' in pat.slug %}
+                <div style="width: 100%; font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>Max Connections: <strong>500</strong></span>
+                    <cloudscape-button variant="link" icon-name="edit">Edit</cloudscape-button>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>Retention: <strong>30 days</strong></span>
+                    <cloudscape-button variant="link" icon-name="edit">Edit</cloudscape-button>
+                  </div>
+                </div>
+
+              {% elif 'filter' in pat.slug %}
+                <div style="width: 100%; font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; gap: 6px;">
+                    <span style="background: #e9f2fa; color: #0972d3; padding: 2px 6px; border-radius: 4px;">Tag: Prod ✕</span>
+                    <span style="background: #e9f2fa; color: #0972d3; padding: 2px 6px; border-radius: 4px;">Status: Active ✕</span>
+                  </div>
+                  <span style="font-size: 10px; color: #5f6b7a;">Showing 12 matching resources</span>
+                </div>
+
+              {% elif 'empty' in pat.slug %}
+                <div style="text-align: center; padding: 10px; width: 100%;">
+                  <div style="font-size: 18px; color: #5f6b7a; margin-bottom: 4px;">📦</div>
+                  <div style="font-size: 12px; font-weight: 700; color: #16191f;">No resources found</div>
+                  <p style="margin: 2px 0 6px 0; font-size: 11px; color: #5f6b7a;">Get started by launching your first instance.</p>
+                  <cloudscape-button variant="primary">Create Resource</cloudscape-button>
+                </div>
+
+              {% elif 'feedback' in pat.slug or 'announcing' in pat.slug %}
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="background: #f2f8fd; border-left: 3px solid #0972d3; padding: 6px 10px; font-size: 11px; border-radius: 2px;">
+                    ℹ️ <strong>New Preview:</strong> Aurora Serverless v2 is now available.
+                  </div>
+                </div>
+
+              {% elif 'data-vis' in pat.slug %}
+                <div style="width: 100%; font-size: 11px;">
+                  <div style="height: 36px; display: flex; align-items: flex-end; gap: 8px; border-bottom: 1px solid #eaeded; padding-bottom: 4px;">
+                    <div style="background: #0972d3; width: 14px; height: 60%; border-radius: 2px 2px 0 0;"></div>
+                    <div style="background: #0972d3; width: 14px; height: 90%; border-radius: 2px 2px 0 0;"></div>
+                    <div style="background: #0972d3; width: 14px; height: 75%; border-radius: 2px 2px 0 0;"></div>
+                    <div style="background: #0972d3; width: 14px; height: 100%; border-radius: 2px 2px 0 0;"></div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; color: #5f6b7a; font-size: 10px; margin-top: 2px;">
+                    <span>T1</span><span>T2</span><span>T3</span><span>T4</span>
+                  </div>
+                </div>
+
+              {% else %}
+                <div style="display: flex; align-items: center; gap: 8px; color: #0972d3; font-size: 12px;">
+                  <cloudscape-icon name="view-full" size="small"></cloudscape-icon>
+                  <span>Interactive Pattern Replica</span>
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- Key Components Used in this Pattern -->
+            <div style="margin-top: 4px;">
+              <div style="font-size: 11px; font-weight: 600; color: #5f6b7a; margin-bottom: 6px;">COMPONENTS IN PATTERN:</div>
+              <div class="pattern-components-chips">
+                {% for c in pat.key_components %}
+                <a href="/components/{{ c }}" class="pattern-comp-chip">&lt;{{ c }}&gt;</a>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="pattern-card-footer">
+              <a href="{{ pat.url }}" target="_blank" rel="noopener noreferrer">
+                Official AWS Pattern Specs <cloudscape-icon name="external" size="small"></cloudscape-icon>
+              </a>
+              <span style="font-size: 11px; color: #5f6b7a; font-family: monospace;">{{ pat.slug }}</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  </main>
+</div>
+
+<!-- Search Filter Script -->
+<script>
+  const searchInput = document.getElementById('patternSearchInput');
+  const cards = document.querySelectorAll('.pattern-card');
+  const sections = document.querySelectorAll('.category-section');
+  const totalCountDisplay = document.getElementById('totalPatternCount');
+
+  searchInput.addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const title = card.getAttribute('data-pat-title').toLowerCase();
+      const slug = card.getAttribute('data-pat-slug').toLowerCase();
+      const desc = card.getAttribute('data-pat-desc').toLowerCase();
+
+      const match = !q || title.includes(q) || slug.includes(q) || desc.includes(q);
+      card.style.display = match ? 'flex' : 'none';
+      if (match) visibleCount++;
+    });
+
+    sections.forEach(section => {
+      const visibleCardsInSection = section.querySelectorAll('.pattern-card:not([style*="display: none"])');
+      section.style.display = visibleCardsInSection.length > 0 ? 'block' : 'none';
+    });
+
+    if (totalCountDisplay) {
+      totalCountDisplay.textContent = visibleCount;
+    }
+  });
+</script>
+{% endblock %}

@@ -146,9 +146,31 @@ if __name__ == "__main__":
             comp_by_slug[comp["slug"]] = comp
             comp_category_map[comp["slug"]] = cat
 
+    # Load 59 patterns
+    pat_path = os.path.join(os.path.dirname(__file__), "patterns_59.json")
+    with open(pat_path, "r") as f:
+        patterns_data = json.load(f)
+
+    # Group patterns by subcategory
+    pattern_groups = {}
+    for p in patterns_data:
+        subcat = p.get("subcategory", "General UI")
+        if subcat not in pattern_groups:
+            pattern_groups[subcat] = []
+        pattern_groups[subcat].append(p)
+
     @app.route("/")
     def index():
         return render_template("cloudscape/catalogue.html", categories=categories)
+
+    @app.route("/patterns")
+    def patterns_view():
+        return render_template(
+            "cloudscape/patterns.html",
+            pattern_groups=pattern_groups,
+            patterns_data=patterns_data,
+            total_patterns=len(patterns_data)
+        )
 
     @app.route("/components/<slug>")
     def component_detail(slug):

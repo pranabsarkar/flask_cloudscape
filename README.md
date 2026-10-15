@@ -81,12 +81,13 @@ pip install -e ./flask_cloudscape
 
 ---
 
-## Component Catalogue & Sub-Pages
+## Component Catalogue, Sub-Pages & Patterns Replicas
 
-Flask-Cloudscape includes a built-in development catalogue and dedicated sub-pages for all **113 official Cloudscape components**:
+Flask-Cloudscape includes a built-in development catalogue, dedicated sub-pages for all **113 official Cloudscape components**, and interactive replicas of all **59 official Cloudscape Patterns**:
 
-- **Main Overview**: `http://127.0.0.1:5001/` (Real-time search filter across all 11 categories)
+- **Component Catalogue**: `http://127.0.0.1:5001/` (Real-time search filter across all 11 categories)
 - **Component Sub-Pages**: `http://127.0.0.1:5001/components/<slug>` (Full unconstrained canvas stage, code snippets, and AWS specs)
+- **Patterns Catalogue**: `http://127.0.0.1:5001/patterns` (59 official UX pattern replicas with component combination recipes)
 
 To launch the catalogue server:
 ```bash
@@ -97,7 +98,7 @@ PYTHONPATH=. python3 flask_cloudscape/__init__.py
 
 For AI agents building pages, refer to [AGENT_GUIDE.md](AGENT_GUIDE.md) for the workflow checklist:
 1. Verify Server (`http://127.0.0.1:5001/`)
-2. Inspect Sub-Page (`/components/<slug>`)
+2. Inspect Sub-Page (`/components/<slug>`) or Pattern (`/patterns`)
 3. Optional Visual Snapshot
 4. Copy tag / Python class / Jinja macro to build
 

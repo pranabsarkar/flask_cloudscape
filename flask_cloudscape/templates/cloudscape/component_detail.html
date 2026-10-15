@@ -403,11 +403,125 @@
                 </div>
               </div>
             </cloudscape-form>
+          {% elif comp.slug == 'file-upload' %}
+            <div style="width: 100%; max-width: 550px; display: flex; flex-direction: column; gap: 14px; background: #ffffff; border: 1px solid #eaeded; border-radius: 8px; padding: 20px;">
+              <h4 style="margin: 0; font-size: 14px; font-weight: 700; color: #0f1b2a;">Upload Deployment Artifacts</h4>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <cloudscape-button icon-name="upload">Choose files</cloudscape-button>
+                <span style="font-size: 13px; color: #5f6b7a;">No files chosen</span>
+              </div>
+              <small style="color: #5f6b7a;">Supported file formats: PDF, CSV, PNG, JSON up to 100MB</small>
+            </div>
+          {% elif comp.slug == 'file-input' %}
+            <div style="display: flex; gap: 16px; align-items: center;">
+              <cloudscape-button icon-name="upload">Choose Files</cloudscape-button>
+              <cloudscape-button variant="primary" icon-name="upload">Upload New Revision</cloudscape-button>
+            </div>
+          {% elif comp.slug == 'file-dropzone' %}
+            <div style="width: 100%; border: 2px dashed #0972d3; border-radius: 8px; padding: 32px 20px; text-align: center; background: #f2f8fd;">
+              <div style="font-size: 28px; margin-bottom: 8px;">📁</div>
+              <h4 style="margin: 0 0 4px 0; font-size: 15px; font-weight: 700; color: #0972d3;">Drag and drop files to upload</h4>
+              <p style="margin: 0; font-size: 13px; color: #5f6b7a;">or browse files from your computer</p>
+            </div>
+          {% elif comp.slug == 'file-token-group' %}
+            <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; background: #f2f3f3; padding: 10px 14px; border-radius: 6px; font-size: 13px; border: 1px solid #eaeded;">
+                <span style="display: flex; align-items: center; gap: 8px;">📊 <strong>production_dataset_2026.csv</strong> <span style="color: #5f6b7a;">(1.0 MB)</span></span>
+                <span style="color: #5f6b7a; cursor: pointer; font-size: 16px; font-weight: bold;">✕</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; background: #f2f3f3; padding: 10px 14px; border-radius: 6px; font-size: 13px; border: 1px solid #eaeded;">
+                <span style="display: flex; align-items: center; gap: 8px;">🖼️ <strong>cloud_architecture.png</strong> <span style="color: #5f6b7a;">(524 KB)</span></span>
+                <span style="color: #5f6b7a; cursor: pointer; font-size: 16px; font-weight: bold;">✕</span>
+              </div>
+            </div>
+          {% elif comp.slug == 'file-uploading-components' %}
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 650px;">
+              <div style="border: 2px dashed #0972d3; border-radius: 8px; padding: 24px; text-align: center; background: #f2f8fd;">
+                <div style="font-size: 24px; margin-bottom: 4px;">📂</div>
+                <h4 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 700; color: #0972d3;">Drop files here or click below</h4>
+                <p style="margin: 0; font-size: 12px; color: #5f6b7a;">Accepts CSV, JSON, PNG, PDF</p>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <cloudscape-button icon-name="upload">Choose Files</cloudscape-button>
+                <small style="color: #5f6b7a;">Max 100MB per file</small>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; background: #f2f3f3; padding: 8px 12px; border-radius: 6px; font-size: 13px;">
+                <span>📄 <strong>deployment_manifest.yaml</strong> (40 KB)</span>
+                <span style="color: #0972d3; cursor: pointer;">✕</span>
+              </div>
+            </div>
+          {% elif comp.slug == 'avatar' %}
+            <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
+              <div style="display: flex; gap: 16px; align-items: center;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: #414d5c; color: #fff; font-weight: 700; font-size: 18px; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">PS</div>
+                <div>
+                  <div style="font-size: 15px; font-weight: 700; color: #0f1b2a;">Pranab Sarkar</div>
+                  <div style="font-size: 13px; color: #5f6b7a;">Cloud Systems Architect (User Avatar)</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 16px; align-items: center;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #7b1fa2 0%, #0972d3 100%); color: #fff; font-weight: 700; font-size: 18px; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">AI</div>
+                <div>
+                  <div style="font-size: 15px; font-weight: 700; color: #0f1b2a;">Bedrock Claude Agent</div>
+                  <div style="font-size: 13px; color: #5f6b7a;">Generative AI assistant avatar</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <div style="width: 36px; height: 36px; border-radius: 50%; background: #0972d3; color: #fff; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; justify-content: center;">AW</div>
+                <div style="width: 36px; height: 36px; border-radius: 50%; background: #414d5c; color: #fff; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; justify-content: center;">DB</div>
+                <div style="width: 28px; height: 28px; border-radius: 50%; background: #0972d3; color: #fff; font-weight: 700; font-size: 11px; display: inline-flex; align-items: center; justify-content: center;">S3</div>
+              </div>
+            </div>
+          {% elif comp.slug == 'support-prompt-group' %}
+            <div style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+              <p style="margin: 0; font-size: 13px; color: #5f6b7a;">Suggested query prompts to kickstart user interactions:</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <button type="button" style="display: inline-flex; align-items: center; gap: 6px; background: #f2f8fd; color: #0972d3; border: 1px solid #b2d7f8; border-radius: 18px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer;">✨ Analyze Amazon RDS latency spikes</button>
+                <button type="button" style="display: inline-flex; align-items: center; gap: 6px; background: #f2f8fd; color: #0972d3; border: 1px solid #b2d7f8; border-radius: 18px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer;">✨ Recommend cost reduction for unused EBS volumes</button>
+                <button type="button" style="display: inline-flex; align-items: center; gap: 6px; background: #f2f8fd; color: #0972d3; border: 1px solid #b2d7f8; border-radius: 18px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer;">✨ Explain IAM role trust policy syntax</button>
+                <button type="button" style="display: inline-flex; align-items: center; gap: 6px; background: #f2f8fd; color: #0972d3; border: 1px solid #b2d7f8; border-radius: 18px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer;">✨ Generate Terraform code for multi-AZ VPC</button>
+              </div>
+            </div>
+          {% elif comp.slug == 'genai-components' %}
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 700px; border: 1px solid #eaeded; border-radius: 8px; padding: 20px; background: #fafafa;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaeded; padding-bottom: 12px;">
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #7b1fa2 0%, #0972d3 100%); color: #fff; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; justify-content: center;">AI</div>
+                  <div>
+                    <strong style="font-size: 14px; color: #0f1b2a;">Generative AI Cloud Assistant</strong>
+                    <div style="font-size: 12px; color: #5f6b7a;">Claude 3.5 Sonnet on Amazon Bedrock</div>
+                  </div>
+                </div>
+                <cloudscape-badge color="blue">Connected</cloudscape-badge>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="background: #f2f3f3; color: #16191f; padding: 10px 14px; border-radius: 12px 12px 12px 2px; font-size: 13px; line-height: 1.45; max-width: 85%;">
+                  I analyzed your cluster metrics. Three EC2 instances in us-east-1a are idle and can be downsized to save $420/month.
+                </div>
+                <div style="align-self: flex-end; background: #0972d3; color: #ffffff; padding: 10px 14px; border-radius: 12px 12px 2px 12px; font-size: 13px; line-height: 1.45; max-width: 85%;">
+                  Apply recommended downsizing during next maintenance window.
+                </div>
+                <div style="background: #f2f3f3; color: #16191f; padding: 10px 14px; border-radius: 12px 12px 12px 2px; font-size: 13px; line-height: 1.45; max-width: 85%;">
+                  Scheduled downsizing workflow for Sunday at 02:00 UTC.
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" style="background: #f2f8fd; color: #0972d3; border: 1px solid #b2d7f8; border-radius: 14px; padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer;">✨ View cost breakdown</button>
+                <button type="button" style="background: #f2f8fd; color: #0972d3; border: 1px solid #b2d7f8; border-radius: 14px; padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer;">✨ Notify on-call team</button>
+              </div>
+              <cloudscape-prompt-input placeholder="Ask follow-up questions..."></cloudscape-prompt-input>
+            </div>
           {% elif comp.slug == 'chat-bubble' %}
             <div style="display: flex; flex-direction: column; gap: 16px;">
-              <cloudscape-chat-bubble type="incoming">Hello Pranab! I am your AI cloud infrastructure assistant. How can I help optimize your EC2 instances?</cloudscape-chat-bubble>
-              <cloudscape-chat-bubble type="outgoing">Can you check the current CPU load across all our Aurora PostgreSQL clusters?</cloudscape-chat-bubble>
-              <cloudscape-chat-bubble type="incoming">All clusters are performing nominally with an average CPU utilization of 34% over the last 6 hours.</cloudscape-chat-bubble>
+              <div style="background: #f2f3f3; color: #16191f; padding: 12px 16px; border-radius: 14px 14px 14px 2px; font-size: 13px; line-height: 1.45; max-width: 80%;">
+                Hello Pranab! I am your AI cloud infrastructure assistant. How can I help optimize your EC2 instances?
+              </div>
+              <div style="align-self: flex-end; background: #0972d3; color: #ffffff; padding: 12px 16px; border-radius: 14px 14px 2px 14px; font-size: 13px; line-height: 1.45; max-width: 80%;">
+                Can you check the current CPU load across all our Aurora PostgreSQL clusters?
+              </div>
+              <div style="background: #f2f3f3; color: #16191f; padding: 12px 16px; border-radius: 14px 14px 14px 2px; font-size: 13px; line-height: 1.45; max-width: 80%;">
+                All clusters are performing nominally with an average CPU utilization of 34% over the last 6 hours.
+              </div>
             </div>
           {% elif comp.slug == 'date-picker' or comp.slug == 'calendar' %}
             <cloudscape-date-picker value="2026-10-15" placeholder="YYYY/MM/DD"></cloudscape-date-picker>

@@ -1,0 +1,912 @@
+[
+  {
+    "slug": "general/actions",
+    "title": "Actions",
+    "desc": "Ways to invoke actions in the interface.",
+    "url": "https://cloudscape.design/patterns/general/actions/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/announcing-beta-preview-features",
+    "title": "Announcing beta and preview features",
+    "desc": "Communicate to users which features are in beta or preview.",
+    "url": "https://cloudscape.design/patterns/general/announcing-beta-preview-features/",
+    "category": "General",
+    "subcategory": "Onboarding & Help",
+    "key_components": [
+      "tutorial-panel",
+      "help-panel",
+      "popover",
+      "hotspot",
+      "annotation-context"
+    ]
+  },
+  {
+    "slug": "general/announcing-new-features",
+    "title": "Announcing new features",
+    "desc": "Communicate new feature releases to users.",
+    "url": "https://cloudscape.design/patterns/general/announcing-new-features/",
+    "category": "General",
+    "subcategory": "Onboarding & Help",
+    "key_components": [
+      "tutorial-panel",
+      "help-panel",
+      "popover",
+      "hotspot",
+      "annotation-context"
+    ]
+  },
+  {
+    "slug": "resource-management/edit/attribute-editing",
+    "title": "Attribute editing",
+    "desc": "Create, edit, and delete resource attributes.",
+    "url": "https://cloudscape.design/patterns/resource-management/edit/attribute-editing/",
+    "category": "Resource management",
+    "subcategory": "Resource Editing",
+    "key_components": [
+      "form",
+      "attribute-editor",
+      "input",
+      "select",
+      "button",
+      "popover"
+    ]
+  },
+  {
+    "slug": "resource-management/view/card-view",
+    "title": "Card view",
+    "desc": "A collection of resources represented as cards. It’s effective for glancing at small sets of similar resources with text, numerical, and imagery data sets.",
+    "url": "https://cloudscape.design/patterns/resource-management/view/card-view/",
+    "category": "Resource management",
+    "subcategory": "Resource Viewing",
+    "key_components": [
+      "table",
+      "cards",
+      "pagination",
+      "text-filter",
+      "collection-preferences",
+      "split-panel"
+    ]
+  },
+  {
+    "slug": "general/data-vis/chart-metric-drill-down",
+    "title": "Chart metric drill down",
+    "desc": "Drill into chart metrics by starting at the highest level of data and then exploring lower levels of data.",
+    "url": "https://cloudscape.design/patterns/general/data-vis/chart-metric-drill-down/",
+    "category": "General",
+    "subcategory": "Data Visualization",
+    "key_components": [
+      "line-chart",
+      "bar-chart",
+      "pie-chart",
+      "area-chart",
+      "mixed-line-bar-chart"
+    ]
+  },
+  {
+    "slug": "general/unsaved-changes",
+    "title": "Communicating unsaved changes",
+    "desc": "Communicate to users that unsaved changes on the page will be discarded when users leave a page.",
+    "url": "https://cloudscape.design/patterns/general/unsaved-changes/",
+    "category": "General",
+    "subcategory": "Feedback & Alerts",
+    "key_components": [
+      "alert",
+      "flashbar",
+      "modal",
+      "status-indicator",
+      "form-field"
+    ]
+  },
+  {
+    "slug": "general/service-dashboard/configurable-dashboard",
+    "title": "Configurable dashboard",
+    "desc": "Gives control to the user to show/hide, delete, move, change the size of, and add items to a dashboard.",
+    "url": "https://cloudscape.design/patterns/general/service-dashboard/configurable-dashboard/",
+    "category": "General",
+    "subcategory": "Dashboard & Analytics",
+    "key_components": [
+      "grid",
+      "container",
+      "header",
+      "bar-chart",
+      "line-chart",
+      "key-value-pairs"
+    ]
+  },
+  {
+    "slug": "resource-management/create",
+    "title": "Create resource",
+    "desc": "With the create new resource pattern, users can create new resources.",
+    "url": "https://cloudscape.design/patterns/resource-management/create/",
+    "category": "Resource management",
+    "subcategory": "Resource Creation",
+    "key_components": [
+      "form",
+      "form-field",
+      "wizard",
+      "button",
+      "container",
+      "space-between",
+      "header"
+    ]
+  },
+  {
+    "slug": "general/service-dashboard/dashboard-items",
+    "title": "Dashboard items",
+    "desc": "Dashboard items are self contained UI elements that address specific customer needs, such as navigating to a resource, monitor resources status, or viewing a costs summary.",
+    "url": "https://cloudscape.design/patterns/general/service-dashboard/dashboard-items/",
+    "category": "General",
+    "subcategory": "Dashboard & Analytics",
+    "key_components": [
+      "grid",
+      "container",
+      "header",
+      "bar-chart",
+      "line-chart",
+      "key-value-pairs"
+    ]
+  },
+  {
+    "slug": "general/data-vis",
+    "title": "Data visualization",
+    "desc": "Data visualization is a graphic representation of information and quantitative data intended to quickly and clearly convey meaning.",
+    "url": "https://cloudscape.design/patterns/general/data-vis/",
+    "category": "General",
+    "subcategory": "Data Visualization",
+    "key_components": [
+      "line-chart",
+      "bar-chart",
+      "pie-chart",
+      "area-chart",
+      "mixed-line-bar-chart"
+    ]
+  },
+  {
+    "slug": "resource-management/create/defaults",
+    "title": "Defaults",
+    "desc": "Reduce friction during resource creation by applying defaults that are both transparent and useful to the user.",
+    "url": "https://cloudscape.design/patterns/resource-management/create/defaults/",
+    "category": "Resource management",
+    "subcategory": "Resource Creation",
+    "key_components": [
+      "form",
+      "form-field",
+      "wizard",
+      "button",
+      "container",
+      "space-between",
+      "header"
+    ]
+  },
+  {
+    "slug": "resource-management/delete",
+    "title": "Delete patterns",
+    "desc": "With delete patterns, users can delete existing resources.",
+    "url": "https://cloudscape.design/patterns/resource-management/delete/",
+    "category": "Resource management",
+    "subcategory": "Resource Deletion",
+    "key_components": [
+      "modal",
+      "alert",
+      "button",
+      "input",
+      "box"
+    ]
+  },
+  {
+    "slug": "resource-management/delete/delete-with-additional-confirmation",
+    "title": "Delete with additional confirmation",
+    "desc": "The delete with additional confirmation pattern helps prevent users from performing accidental, high-severity deletions by adding friction during the deletion process.",
+    "url": "https://cloudscape.design/patterns/resource-management/delete/delete-with-additional-confirmation/",
+    "category": "Resource management",
+    "subcategory": "Resource Deletion",
+    "key_components": [
+      "modal",
+      "alert",
+      "button",
+      "input",
+      "box"
+    ]
+  },
+  {
+    "slug": "resource-management/delete/delete-with-simple-confirmation",
+    "title": "Delete with simple confirmation",
+    "desc": "Provide a layer of confirmation before deleting resources that cannot be easily recreated.",
+    "url": "https://cloudscape.design/patterns/resource-management/delete/delete-with-simple-confirmation/",
+    "category": "Resource management",
+    "subcategory": "Resource Deletion",
+    "key_components": [
+      "modal",
+      "alert",
+      "button",
+      "input",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/density-settings",
+    "title": "Density settings",
+    "desc": "With the density settings pattern, users can define the preferred density level of the content visible within the interface.",
+    "url": "https://cloudscape.design/patterns/general/density-settings/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "resource-management/details/details-page",
+    "title": "Details page",
+    "desc": "On a details page, users can view at a glance all the available information about a single resource.",
+    "url": "https://cloudscape.design/patterns/resource-management/details/details-page/",
+    "category": "Resource management",
+    "subcategory": "Resource Details",
+    "key_components": [
+      "header",
+      "container",
+      "key-value-pairs",
+      "tabs",
+      "button-dropdown",
+      "space-between"
+    ]
+  },
+  {
+    "slug": "resource-management/details/details-page-as-hub",
+    "title": "Details page as a hub",
+    "desc": "With the details page as a hub pattern, users can view the details about a resource and a preview of related resources. Use the hub for resources that have large and complex data sets.",
+    "url": "https://cloudscape.design/patterns/resource-management/details/details-page-as-hub/",
+    "category": "Resource management",
+    "subcategory": "Resource Details",
+    "key_components": [
+      "header",
+      "container",
+      "key-value-pairs",
+      "tabs",
+      "button-dropdown",
+      "space-between"
+    ]
+  },
+  {
+    "slug": "resource-management/details/details-page-with-tabs",
+    "title": "Details page with tabs",
+    "desc": "Users can use tabs to view the configuration details of a single resource on a single page. Users can choose each tab on the page to easily switch between different groupings of information in the same view.",
+    "url": "https://cloudscape.design/patterns/resource-management/details/details-page-with-tabs/",
+    "category": "Resource management",
+    "subcategory": "Resource Details",
+    "key_components": [
+      "header",
+      "container",
+      "key-value-pairs",
+      "tabs",
+      "button-dropdown",
+      "space-between"
+    ]
+  },
+  {
+    "slug": "general/disabled-and-read-only-states",
+    "title": "Disabled and read-only states",
+    "desc": "Use disabled and read-only states to indicate non-interactive elements when users are not permitted to interact with or modify them.",
+    "url": "https://cloudscape.design/patterns/general/disabled-and-read-only-states/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/drag-and-drop",
+    "title": "Drag-and-drop",
+    "desc": "Drag-and-drop enables users to select and manipulate UI elements through moving, reordering, or resizing.",
+    "url": "https://cloudscape.design/patterns/general/drag-and-drop/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "resource-management/edit",
+    "title": "Edit resource",
+    "desc": "With the edit resource pattern, users can edit properties and configurations of resources.",
+    "url": "https://cloudscape.design/patterns/resource-management/edit/",
+    "category": "Resource management",
+    "subcategory": "Resource Editing",
+    "key_components": [
+      "form",
+      "attribute-editor",
+      "input",
+      "select",
+      "button",
+      "popover"
+    ]
+  },
+  {
+    "slug": "general/empty-states",
+    "title": "Empty states",
+    "desc": "An empty state occurs when users haven’t created a resource or have deleted all existing resources. A zero results state occurs when users have filtered and there are no matches.",
+    "url": "https://cloudscape.design/patterns/general/empty-states/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/errors/error-messages",
+    "title": "Error messages",
+    "desc": "Error messages give users context about an inaccuracy, malfunction, unsuccessful action, or critical issue.",
+    "url": "https://cloudscape.design/patterns/general/errors/error-messages/",
+    "category": "General",
+    "subcategory": "Feedback & Alerts",
+    "key_components": [
+      "alert",
+      "flashbar",
+      "modal",
+      "status-indicator",
+      "form-field"
+    ]
+  },
+  {
+    "slug": "general/errors",
+    "title": "Errors",
+    "desc": "Errors inform users of an inaccuracy, malfunction, unsuccessful action, or critical issue.",
+    "url": "https://cloudscape.design/patterns/general/errors/",
+    "category": "General",
+    "subcategory": "Feedback & Alerts",
+    "key_components": [
+      "alert",
+      "flashbar",
+      "modal",
+      "status-indicator",
+      "form-field"
+    ]
+  },
+  {
+    "slug": "general/user-feedback",
+    "title": "Feedback mechanisms",
+    "desc": "Ways to communicate specific messages to a user in an interface.",
+    "url": "https://cloudscape.design/patterns/general/user-feedback/",
+    "category": "General",
+    "subcategory": "Feedback & Alerts",
+    "key_components": [
+      "alert",
+      "flashbar",
+      "modal",
+      "status-indicator",
+      "form-field"
+    ]
+  },
+  {
+    "slug": "general/filter-patterns/filter-persistence-in-collection-views",
+    "title": "Filter persistence in collection views",
+    "desc": "Persist filters in URLs to enable easy sharing of a collection view.",
+    "url": "https://cloudscape.design/patterns/general/filter-patterns/filter-persistence-in-collection-views/",
+    "category": "General",
+    "subcategory": "Filtering",
+    "key_components": [
+      "property-filter",
+      "text-filter",
+      "select",
+      "multiselect",
+      "token-group"
+    ]
+  },
+  {
+    "slug": "general/filter-patterns",
+    "title": "Filtering patterns",
+    "desc": "Filtering patterns let users find specific items in a collection of resources. Users can filter by exact values or by ﬁnite sets of properties.",
+    "url": "https://cloudscape.design/patterns/general/filter-patterns/",
+    "category": "General",
+    "subcategory": "Filtering",
+    "key_components": [
+      "property-filter",
+      "text-filter",
+      "select",
+      "multiselect",
+      "token-group"
+    ]
+  },
+  {
+    "slug": "general/actions/global-actions",
+    "title": "Global actions",
+    "desc": "Use global actions when there’s a single set of actions, or bulk actions, to be taken against any or all resources in a given view or page.",
+    "url": "https://cloudscape.design/patterns/general/actions/global-actions/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/onboarding/hands-on-tutorials",
+    "title": "Hands-on tutorials",
+    "desc": "Hands-on tutorials provide contextual suggestions at decision points in workflows, and also clarify all the steps that need to be completed in order to achieve an objective.",
+    "url": "https://cloudscape.design/patterns/general/onboarding/hands-on-tutorials/",
+    "category": "General",
+    "subcategory": "Onboarding & Help",
+    "key_components": [
+      "tutorial-panel",
+      "help-panel",
+      "popover",
+      "hotspot",
+      "annotation-context"
+    ]
+  },
+  {
+    "slug": "general/help-system",
+    "title": "Help system",
+    "desc": "The help system pattern allows users to easily and quickly access help within the interface and current workflow.",
+    "url": "https://cloudscape.design/patterns/general/help-system/",
+    "category": "General",
+    "subcategory": "Onboarding & Help",
+    "key_components": [
+      "tutorial-panel",
+      "help-panel",
+      "popover",
+      "hotspot",
+      "annotation-context"
+    ]
+  },
+  {
+    "slug": "general/hero-header",
+    "title": "Hero header",
+    "desc": "Showcase key messages and functionality for your application or section of an application in the header of the page.",
+    "url": "https://cloudscape.design/patterns/general/hero-header/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/image-magnifier",
+    "title": "Image magnifier",
+    "desc": "Enable users to enlarge an image to view additional details.",
+    "url": "https://cloudscape.design/patterns/general/image-magnifier/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/actions/incontext-actions",
+    "title": "In-context actions",
+    "desc": "Use in-context actions when there are actions tied to a singular element, resource or container.",
+    "url": "https://cloudscape.design/patterns/general/actions/incontext-actions/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "resource-management/edit/inline-edit",
+    "title": "Inline edit",
+    "desc": "Use inline edit on views where information needs to be updated often, or when you want a user to edit a resource property across multiple resources.",
+    "url": "https://cloudscape.design/patterns/resource-management/edit/inline-edit/",
+    "category": "Resource management",
+    "subcategory": "Resource Editing",
+    "key_components": [
+      "form",
+      "attribute-editor",
+      "input",
+      "select",
+      "button",
+      "popover"
+    ]
+  },
+  {
+    "slug": "general/loading-and-refreshing",
+    "title": "Loading and refreshing",
+    "desc": "Loading and refreshing is used to refresh collections of data in the interface.",
+    "url": "https://cloudscape.design/patterns/general/loading-and-refreshing/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "resource-management/create/multi-page-create",
+    "title": "Multipage create",
+    "desc": "Use the multipage create, which employs the wizard component, when you want users to create resources by completing a set of interrelated tasks. We recommend multipage create for long or complex configurations.",
+    "url": "https://cloudscape.design/patterns/resource-management/create/multi-page-create/",
+    "category": "Resource management",
+    "subcategory": "Resource Creation",
+    "key_components": [
+      "form",
+      "form-field",
+      "wizard",
+      "button",
+      "container",
+      "space-between",
+      "header"
+    ]
+  },
+  {
+    "slug": "general/onboarding",
+    "title": "Onboarding",
+    "desc": "The process of getting started with a product or feature.",
+    "url": "https://cloudscape.design/patterns/general/onboarding/",
+    "category": "General",
+    "subcategory": "Onboarding & Help",
+    "key_components": [
+      "tutorial-panel",
+      "help-panel",
+      "popover",
+      "hotspot",
+      "annotation-context"
+    ]
+  },
+  {
+    "slug": "resource-management/delete/one-click-delete",
+    "title": "One-click delete",
+    "desc": "With the one-click delete pattern, users can quickly delete low-risk, non-critical resources.",
+    "url": "https://cloudscape.design/patterns/resource-management/delete/one-click-delete/",
+    "category": "Resource management",
+    "subcategory": "Resource Deletion",
+    "key_components": [
+      "modal",
+      "alert",
+      "button",
+      "input",
+      "box"
+    ]
+  },
+  {
+    "slug": "resource-management/edit/page-edit",
+    "title": "Page edit",
+    "desc": "Use the page edit pattern when you want users to manage an item by editing its properties and configuration in bulk.",
+    "url": "https://cloudscape.design/patterns/resource-management/edit/page-edit/",
+    "category": "Resource management",
+    "subcategory": "Resource Editing",
+    "key_components": [
+      "form",
+      "attribute-editor",
+      "input",
+      "select",
+      "button",
+      "popover"
+    ]
+  },
+  {
+    "slug": "resource-management/details",
+    "title": "Resource details",
+    "desc": "On a resource details page, users can view the details of a resource and, when relevant, any related resources.",
+    "url": "https://cloudscape.design/patterns/resource-management/details/",
+    "category": "Resource management",
+    "subcategory": "Resource Details",
+    "key_components": [
+      "header",
+      "container",
+      "key-value-pairs",
+      "tabs",
+      "button-dropdown",
+      "space-between"
+    ]
+  },
+  {
+    "slug": "general/filter-patterns/saved-filter-sets",
+    "title": "Saved filter sets",
+    "desc": "Enable users to save filter configurations as filter sets and quickly apply them in a collection of resources.",
+    "url": "https://cloudscape.design/patterns/general/filter-patterns/saved-filter-sets/",
+    "category": "General",
+    "subcategory": "Filtering",
+    "key_components": [
+      "property-filter",
+      "text-filter",
+      "select",
+      "multiselect",
+      "token-group"
+    ]
+  },
+  {
+    "slug": "general/secondary-panels",
+    "title": "Secondary panels",
+    "desc": "Panels that allow users to access features or information that are supportive but not essential to the completion of tasks.",
+    "url": "https://cloudscape.design/patterns/general/secondary-panels/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/selection",
+    "title": "Selection in forms",
+    "desc": "Form elements that allow users to select one or more options from a list, or turn on and off an option.",
+    "url": "https://cloudscape.design/patterns/general/selection/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/service-dashboard",
+    "title": "Service Dashboard",
+    "desc": "A dashboard page presents at-a-glance information about service and resource status. Users can monitor this information and act upon it quickly.",
+    "url": "https://cloudscape.design/patterns/general/service-dashboard/",
+    "category": "General",
+    "subcategory": "Dashboard & Analytics",
+    "key_components": [
+      "grid",
+      "container",
+      "header",
+      "bar-chart",
+      "line-chart",
+      "key-value-pairs"
+    ]
+  },
+  {
+    "slug": "general/service-navigation",
+    "title": "Service navigation",
+    "desc": "Provides a structural view of the service&#x27;s navigation, and offers globally accessible functionality.",
+    "url": "https://cloudscape.design/patterns/general/service-navigation/",
+    "category": "General",
+    "subcategory": "Navigation",
+    "key_components": [
+      "top-navigation",
+      "side-navigation",
+      "app-layout",
+      "breadcrumb-group"
+    ]
+  },
+  {
+    "slug": "general/service-navigation/side-navigation",
+    "title": "Side navigation",
+    "desc": "Provides a structural view of a services&#x27;s navigation, allowing users to easily navigate sections and pages within the service.",
+    "url": "https://cloudscape.design/patterns/general/service-navigation/side-navigation/",
+    "category": "General",
+    "subcategory": "Navigation",
+    "key_components": [
+      "top-navigation",
+      "side-navigation",
+      "app-layout",
+      "breadcrumb-group"
+    ]
+  },
+  {
+    "slug": "resource-management/create/single-page-create",
+    "title": "Single page create",
+    "desc": "Use single page create if you want your users to create a resource on a single page. This component is optimized for simple to medium-complex forms.",
+    "url": "https://cloudscape.design/patterns/resource-management/create/single-page-create/",
+    "category": "Resource management",
+    "subcategory": "Resource Creation",
+    "key_components": [
+      "form",
+      "form-field",
+      "wizard",
+      "button",
+      "container",
+      "space-between",
+      "header"
+    ]
+  },
+  {
+    "slug": "resource-management/view/split-view",
+    "title": "Split view",
+    "desc": "A collection of resources presented as table or cards and paired with a split panel for contextual resource details. It’s effective for quickly browsing or comparing key resource details.",
+    "url": "https://cloudscape.design/patterns/resource-management/view/split-view/",
+    "category": "Resource management",
+    "subcategory": "Resource Viewing",
+    "key_components": [
+      "table",
+      "cards",
+      "pagination",
+      "text-filter",
+      "collection-preferences",
+      "split-panel"
+    ]
+  },
+  {
+    "slug": "general/service-dashboard/static-dashboard",
+    "title": "Static dashboard",
+    "desc": "Identify and structure a predefined and persistent set off items within a dashboard.",
+    "url": "https://cloudscape.design/patterns/general/service-dashboard/static-dashboard/",
+    "category": "General",
+    "subcategory": "Dashboard & Analytics",
+    "key_components": [
+      "grid",
+      "container",
+      "header",
+      "bar-chart",
+      "line-chart",
+      "key-value-pairs"
+    ]
+  },
+  {
+    "slug": "resource-management/create/sub-resource-create",
+    "title": "Sub resource create",
+    "desc": "Enables users to create new sub-resources within a single or multipage create.",
+    "url": "https://cloudscape.design/patterns/resource-management/create/sub-resource-create/",
+    "category": "Resource management",
+    "subcategory": "Resource Creation",
+    "key_components": [
+      "form",
+      "form-field",
+      "wizard",
+      "button",
+      "container",
+      "space-between",
+      "header"
+    ]
+  },
+  {
+    "slug": "resource-management/view/table-view",
+    "title": "Table view",
+    "desc": "The table view pattern is a collection of resources in a tabular format. It&#x27;s effective for quickly identifying categories or comparing values in a large text and numerical data set.",
+    "url": "https://cloudscape.design/patterns/resource-management/view/table-view/",
+    "category": "Resource management",
+    "subcategory": "Resource Viewing",
+    "key_components": [
+      "table",
+      "cards",
+      "pagination",
+      "text-filter",
+      "collection-preferences",
+      "split-panel"
+    ]
+  },
+  {
+    "slug": "resource-management/view/table-with-grouped-resources",
+    "title": "Table with grouped resources",
+    "desc": "Use a table with grouped resources when resources are organized by one or more shared characteristics.",
+    "url": "https://cloudscape.design/patterns/resource-management/view/table-with-grouped-resources/",
+    "category": "Resource management",
+    "subcategory": "Resource Viewing",
+    "key_components": [
+      "table",
+      "cards",
+      "pagination",
+      "text-filter",
+      "collection-preferences",
+      "split-panel"
+    ]
+  },
+  {
+    "slug": "resource-management/view/table-with-nested-resources",
+    "title": "Table with nested resources",
+    "desc": "Use a table with nested resources when a data set contains resources organized into parent–child relationships.",
+    "url": "https://cloudscape.design/patterns/resource-management/view/table-with-nested-resources/",
+    "category": "Resource management",
+    "subcategory": "Resource Viewing",
+    "key_components": [
+      "table",
+      "cards",
+      "pagination",
+      "text-filter",
+      "collection-preferences",
+      "split-panel"
+    ]
+  },
+  {
+    "slug": "general/timestamps",
+    "title": "Timestamps",
+    "desc": "Timestamps display the relative or absolute datetime at which an event has occurred or will occur.",
+    "url": "https://cloudscape.design/patterns/general/timestamps/",
+    "category": "General",
+    "subcategory": "General UI",
+    "key_components": [
+      "button",
+      "button-dropdown",
+      "button-group",
+      "badge",
+      "box"
+    ]
+  },
+  {
+    "slug": "general/service-navigation/top-navigation",
+    "title": "Top navigation",
+    "desc": "Top navigation provides global controls that help users use the product or service. It’s comprised of a collection of global functionalities that are separate from the product&#x27;s structural navigation.",
+    "url": "https://cloudscape.design/patterns/general/service-navigation/top-navigation/",
+    "category": "General",
+    "subcategory": "Navigation",
+    "key_components": [
+      "top-navigation",
+      "side-navigation",
+      "app-layout",
+      "breadcrumb-group"
+    ]
+  },
+  {
+    "slug": "general/collect-user-feedback",
+    "title": "User feedback",
+    "desc": "User feedback enables users to directly and quickly express their thoughts, concerns, and suggestions about the page they are viewing.",
+    "url": "https://cloudscape.design/patterns/general/collect-user-feedback/",
+    "category": "General",
+    "subcategory": "Feedback & Alerts",
+    "key_components": [
+      "alert",
+      "flashbar",
+      "modal",
+      "status-indicator",
+      "form-field"
+    ]
+  },
+  {
+    "slug": "general/errors/validation",
+    "title": "Validation",
+    "desc": "Help users with error recovery by accurately identifying issues and providing easy identification of incorrect fields for correction.",
+    "url": "https://cloudscape.design/patterns/general/errors/validation/",
+    "category": "General",
+    "subcategory": "Feedback & Alerts",
+    "key_components": [
+      "alert",
+      "flashbar",
+      "modal",
+      "status-indicator",
+      "form-field"
+    ]
+  },
+  {
+    "slug": "resource-management/view",
+    "title": "View resources",
+    "desc": "With the view resources patterns, users can find and take action on a collection of resources in the most efficient way possible.",
+    "url": "https://cloudscape.design/patterns/resource-management/view/",
+    "category": "Resource management",
+    "subcategory": "Resource Viewing",
+    "key_components": [
+      "table",
+      "cards",
+      "pagination",
+      "text-filter",
+      "collection-preferences",
+      "split-panel"
+    ]
+  }
+]

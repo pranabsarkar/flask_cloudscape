@@ -280,6 +280,14 @@
       </div>
     </div>
 
+    <!-- Mode Switch: Components vs Patterns -->
+    <div style="margin-bottom: 16px;">
+      <div style="display: flex; gap: 6px; background: #eaeded; padding: 3px; border-radius: 6px;">
+        <a href="/" style="flex: 1; text-align: center; padding: 6px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-decoration: none; background: #ffffff; color: #0972d3; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Components (113)</a>
+        <a href="/patterns" style="flex: 1; text-align: center; padding: 6px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; text-decoration: none; color: #5f6b7a;">Patterns (59)</a>
+      </div>
+    </div>
+
     <div class="catalogue-search">
       <input type="text" id="catalogueSearchInput" placeholder="Filter 113 components..." oninput="handleSearch(this.value)">
     </div>
@@ -315,7 +323,8 @@
             Every single component from the AWS Cloudscape Design System is catalogued below with live demos, custom element tags (<code>&lt;cloudscape-*&gt;</code>), Python class bindings, and direct links to AWS design specifications.
           </p>
         </div>
-        <div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <cloudscape-button variant="normal" href="/patterns">Explore 59 Patterns →</cloudscape-button>
           <cloudscape-button variant="primary" icon-name="external" href="https://cloudscape.design/components/">Official AWS Docs</cloudscape-button>
         </div>
       </div>
@@ -513,31 +522,75 @@
                 <div style="width: 100%;">
                   <cloudscape-prompt-input placeholder="Ask AI a question..."></cloudscape-prompt-input>
                 </div>
-              {% elif comp.slug == 'file-upload' or comp.slug == 'file-uploading-components' %}
-                <div style="width: 100%;">
-                  <cloudscape-file-upload constraint-text="Max 100MB" i18n-strings='{"uploadButtonText": "Choose file", "dropzoneText": "Drop file here"}'></cloudscape-file-upload>
+              {% elif comp.slug == 'file-upload' %}
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <cloudscape-button icon-name="upload">Choose files</cloudscape-button>
+                    <span style="font-size: 11px; color: #5f6b7a;">No files chosen</span>
+                  </div>
+                  <span style="font-size: 11px; color: #5f6b7a;">Max file size 50MB</span>
+                </div>
+              {% elif comp.slug == 'file-uploading-components' %}
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <cloudscape-button icon-name="upload">Select Files</cloudscape-button>
+                    <span style="font-size: 11px; color: #5f6b7a;">2 files queued</span>
+                  </div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; background: #f2f3f3; padding: 4px 8px; border-radius: 4px; font-size: 11px;">
+                    <span>📄 app_spec.yaml (18 KB)</span>
+                    <span style="color: #0972d3; cursor: pointer;">✕</span>
+                  </div>
                 </div>
               {% elif comp.slug == 'file-input' %}
-                <cloudscape-file-input multiple>Select Files</cloudscape-file-input>
-              {% elif comp.slug == 'file-dropzone' %}
                 <div style="width: 100%;">
-                  <cloudscape-file-dropzone><p style="margin: 8px; font-size: 13px; color: #5f6b7a;">Drag and drop files here to upload</p></cloudscape-file-dropzone>
+                  <cloudscape-button icon-name="upload">Choose Files</cloudscape-button>
+                </div>
+              {% elif comp.slug == 'file-dropzone' %}
+                <div style="width: 100%; border: 2px dashed #0972d3; border-radius: 8px; padding: 12px; text-align: center; background: #f2f8fd;">
+                  <div style="font-size: 18px; margin-bottom: 2px;">📁</div>
+                  <p style="margin: 0; font-size: 12px; font-weight: 600; color: #0972d3;">Drag and drop files here to upload</p>
+                  <p style="margin: 2px 0 0 0; font-size: 11px; color: #5f6b7a;">or browse from local disk</p>
                 </div>
               {% elif comp.slug == 'file-token-group' %}
-                <cloudscape-file-token-group items='[{"name": "dataset_2026.csv", "size": 1048576}]'></cloudscape-file-token-group>
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; background: #f2f3f3; padding: 6px 10px; border-radius: 4px; font-size: 12px; border: 1px solid #eaeded;">
+                    <span style="display: flex; align-items: center; gap: 6px;">📊 <strong>dataset_2026.csv</strong> <small style="color: #5f6b7a;">(1.0 MB)</small></span>
+                    <span style="color: #5f6b7a; cursor: pointer; font-size: 13px;">✕</span>
+                  </div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; background: #f2f3f3; padding: 6px 10px; border-radius: 4px; font-size: 12px; border: 1px solid #eaeded;">
+                    <span style="display: flex; align-items: center; gap: 6px;">🖼️ <strong>diagram.png</strong> <small style="color: #5f6b7a;">(512 KB)</small></span>
+                    <span style="color: #5f6b7a; cursor: pointer; font-size: 13px;">✕</span>
+                  </div>
+                </div>
               {% elif comp.slug == 'genai-components' %}
-                <div style="display: flex; gap: 8px; align-items: center;">
-                  <cloudscape-avatar initials="AI"></cloudscape-avatar>
-                  <cloudscape-badge color="blue">Generative AI Suite</cloudscape-badge>
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+                  <div style="display: flex; gap: 8px; align-items: center;">
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #7b1fa2 0%, #0972d3 100%); color: #fff; font-weight: 700; font-size: 11px; display: inline-flex; align-items: center; justify-content: center;">AI</div>
+                    <div>
+                      <div style="font-size: 12px; font-weight: 700; color: #0f1b2a;">Bedrock Assistant</div>
+                      <cloudscape-badge color="blue">GenAI Pattern Suite</cloudscape-badge>
+                    </div>
+                  </div>
+                  <div style="background: #f2f8fd; border: 1px solid #b2d7f8; border-radius: 8px; padding: 6px 10px; font-size: 11px; color: #0f1b2a;">
+                    ✨ Model response with 99.4% confidence score.
+                  </div>
                 </div>
               {% elif comp.slug == 'chat-bubble' %}
-                <cloudscape-chat-bubble type="incoming">Hello! How can I assist you with AWS Cloudscape today?</cloudscape-chat-bubble>
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="background: #f2f3f3; color: #16191f; padding: 8px 12px; border-radius: 12px 12px 12px 2px; font-size: 12px; line-height: 1.4; max-width: 90%;">
+                    Hello! How can I assist you with AWS Cloudscape today?
+                  </div>
+                </div>
               {% elif comp.slug == 'support-prompt-group' %}
-                <cloudscape-support-prompt-group prompts='[{"text": "Analyze query performance"}, {"text": "Optimize cluster size"}]'></cloudscape-support-prompt-group>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; width: 100%;">
+                  <button type="button" style="background: #f2f8fd; color: #0972d3; border: 1px solid #b2d7f8; border-radius: 14px; padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer;">✨ Analyze query</button>
+                  <button type="button" style="background: #f2f8fd; color: #0972d3; border: 1px solid #b2d7f8; border-radius: 14px; padding: 4px 10px; font-size: 11px; font-weight: 600; cursor: pointer;">✨ Optimize size</button>
+                </div>
               {% elif comp.slug == 'avatar' %}
-                <div style="display: flex; gap: 10px; align-items: center;">
-                  <cloudscape-avatar initials="PS"></cloudscape-avatar>
-                  <cloudscape-avatar initials="AWS" color="gen-ai"></cloudscape-avatar>
+                <div style="display: flex; gap: 10px; align-items: center; justify-content: center; width: 100%;">
+                  <div style="width: 32px; height: 32px; border-radius: 50%; background: #414d5c; color: #fff; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center;">PS</div>
+                  <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #7b1fa2 0%, #0972d3 100%); color: #fff; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center;">AI</div>
+                  <div style="width: 26px; height: 26px; border-radius: 50%; background: #0972d3; color: #fff; font-weight: 700; font-size: 10px; display: inline-flex; align-items: center; justify-content: center;">AWS</div>
                 </div>
               {% elif comp.slug == 'app-layout' or comp.slug == 'content-layout' %}
                 <div style="border: 1px dashed #0972d3; padding: 10px; border-radius: 6px; width: 100%; text-align: center; font-size: 12px; color: #0972d3;">
